@@ -9,3 +9,12 @@
   
 - type: playTimeTracker
   id: JobNanoTrasenRepresentative
+  
+- type: playTimeTracker
+  id: JobIAA
+
+- type: playTimeTracker
+  id: JobCentralCommandOperator
+  
+- type: playTimeTracker
+  id: JobBlueShield
