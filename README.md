@@ -8,13 +8,13 @@
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge)](https://dotnet.microsoft.com/)
 [![Steam](https://img.shields.io/badge/Steam-SS14-1b2838?style=for-the-badge&logo=steam&logoColor=white)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-0078D7?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAxNmwtNS01aDMuNVY0aDNWMTFIMTd6TTUgMTh2Mmgxdjh6Ii8+PC9zdmc+)](https://spacestation14.io/about/nightlies/)
-[![GitHub Stars](https://img.shields.io/github/stars/ss14-art/space-station-14?style=for-the-badge&logo=github&logoColor=white&color=181717)](https://github.com/ss14-art/space-station-14)
+[![GitHub Stars](https://img.shields.io/github/stars/ss14-art/open-space?style=for-the-badge&logo=github&logoColor=white&color=181717)](https://github.com/ss14-art/open-space)
 
 # Space Station 14
 
-![Commit Activity](https://img.shields.io/github/commit-activity/y/ss14-art/space-station-14?style=for-the-badge&logo=github&logoColor=white&color=181717)
-![Issues](https://img.shields.io/github/issues/ss14-art/space-station-14?style=for-the-badge&logo=github&logoColor=white&color=181717)
-![Closed PRs](https://img.shields.io/github/issues-pr-closed/ss14-art/space-station-14?style=for-the-badge&logo=github&logoColor=white&color=181717)
+![Commit Activity](https://img.shields.io/github/commit-activity/y/ss14-art/open-space?style=for-the-badge&logo=github&logoColor=white&color=181717)
+![Issues](https://img.shields.io/github/issues/ss14-art/open-space?style=for-the-badge&logo=github&logoColor=white&color=181717)
+![Closed PRs](https://img.shields.io/github/issues-pr-closed/ss14-art/open-space?style=for-the-badge&logo=github&logoColor=white&color=181717)
 
 </div>
 
@@ -50,8 +50,8 @@ It is a game about survival on a space station featuring constant confrontations
 ### 🍃 Windows
 ```bat
 # 1. Клонируйте репозиторий
-git clone https://github.com/ss14-art/space-station-14.git
-cd space-station-14
+git clone https://github.com/ss14-art/open-space.git
+cd open-space
 
 # 2. Загрузите движок
 git submodule update --init --recursive
@@ -70,8 +70,8 @@ runclient.bat
 ### 🐧 Linux / macOS
 ```sh
 # 1. Клонируйте репозиторий
-git clone https://github.com/ss14-art/space-station-14.git
-cd space-station-14
+git clone https://github.com/ss14-art/open-space.git
+cd open-space
 
 # 2. Загрузите движок
 git submodule update --init --recursive
@@ -106,7 +106,7 @@ chmod +x runclient.sh
 
 > [!CAUTION]
 > **🇷🇺 ВНИМАНИЕ:** Код репозитория имеет комбинированное лицензирование. Оригинальный код Space Wizards Federation лицензирован под MIT. Наши собственные разработки и изменения подчиняются Пользовательской лицензии (Project License) и требуют подписания CLA.
-> 
+>
 > **🇬🇧 CAUTION:** The repository code is under a combined license model. The original Space Wizards Federation code is licensed under MIT. Our custom additions and changes are governed by the Project License and require signing a CLA.
 
 ### Нажмите на раздел для подробностей / Click each section for further information
@@ -118,7 +118,7 @@ chmod +x runclient.sh
 ![Project License](https://img.shields.io/badge/License-Project_License-blue?style=for-the-badge)
 
 > **🇷🇺** Все изменения после коммита `efea656dd33f6296228a5d31be8ffc9f179f4f17` регулируются условиями [LICENSE.TXT](LICENSE.TXT). Коммерческое использование и несанкционированный публичный хостинг запрещены.
-> 
+>
 > **🇬🇧** All changes after commit `efea656dd33f6296228a5d31be8ffc9f179f4f17` are governed by the terms in [LICENSE.TXT](LICENSE.TXT). Commercial use and unauthorized public hosting are prohibited.
 </details>
 
@@ -129,7 +129,7 @@ chmod +x runclient.sh
 ![CLA](https://img.shields.io/badge/Agreement-CLA-orange?style=for-the-badge)
 
 > **🇷🇺** Лицензионное соглашение контрибьютора. Создавая Pull Request в этот репозиторий, вы автоматически соглашаетесь с условиями передачи кода организации ss14-art, описанными в [CLA.TXT](CLA.TXT).
-> 
+>
 > **🇬🇧** Contributor License Agreement. By submitting a Pull Request to this repository, you automatically agree to the terms of transferring code to the ss14-art organization, as described in [CLA.TXT](CLA.TXT).
 </details>
 
@@ -140,7 +140,7 @@ chmod +x runclient.sh
 ![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 > **🇷🇺** Оригинальный код Space Wizards Federation, а также вся история коммитов до `efea656dd33f6296228a5d31be8ffc9f179f4f17` распространяются на условиях [MIT License](MIT.TXT).
-> 
+>
 > **🇬🇧** The original Space Wizards Federation code, as well as all commit history prior to `efea656dd33f6296228a5d31be8ffc9f179f4f17`, are distributed under the terms of the [MIT License](MIT.TXT).
 </details>
 
@@ -151,6 +151,6 @@ chmod +x runclient.sh
 ![Creative Commons 3.0 BY-SA](https://img.shields.io/badge/License-CC_3.0_BY--SA-lightblue?style=for-the-badge)
 
 > **🇷🇺** Все остальные ресурсы (Assets), не относящиеся к коду, включая иконки и звуковые файлы, лицензированы по лицензии [Creative Commons 3.0 BY-SA](https://creativecommons.org/licenses/by-sa/3.0/), если иное не указано в папке или файле.
-> 
+>
 > **🇬🇧** All other non-code Assets, including icons and sound files, are licensed under the [Creative Commons 3.0 BY-SA](https://creativecommons.org/licenses/by-sa/3.0/) license unless otherwise noted in the folder or file.
 </details>
