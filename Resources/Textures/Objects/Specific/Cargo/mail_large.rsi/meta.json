@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-4.0",
-  "copyright": "Made by Gersoon. inhand-left, inhand-right by Whatstone.",
+  "copyright": "Made by Gersoon. inhand-left, inhand-right by Whatstone. bomb, bomb_unshaded by AL-S (c4 reference from CEV-Eris",
   "size": {
     "x": 32,
     "y": 32
@@ -38,6 +38,24 @@
     },
     {
       "name": "postmark"
+    },
+    {
+     "name": "bomb"
+    },
+    {
+     "name": "bomb_unshaded",
+     "delays": [
+        [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.125
+        ]
+      ]
     }
   ]
 }
