@@ -3,7 +3,8 @@ name: Добавить что-то новое
 about: Запросите у разработчиков добавление чего-то нового
 title: "Предложение"
 labels: "На рассмотрении"
-assignees: ss14-art
+assignees:
+    - rewafflution
 
 ---
 
