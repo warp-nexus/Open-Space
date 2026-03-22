@@ -1,15 +1,21 @@
-using Content.Shared.Administration;
-using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
-using Robust.Shared.Configuration;
-using Robust.Shared.Console;
+using Content.Shared.Administration; // AdminFlags
+using Content.Shared.CCVar; // SetCVar
+using Content.Shared.GameTicking; // RoundRestartCleanupEvent
+using Content.Shared.Audio; // SoundCollectionPrototype
+using Robust.Shared.Configuration; // IConfigurationManager
+using Robust.Shared.Console; // IConsoleCommand
+using Robust.Shared.Prototypes; // IPrototypeManager
 
 namespace Content.Server.Administration.Commands;
+
+// Resources/locale/ru_RU/_OpenSpace/commands/set-lobby-music-command.ftl
+// Resources/locale/en_US/_OpenSpace/commands/set-lobby-music-command.ftl
 
 [AdminCommand(AdminFlags.VarEdit)]
 public sealed class SetLobbyMusicCommand : EntitySystem, IConsoleCommand
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public string Command => "setlobbymusic";
     public string Description => Loc.GetString("set-lobby-music-command-description");
@@ -20,7 +26,7 @@ public sealed class SetLobbyMusicCommand : EntitySystem, IConsoleCommand
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart); // Прослушка для того, чтобы можно было использовать лишь один раз за раунд
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
@@ -30,22 +36,29 @@ public sealed class SetLobbyMusicCommand : EntitySystem, IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (_alreadyUsed)
+        if (_alreadyUsed) // За раунд можно воспользоваться только один раз
         {
             shell.WriteError(Loc.GetString("set-lobby-music-command-already-used"));
             return;
         }
 
-        if (args.Length != 1)
+        if (args.Length != 1) // Проверка существования первого аргумента
         {
             shell.WriteError(Loc.GetString("set-lobby-music-command-invalid-args"));
             return;
         }
 
         var newCollection = args[0];
+
+        if (!_proto.HasIndex<SoundCollectionPrototype>(newCollection)) // Проверка на существования коллекции
+        {
+            shell.WriteError(Loc.GetString("set-lobby-music-command-not-found", ("collection", newCollection)));
+            return;
+        }
+
         var current = _cfg.GetCVar(CCVars.LobbyMusicCollection);
 
-        if (current == newCollection)
+        if (current == newCollection) // Проверка на индетичность
         {
             shell.WriteError(Loc.GetString("set-lobby-music-command-already-set", ("collection", newCollection)));
             return;

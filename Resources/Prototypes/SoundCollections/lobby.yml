@@ -16,3 +16,13 @@
     - /Audio/Lobby/lasers_rip_apart_the_bulkhead.ogg
     - /Audio/Lobby/every_light_is_blinking_at_once.ogg
     - /Audio/Lobby/atomicamnesiammx.ogg
+
+- type: soundCollection
+  id: EventMusicForLobby
+  files:
+    - /Audio/_OpenSpace/TEMP_FOR_EVENTS/ESphagnum/Lobby/1.-Credits-Song-for-My-Death.ogg
+    - /Audio/_OpenSpace/TEMP_FOR_EVENTS/ESphagnum/Lobby/2.-Space-Cruise-_Title_.ogg
+    - /Audio/_OpenSpace/TEMP_FOR_EVENTS/ESphagnum/Lobby/3.-Deus-Ex_-UNATCO.ogg
+    - /Audio/_OpenSpace/TEMP_FOR_EVENTS/ESphagnum/Lobby/4.-Beacon-Beach.ogg
+    - /Audio/_OpenSpace/TEMP_FOR_EVENTS/ESphagnum/Lobby/5.-All-Seeying-Eyes.ogg
+    - /Audio/_OpenSpace/TEMP_FOR_EVENTS/ESphagnum/Lobby/6.-Neon-Requiem.ogg
