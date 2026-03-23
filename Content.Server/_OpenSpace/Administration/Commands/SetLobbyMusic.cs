@@ -18,7 +18,7 @@ public sealed class SetLobbyMusicCommand : EntitySystem, IConsoleCommand
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public string Command => "setlobbymusic";
-    public string Description => Loc.GetString("set-lobby-music-command-description");
+    public new string Description => Loc.GetString("set-lobby-music-command-description");
     public string Help => Loc.GetString("set-lobby-music-command-help");
 
     private static bool _alreadyUsed;
