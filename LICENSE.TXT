@@ -54,6 +54,11 @@ use is prohibited. Violation of the terms grants the Licensor the right to take 
 including contacting hosting providers and other intermediaries to block access to 
 violating materials.
 
+
+Authors retain all rights to their contributions and may use them for any purpose,
+including commercial purposes. The organization is granted a non-exclusive right to use,
+modify, and distribute the contributions within the framework of the SS14-ART project.
+
 A Reservation About the Types of Licenses
 
 Some elements of the Project, such as graphics, sound files, or third-party code, 
@@ -126,8 +131,7 @@ distributed under the terms of this License.
 
 Авторы сохраняют все права на свои контрибьюты и могут использовать их в любых целях,
 включая коммерческие. Организация получает неисключительное право использовать, 
-модифицировать и распространять контрибьюты в рамках проекта SS14-ART, 
-но не может передавать права на контрибьюты третьим лицам без согласия автора.
+модифицировать и распространять контрибьюты в рамках проекта SS14-ART.
 
 Оговорка о типах лицензий
 
