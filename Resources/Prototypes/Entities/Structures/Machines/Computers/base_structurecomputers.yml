@@ -60,9 +60,9 @@
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
           None: { state: computer, sprite: Structures/Machines/computers.rsi }
-          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
-          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
-          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _StarLight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _StarLight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _StarLight/Structures/Machines/computers.rsi }
       # Starlight End
   - type: LitOnPowered
   - type: PointLight
