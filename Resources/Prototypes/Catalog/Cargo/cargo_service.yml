@@ -85,7 +85,7 @@
   id: ServiceCustomSmokable
   icon:
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
-    state: icon
+    state: closed # OpenSpace
   product: CrateServiceCustomSmokable
   cost: 1000
   category: cargoproduct-category-name-service
