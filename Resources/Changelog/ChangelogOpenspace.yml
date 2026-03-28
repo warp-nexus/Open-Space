@@ -6,3 +6,24 @@ Entries:
   id: 1
   time: '2026-03-17T13:44:33.000000+00:00'
   url: https://github.com/ss14-art/open-space/pull/12
+- author: AL-S
+  changes:
+  - type: Add
+    message: Порт символов в мелки
+  id: 2
+  time: '2026-03-21T16:12:15.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/8
+- author: XuTPoBaH4uK
+  changes:
+  - type: Add
+    message: Добавлен граб(захват).
+  id: 3
+  time: '2026-03-24T03:10:21.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/23
+- author: ReWAFFlution
+  changes:
+  - type: Add
+    message: Добавил кошачьи ушки и хвосты.
+  id: 4
+  time: '2026-03-27T01:35:17.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/26
