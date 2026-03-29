@@ -1,4 +1,4 @@
-CLA License
+ CLA License
             Copyright (c) 2025-2026 ss14-art Organization 
 
                             Preamble
@@ -9,26 +9,19 @@ to the ss14-art project, Contributor agrees to be bound by the terms of this CLA
 
                             Definitions
 
-– “Contribution” means any original work of authorship (including modifications, enhancements, 
-  bug fixes, documentation, code, or other materials) submitted by Contributor to the ss14-art project.
+– “Contribution” means any original work of authorship (including modifications, enhancements,
+bug fixes, documentation, code, or other materials) intentionally submitted by Contributor
+to the ss14-art project via electronic, oral, or written communication channels operated by
+or on behalf of the Organization (unless explicitly marked as “Not a contribution”).
+Contributions that include third-party materials under licenses incompatible with the Project
+license (e.g., GPL, AGPL) are not accepted, unless Contributor is the original rights holder
+and explicitly grants rights under this CLA.
 – “Project” refers to any repository or software project managed by ss14-art.
 – “Contributor” is any individual or entity submitting a Contribution to the Project.
 – “Licensor” means ss14-art Organization. For licensing inquiries, contact: als@stopco.ru.
 
-Contribution – means any original author's work of Contributors, including any
-modifications or additions to the Build (any source code, object code, correction, tool,
-sample, graphics, assets, specifications, manuals, documentation), which is intentionally
-provided by the Contributor to the Licensor. For the purposes of this definition,
-submission means any form of electronic, oral or written communication sent to Licensor
-or its representatives, including, but not limited to, messages on electronic mailing lists,
-source code control systems and issue tracking systems operated by or on behalf of the
-Organization for the purposes of discussing or improving software or project documentation
-and source. Communications for which it is explicitly stated in writing as "Not a
-contribution" will not be considered a contribution. When providing a Contribution to the
-Build, the Contributor provides the Organization with a simple, free, irrevocable, non-exclusive
-license for the entire period of validity of the Contributor's rights to the Contribution provided
-for by the legislation of the state-jurisdiction of the Contributor
-and/or international legislation for certain forms of Contribution.
+By providing a Contribution, Contributor grants the Organization a free, non-exclusive,
+irrevocable license for the full term of Contributor’s rights in such Contribution.
 
                             Grant of Rights
 
@@ -61,6 +54,13 @@ This CLA is accepted if one of these conditions is met:
 Each Contributor retains copyright ownership of their respective Contributions. 
 ss14-art Organization does not claim ownership of Contributions but obtains the rights 
 to use, modify, and distribute them under the terms of this Contributor License Agreement.
+
+Authors retain all rights to their contributions and may use them for any purpose, 
+including commercial use. The organization is granted a non-exclusive right to use, 
+modify, and distribute the contributions within the framework of the SS14-ART project.
+
+An organization cannot revoke the rights to contributions, but it may prohibit their use 
+in the project if they violate the rules.
 
 ## Code license
 

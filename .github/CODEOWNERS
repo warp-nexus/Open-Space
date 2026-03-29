@@ -3,8 +3,8 @@
 #
 # Код
 /Content.*/** @ReWAFFlution
-# Прототипы
-/Resources/Textures/** @nagato54
-# /Resources/Maps/** @pyrkin07 //
+# Ресурсы
+# /Resources/Textures/**
+# /Resources/Maps/**
 /Resources/Prototypes/** @ReWAFFlution
 /Resources/Locale/** @ReWAFFlution
