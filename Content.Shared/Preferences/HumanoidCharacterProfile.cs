@@ -492,6 +492,7 @@ namespace Content.Shared.Preferences
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
+            if (Voice != other.Voice) return false; // Art-TTS
             if (Species != other.Species) return false;
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
@@ -755,6 +756,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
+            hashCode.Add(Voice); // Art-TTS
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);

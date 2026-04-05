@@ -64,7 +64,7 @@ public sealed partial class HumanoidCharacterProfileV1
 
     // Art-TTS Start
     [DataField]
-    public ProtoId<TTSVoicePrototype> Voice;
+    public ProtoId<TTSVoicePrototype> Voice { get; set; } = TTSConfig.DefaultVoice;
     // Art-TTS End
 
     [DataField]

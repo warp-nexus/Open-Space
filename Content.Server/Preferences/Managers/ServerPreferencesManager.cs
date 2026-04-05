@@ -107,6 +107,11 @@ namespace Content.Server.Preferences.Managers
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
+            // Art-TTS
+            var voice = profile.Voice;
+            if (voice == String.Empty)
+                voice = TTSConfig.DefaultSexVoice[sex];
+            // Art-TTS Ы
 
             var markings =
                 new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
@@ -114,10 +119,6 @@ namespace Content.Server.Preferences.Managers
             var species = profile.Species;
             if (!_prototypeManager.HasIndex<SpeciesPrototype>(species))
                 species = HumanoidCharacterProfile.DefaultSpecies;
-
-            var voice = profile.Voice;
-            if (voice == String.Empty)
-                voice = TTSConfig.DefaultSexVoice[sex];
 
             if (profile.OrganMarkings?.RootElement is { } element)
             {
