@@ -36,3 +36,14 @@ Entries:
   id: 5
   time: '2026-03-28T21:12:14.000000+00:00'
   url: https://github.com/ss14-art/open-space/pull/13
+- author: Soragy
+  changes:
+  - type: Add
+    message: Добавлены переводы для ушек и хвостов.
+  - type: Remove
+    message: Удалены неиспользуемые и лишние строки локализации.
+  - type: Fix
+    message: Исправлены ошибки связанные с кастомизацией.
+  id: 6
+  time: '2026-04-07T13:39:16.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/32
