@@ -1,0 +1,10 @@
+collective-mind-chat-wrap-message = [bold]{$channel} {$number}: {$message}[/bold]
+collective-mind-chat-wrap-message-admin = {$source} ({$channel} {$number}): {$message}
+collective-mind-dioneas = Дионея
+collective-mind-carp = Карпы
+collective-mind-abductor = Абдукторы
+collective-mind-spider = Арахниды
+collective-mind-changeling = Генокрад
+collective-mind-cluwne = Клувень
+collective-mind-vampire-thrall = Вампиры
+collective-mind-xeno = Ксено
