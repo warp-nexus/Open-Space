@@ -137,7 +137,7 @@ namespace Content.Shared.Preferences
             string name,
             string flavortext,
             string species,
-            string voice,
+            string voice, // Art-TTS
             int age,
             Sex sex,
             Gender gender,
@@ -148,7 +148,7 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts
-            ) // Art-TTS
+            )
         {
             Name = name;
             FlavorText = flavortext;
@@ -497,7 +497,7 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
-            if (Voice != other.Voice) return false; // Art-TTS
+            // if (Voice != other.Voice) return false; // Art-TTS
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -760,7 +760,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
-            hashCode.Add(Voice); // Art-TTS
+            // hashCode.Add(Voice); // Art-TTS
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);
