@@ -1,3 +1,4 @@
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -28,6 +29,13 @@ public sealed class HumanoidProfileSystem : EntitySystem
         ent.Comp.Age = profile.Age;
         ent.Comp.Species = profile.Species;
         ent.Comp.Sex = profile.Sex;
+        // Art-TTS Start
+        ent.Comp.Voice = profile.Voice;
+        if (TryComp<TTSComponent>(ent, out var _TTSComponent) && _TTSComponent.VoicePrototypeId == "papich")
+        {
+            _TTSComponent.VoicePrototypeId = profile.Voice;
+        }
+        // Art-TTS End
         Dirty(ent);
 
         var sexChanged = new SexChangedEvent(ent.Comp.Sex, profile.Sex);

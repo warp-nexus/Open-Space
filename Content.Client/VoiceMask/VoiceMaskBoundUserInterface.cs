@@ -26,6 +26,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
 
         _window.OnNameChange += OnNameSelected;
         _window.OnVerbChange += verb => SendMessage(new VoiceMaskChangeVerbMessage(verb));
+        _window.OnVoiceChange += voice => SendMessage(new VoiceMaskChangeVoiceMessage(voice)); // Art-TTS
         _window.OnToggle += OnToggle;
         _window.OnAccentToggle += OnAccentToggle;
     }
@@ -52,7 +53,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
             return;
         }
 
-        _window.UpdateState(cast.Name, cast.Verb, cast.Active, cast.AccentHide);
+        _window.UpdateState(cast.Name, cast.Voice, cast.Verb, cast.Active, cast.AccentHide); // Art-TTS
     }
 
     protected override void Dispose(bool disposing)

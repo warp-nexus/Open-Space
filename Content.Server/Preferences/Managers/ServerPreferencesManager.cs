@@ -3,7 +3,9 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server._Art.TTS; // Art-TTS
 using Content.Server.Database;
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -105,6 +107,11 @@ namespace Content.Server.Preferences.Managers
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
+            // Art-TTS
+            var voice = profile.Voice;
+            if (voice == String.Empty)
+                voice = TTSConfig.DefaultSexVoice[sex];
+            // Art-TTS Ы
 
             var markings =
                 new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
@@ -171,6 +178,7 @@ namespace Content.Server.Preferences.Managers
                 profile.CharacterName,
                 profile.FlavorText,
                 species,
+                voice, // Art-TTS
                 profile.Age,
                 sex,
                 gender,
@@ -182,7 +190,7 @@ namespace Content.Server.Preferences.Managers
                 ),
                 spawnPriority,
                 jobs,
-                (PreferenceUnavailableMode) profile.PreferenceUnavailable,
+                (PreferenceUnavailableMode)profile.PreferenceUnavailable,
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts

@@ -2,6 +2,7 @@ using Content.Client.Humanoid;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
+using Content.Shared._Art.ArtCVar; // Art-TTS
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -190,6 +191,14 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion Gender
+
+            // Art-TTS End
+            if (configurationManager.GetCVar(ArtCVars.TTSClientEnabled))
+            {
+                TTSContainer.Visible = true;
+                InitializeVoice();
+            }
+            // Art-TTS End
 
             RefreshSpecies();
 

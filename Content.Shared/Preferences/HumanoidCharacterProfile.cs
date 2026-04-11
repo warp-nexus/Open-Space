@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -20,6 +21,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Robust.Shared;
 using YamlDotNet.RepresentationModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Content.Shared.Preferences
 {
@@ -80,6 +82,14 @@ namespace Content.Shared.Preferences
         [DataField]
         public ProtoId<SpeciesPrototype> Species { get; set; } = DefaultSpecies;
 
+        // Art-TTS Start
+         /// <summary>
+         /// Associated <see cref="TTSVoicePrototype"/> for this profile.
+         /// </summary>
+        [DataField]
+        public string Voice { get; set; } = TTSConfig.DefaultVoice; // Art-TTS
+        // Art-TTS End
+
         [DataField]
         public int Age { get; set; } = 18;
 
@@ -127,6 +137,7 @@ namespace Content.Shared.Preferences
             string name,
             string flavortext,
             string species,
+            string voice,
             int age,
             Sex sex,
             Gender gender,
@@ -136,11 +147,13 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
-            Dictionary<string, RoleLoadout> loadouts)
+            Dictionary<string, RoleLoadout> loadouts
+            ) // Art-TTS
         {
             Name = name;
             FlavorText = flavortext;
             Species = species;
+            Voice = voice; // Art-TTS
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -172,6 +185,7 @@ namespace Content.Shared.Preferences
             : this(other.Name,
                 other.FlavorText,
                 other.Species,
+                other.Voice, // Art-TTS
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -243,6 +257,15 @@ namespace Content.Shared.Preferences
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
             }
 
+            // Art-TTS Start
+            var voices = prototypeManager.EnumeratePrototypes<TTSVoicePrototype>().ToArray();
+            string voiceId = string.Empty;
+            if (voices.Count() != 0)
+            {
+                voiceId = random.Pick(voices).ID;
+            }
+            // Art-TTS End
+
             var gender = Gender.Epicene;
 
             switch (sex)
@@ -264,6 +287,7 @@ namespace Content.Shared.Preferences
                 Age = age,
                 Gender = gender,
                 Species = species,
+                Voice = voiceId, // Art-TTS
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
         }
@@ -298,6 +322,12 @@ namespace Content.Shared.Preferences
             return new(this) { Species = species };
         }
 
+        // Art-TTS Start
+        public HumanoidCharacterProfile WithVoice(string voice)
+        {
+            return new(this) { Voice = voice };
+        }
+        // Art-TTS End
 
         public HumanoidCharacterProfile WithCharacterAppearance(HumanoidCharacterAppearance appearance)
         {
@@ -467,6 +497,7 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
+            if (Voice != other.Voice) return false; // Art-TTS
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -624,6 +655,12 @@ namespace Content.Shared.Preferences
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
+            // Art-TTS Start
+            prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
+            if (voice is null)
+                Voice = TTSConfig.DefaultSexVoice[sex];
+            // Art-TTS End
+
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
 
@@ -723,6 +760,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
+            hashCode.Add(Voice); // Art-TTS
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);

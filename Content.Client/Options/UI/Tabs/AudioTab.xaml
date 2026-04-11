@@ -8,6 +8,8 @@
             <BoxContainer Orientation="Vertical" Margin="0 3 0 0">
                 <ui:OptionSlider Name="SliderVolumeMaster" Title="{Loc 'ui-options-master-volume'}"
                                  Margin="0 0 0 8" />
+                <CheckBox Name="TtsClientCheckBox" Text="Включить ТТС"/> <!-- Art-TTS -->
+                <ui:OptionSlider Name="SliderVolumeTts" Title="{Loc 'ui-options-tts-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeMidi" Title="{Loc 'ui-options-midi-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeAmbientMusic" Title="{Loc 'ui-options-ambient-music-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeAmbience" Title="{Loc 'ui-options-ambience-volume'}" />
