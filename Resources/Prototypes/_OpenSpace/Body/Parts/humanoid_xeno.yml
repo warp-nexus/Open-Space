@@ -1,7 +1,7 @@
 # © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 - type: entity
   id: PartHumanoidXeno
-  parent: [ BaseItem, BasePart ]
+  parent: [ BaseItem, OrganBase ]
   name: "xenomorph body part"
   abstract: true
   components:
@@ -16,7 +16,7 @@
 - type: entity
   id: TorsoHumanoidXeno
   name: "xenomorph torso"
-  parent: [ PartHumanoidXeno, BaseTorso ]
+  parent: [ PartHumanoidXeno, OrganBaseTorsoSexed ]
   components:
   - type: Sprite
     netsync: false
@@ -29,7 +29,7 @@
 - type: entity
   id: HeadHumanoidXeno
   name: "xenomorph head"
-  parent: [ PartHumanoidXeno, BaseHead ]
+  parent: [ PartHumanoidXeno, OrganBaseHeadSexed ]
   components:
   - type: Sprite
     netsync: false

@@ -1,11 +1,10 @@
 # © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: BaseMobHumanoidXeno
   name: Urist McXeno
   abstract: true
   components:
-  - type: Interactions
   - type: Respirator
     damage:
       types:
@@ -48,7 +47,7 @@
         Slash: 5
         Caustic: 1
   - type: LizardAccent
-  - type: VulpaAccent
+  #- type: GrowlAccent
   - type: JumpAbility
     action: ActionXenomorphGravityJump
     canCollide: true
@@ -62,8 +61,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
-  - type: ToggleableNightVision
-    effect: EffectNightVisionXeno
+  #- type: ToggleableNightVision
+    #effect: EffectNightVisionXeno
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -208,7 +207,6 @@
           32:
             sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
-  - type: HumanoidAppearance
     species: HumanoidXeno
   - type: Tag
     tags:
@@ -216,19 +214,15 @@
       - CanPilot
       - FootstepSound
       - DoorBumpOpener
-  - type: CollectiveMind
-    minds:
-    - Xeno
-  - type: FootprintEmitter
-  - type: Carriable
+  #- type: CollectiveMind
+   # minds:
+    #- Xeno
 
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceHumanoidXeno
   categories: [ HideSpawnMenu ]
   components:
-  - type: HumanoidAppearance
-    species: HumanoidXeno
   - type: Inventory
     speciesId: reptilian
     templateId: humanoidxeno
