@@ -11,8 +11,8 @@ public sealed class FrenchAccentSystem : EntitySystem
 {
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
 
-    private static readonly Regex RegexTh = new(@"th", RegexOptions.IgnoreCase);
-    private static readonly Regex RegexStartH = new(@"(?<!\w)h", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexKR = new(@"[кКрР]", RegexOptions.IgnoreCase); // OpenSpace-Edit // Теперь картавые
+    private static readonly Regex RegexStartH = new(@"(?<!\w)х", RegexOptions.IgnoreCase); // OpenSpace-Edit
     private static readonly Regex RegexSpacePunctuation = new(@"(?<=\w\w)[!?;:](?!\w)", RegexOptions.IgnoreCase);
 
     public override void Initialize()
@@ -28,28 +28,23 @@ public sealed class FrenchAccentSystem : EntitySystem
 
         msg = _replacement.ApplyReplacements(msg, "french");
 
-        // replaces h with ' at the start of words.
+        // replaces х with ' at the start of words.
         msg = RegexStartH.Replace(msg, "'");
 
         // spaces out ! ? : and ;.
         msg = RegexSpacePunctuation.Replace(msg, " $&");
 
-        // replaces th with 'z or 's depending on the case
-        foreach (Match match in RegexTh.Matches(msg))
+        // OpenSpace-Edit Start
+        // replaces 'к/К' with 'кх/КХ' and 'р/Р' with 'х/Х' globally (preserves case) in a single pass.
+        msg = RegexKR.Replace(msg, static m => m.Value[0] switch
         {
-            var uppercase = msg.Substring(match.Index, 2).Contains("TH");
-            var Z = uppercase ? "Z" : "z";
-            var S = uppercase ? "S" : "s";
-            var idxLetter = match.Index + 2;
-
-            // If th is alone, just do 'z
-            if (msg.Length <= idxLetter) {
-                msg = msg.Substring(0, match.Index) + "'" + Z;
-            } else {
-                var c = "aeiouy".Contains(msg.Substring(idxLetter, 1).ToLower()) ? Z : S;
-                msg = msg.Substring(0, match.Index) + "'" + c + msg.Substring(idxLetter);
-            }
-        }
+            'К' => "КХ",
+            'к' => "кх",
+            'Р' => "Х",
+            'р' => "х",
+            _ => m.Value
+        });
+        // OpenSpace-Edit End
 
         return msg;
     }
