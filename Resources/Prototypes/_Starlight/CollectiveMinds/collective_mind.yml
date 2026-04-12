@@ -7,61 +7,9 @@
   - Diona
 
 - type: collectiveMind
-  id: Carp
-  name: collective-mind-carp
-  keycode: 'c'
-  color: "#787878"
-  requiredComponents:
-  - Dragon
-  requiredTags:
-  - Carp
-
-- type: collectiveMind
-  id: Abductor
-  name: collective-mind-abductor
-  keycode: 'q'
-  color: "#d600bd"
-  requiredTags:
-  - Abductor
-
-- type: collectiveMind
-  id: Spider
-  name: collective-mind-spider
-  keycode: 's'
-  color: "#8f6741"
-  requiredComponents:
-  - Spider
-
-- type: collectiveMind
-  id: Changeling
-  name: collective-mind-changeling
-  keycode: 'h'
-  color: "#ff75a8"
-  requiredComponents:
-  - Hivemind
-
-- type: collectiveMind
-  id: Cluwne
-  name: collective-mind-cluwne
-  keycode: 'l'
-  color: "#39c675"
-  requiredComponents:
-  - Cluwne
-
-
-- type: collectiveMind
-  id: VampireThrall
-  name: collective-mind-vampire-thrall
-  keycode: 'p'
-  color: "#066338"
-  requiredComponents:
-  - Dantalion
-  - VampireThrall
-
-- type: collectiveMind
   id: Xeno
   name: collective-mind-xeno
   keycode: 'x'
   color: "#0fca2e"
   requiredTags:
-  - Xeno
+  - HumanoidXeno
