@@ -50,11 +50,11 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ HumanoidXenoTailsDefault ]
+      defaultMarkings: [ HumanoidXenoTailDrone ]
     Head:
       points: 1
       required: true
-      defaultMarkings: [ HumanoidXenoHeadDefault ]
+      defaultMarkings: [ HumanoidXenoHeadDrone ]
     HeadTop:
       points: 0
       required: false
@@ -67,6 +67,10 @@
     Arms:
       points: 1
       required: false
+    Tracheas:
+      points: 1
+      required: true
+      defaultMarkings: [ HumanoidXenoTracheasDrone ]
 
 - type: humanoidBaseSprite
   id: MobHumanoidXenoHead

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "Made by bulbo44key (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+        "name:": "head_drone",
+        "directions": 4
+    },
+    {
+        "name": "shine_drone",
+        "directions": 4
+    },
+    {
+        "name": "teeth_drone",
+        "directions": 4
+    }
+  ]
+}

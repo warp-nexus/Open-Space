@@ -65,6 +65,9 @@ namespace Content.Shared.Humanoid
                     yield return HumanoidVisualLayers.Chest;
                     yield return HumanoidVisualLayers.Tail;
                     break;
+                case HumanoidVisualLayers.Tracheas:
+                    yield return HumanoidVisualLayers.Tracheas;
+                    break;
                 default:
                     yield break;
             }

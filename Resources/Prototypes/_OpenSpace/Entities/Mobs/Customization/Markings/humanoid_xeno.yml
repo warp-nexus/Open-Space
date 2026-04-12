@@ -1,0 +1,31 @@
+- type: marking
+  id: HumanoidXenoTailDrone
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/tails.rsi
+    state: tail_drone
+
+- type: marking
+  id: HumanoidXenoHeadDrone
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/head.rsi
+    state: head_drone
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/head.rsi
+    state: teeth_drone
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/head.rsi
+    state: shine_drone
+
+- type: marking
+  id: HumanoidXenoTracheasDrone
+  bodyPart: Tracheas
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/tracheas.rsi
+    state: tubes_drone
+

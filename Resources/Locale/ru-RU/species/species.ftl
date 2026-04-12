@@ -11,6 +11,8 @@ species-name-skeleton = Скелет
 species-name-vox = Вокс
 species-name-gingerbread = вкуснейшая выпечка
 species-name-vulpkanin = Вульпканин
+# OpenSpace edit
+species-name-xeno = Ксеноморф
 
 ## Misc species things
 
