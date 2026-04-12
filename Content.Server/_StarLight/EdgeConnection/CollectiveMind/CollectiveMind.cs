@@ -1,3 +1,4 @@
+/*
 using Content.Shared.CollectiveMind;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -108,7 +109,8 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
          *         return prob(streak-1) * p
          *     def prob_cum(streak, p=.25):
          *         return np.sum([prob(i, p) for i in range(streak+1)])
-         */
+
+        /*
         var numRepeats = _random.NextDouble() switch
         {
             < 0.75000000 => 2,
@@ -124,3 +126,4 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
         return new string(letter, numRepeats);
     }
 }
+*/

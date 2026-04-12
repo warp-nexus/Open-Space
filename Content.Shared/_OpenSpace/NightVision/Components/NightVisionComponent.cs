@@ -1,3 +1,4 @@
+/*
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -11,3 +12,4 @@ public sealed partial class NightVisionComponent : Component
     [DataField, AutoNetworkedField]
     public EntProtoId Effect = "EffectNightVision";
 }
+*/

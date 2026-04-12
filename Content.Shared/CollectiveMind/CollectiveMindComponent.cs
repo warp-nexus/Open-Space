@@ -1,4 +1,5 @@
-﻿using Robust.Shared.GameStates;
+﻿/*
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
@@ -39,3 +40,4 @@ public sealed partial class CollectiveMindIdentityComponent : Component
     [DataField]
     public CollectiveMindMemberData? MindData;
 }
+*/

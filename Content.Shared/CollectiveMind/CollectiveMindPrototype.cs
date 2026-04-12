@@ -1,3 +1,4 @@
+/*
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -47,3 +48,4 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     [DataField]
     public List<ProtoId<TagPrototype>> CanSpeakTags { get; set; } = new();
 }
+*/

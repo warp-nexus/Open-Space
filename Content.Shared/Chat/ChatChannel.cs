@@ -83,7 +83,7 @@ namespace Content.Shared.Chat
         /// <summary>
         ///     Collective mind channel for entities who have comp.
         /// </summary>
-        CollectiveMind = 1 << 14,
+        //CollectiveMind = 1 << 14,
 
         /// <summary>
         ///     Unspecified.
@@ -93,7 +93,7 @@ namespace Content.Shared.Chat
         /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | CollectiveMind | Notifications,
+        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Notifications,
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }

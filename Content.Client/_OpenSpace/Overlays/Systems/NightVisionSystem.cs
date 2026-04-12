@@ -1,3 +1,4 @@
+/*
 using Content.Shared._OpenSpace.NightVision.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -82,3 +83,4 @@ public sealed class NightVisionSystem : EntitySystem
         _effect = null;
     }
 }
+*/

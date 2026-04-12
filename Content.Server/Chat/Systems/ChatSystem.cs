@@ -7,13 +7,12 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
-using Content.Server.Starlight.TTS;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
-using Content.Shared.CollectiveMind;
+//using Content.Shared.CollectiveMind;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
@@ -62,7 +61,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
+    //[Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -160,11 +159,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             TrySendInGameOOCMessage(source, message, InGameOOCChatType.Dead, range == ChatTransmitRange.HideChat, shell, player);
             return;
         }
-
+        /*
         //I despise this being here but there doesnt seem to be a cleaner way to watch for tags or complete component removals
         if (TryComp<CollectiveMindComponent>(source, out var collective))
             _collectiveMind.UpdateCollectiveMind(source, collective);
-
+        */
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
 
@@ -226,7 +225,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
-
+        /*
         if (desiredType == InGameICChatType.CollectiveMind)
         {
             if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel)) // Starlight
@@ -235,6 +234,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
+        */
 
         // Otherwise, send whatever type.
         switch (desiredType)
@@ -385,7 +385,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     #endregion
 
     #region Private API
-
+    /*
     private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
     {
         if (_mobStateSystem.IsDead(source) || collectiveMind == null || message == "" || !TryComp<CollectiveMindComponent>(source, out var sourceCollectiveMindComp) || !sourceCollectiveMindComp.Minds.ContainsKey(collectiveMind))
@@ -415,6 +415,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 receivers.Add(uid);
             }
         }
+
 
         //add ghosts that have ghost hearing on
         var ghostQuery = EntityQueryEnumerator<GhostHearingComponent, ActorComponent>();
@@ -476,6 +477,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         };
         RaiseLocalEvent(source, ev, true);
     }
+    */
 
 
     private void SendEntitySpeak(

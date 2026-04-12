@@ -1,3 +1,4 @@
+/*
 using Content.Client.Chat.Managers;
 using Content.Shared.CollectiveMind;
 using Robust.Client.Player;
@@ -29,3 +30,4 @@ public sealed partial class CollectiveMindSystem : SharedCollectiveMindSystem
         _chatManager.UpdatePermissions();
     }
 }
+*/

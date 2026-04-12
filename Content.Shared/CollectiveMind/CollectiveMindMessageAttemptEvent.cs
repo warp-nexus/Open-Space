@@ -1,3 +1,4 @@
+/*
 namespace Content.Shared.CollectiveMind;
 
 public sealed class CollectiveMindMessageAttemptEvent : CancellableEntityEventArgs
@@ -19,3 +20,4 @@ public sealed class CollectiveMindMessageAttemptEvent : CancellableEntityEventAr
         Message = message;
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Content.Shared.GameTicking;
@@ -168,3 +169,4 @@ public abstract partial class SharedCollectiveMindSystem : EntitySystem
         return false;
     }
 }
+*/

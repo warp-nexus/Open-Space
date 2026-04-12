@@ -1,3 +1,4 @@
+/*
 namespace Content.Server.Starlight.TTS;
 
 public sealed class CollectiveMindSpokeEvent : EntityEventArgs
@@ -6,3 +7,4 @@ public sealed class CollectiveMindSpokeEvent : EntityEventArgs
     public string Message { get; set; } = null!;
     public EntityUid[] Receivers { get; set; } = null!;
 }
+*/

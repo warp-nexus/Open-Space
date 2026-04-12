@@ -40,8 +40,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.CollectiveMind;
-using Content.Client.CollectiveMind;
+// using Content.Shared.CollectiveMind;
+// using Content.Client.CollectiveMind;
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -68,7 +68,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly TransformSystem? _transform = default;
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
-    [UISystemDependency] private readonly CollectiveMindSystem? _collectiveMind = default!;
+    // [UISystemDependency] private readonly CollectiveMindSystem? _collectiveMind = default!;
 
     private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
     private string[] _chatNameColors = default!;
@@ -88,7 +88,7 @@ public sealed partial class ChatUIController : UIController
         {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
         {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
         {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead},
-        {SharedChatSystem.CollectiveMindPrefix, ChatSelectChannel.CollectiveMind}
+       // {SharedChatSystem.CollectiveMindPrefix, ChatSelectChannel.CollectiveMind}
     };
 
     public static readonly Dictionary<ChatSelectChannel, char> ChannelPrefixes = new()
@@ -102,7 +102,7 @@ public sealed partial class ChatUIController : UIController
         {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
         {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
         {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix},
-        {ChatSelectChannel.CollectiveMind, SharedChatSystem.CollectiveMindPrefix}
+        //{ChatSelectChannel.CollectiveMind, SharedChatSystem.CollectiveMindPrefix}
     };
 
     /// <summary>
@@ -232,8 +232,8 @@ public sealed partial class ChatUIController : UIController
         _input.SetInputCommand(ContentKeyFunctions.CycleChatChannelBackward,
             InputCmdHandler.FromDelegate(_ => CycleChatChannel(false)));
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusCollectiveMindChat,
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.CollectiveMind)));
+        //_input.SetInputCommand(ContentKeyFunctions.FocusCollectiveMindChat,
+            //InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.CollectiveMind)));
 
 
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
@@ -570,16 +570,16 @@ public sealed partial class ChatUIController : UIController
             FilterableChannels |= ChatChannel.AdminAlert;
             FilterableChannels |= ChatChannel.AdminChat;
             CanSendChannels |= ChatSelectChannel.Admin;
-            FilterableChannels |= ChatChannel.CollectiveMind;
+            //FilterableChannels |= ChatChannel.CollectiveMind;
         }
 
-        // collective mind
+        /* collective mind
         if (_collectiveMind != null && _collectiveMind.IsCollectiveMind)
         {
             FilterableChannels |= ChatChannel.CollectiveMind;
             CanSendChannels |= ChatSelectChannel.CollectiveMind;
         }
-
+        */
         SelectableChannels = CanSendChannels;
 
         // Necessary so that we always have a channel to fall back to.
@@ -708,7 +708,7 @@ public sealed partial class ChatUIController : UIController
            && _chatSys != null
            && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
     }
-
+    /*
     private bool TryGetCollectiveMind(string text, out CollectiveMindPrototype? collectiveMind)
     {
         collectiveMind = null;
@@ -716,30 +716,32 @@ public sealed partial class ChatUIController : UIController
                && _chatSys != null
                && _chatSys.TryProccessCollectiveMindMessage(uid, text, out _, out collectiveMind, quiet: true);
     }
-
+    */
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel, collectiveMind) = SplitInputContents(box.ChatInput.Input.Text.ToLower()); // Starlight edit
-
+        var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower()); // Starlight edit
+        /*
         switch (prefixChannel)
         {
             case ChatSelectChannel.None:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null, null); // Starlight edit
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null); // Starlight edit
                 break;
             case ChatSelectChannel.CollectiveMind:
                 box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, collectiveMind); // Starlight edit
                 break;
+
             default:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel, null);
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
                 break;
         }
+        */
     }
 
-    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel, CollectiveMindPrototype? collectiveMind) SplitInputContents(string text) //Starlight edit
+    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)
     {
         text = text.Trim();
         if (text.Length == 0)
-            return (ChatSelectChannel.None, text, null, null);
+            return (ChatSelectChannel.None, text, null);
 
         // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
         // because ????????
@@ -751,23 +753,23 @@ public sealed partial class ChatUIController : UIController
             chatChannel = PrefixToChannel.GetValueOrDefault(text[0]);
 
         if ((CanSendChannels & chatChannel) == 0)
-            return (ChatSelectChannel.None, text, null, null);
+            return (ChatSelectChannel.None, text, null);
 
         if (chatChannel == ChatSelectChannel.Radio)
-            return (chatChannel, text, radioChannel, null);
+            return (chatChannel, text, radioChannel);
 
-        if (TryGetCollectiveMind(text, out var collectiveMind) && chatChannel == ChatSelectChannel.CollectiveMind)
+        /*if (TryGetCollectiveMind(text, out var collectiveMind) && chatChannel == ChatSelectChannel.CollectiveMind)
             return (chatChannel, text, radioChannel, collectiveMind); //Starlight edit
-
+        */
         if (chatChannel == ChatSelectChannel.Local)
         {
             if (_ghost?.IsGhost != true)
-                return (chatChannel, text, null, null);
+                return (chatChannel, text, null);
             else
                 chatChannel = ChatSelectChannel.Dead;
         }
 
-        return (chatChannel, text[1..].TrimStart(), null, null);
+        return (chatChannel, text[1..].TrimStart(), null);
     }
 
     public void SendMessage(ChatBox box, ChatSelectChannel channel)
@@ -782,7 +784,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _, var _) = SplitInputContents(text);
+        (var prefixChannel, text, _) = SplitInputContents(text);
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)
