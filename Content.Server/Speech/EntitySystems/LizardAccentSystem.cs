@@ -25,7 +25,7 @@ public sealed class LizardAccentSystem : EntitySystem
         // hissss
         message = RegexLowerS.Replace(message, "ссс"); // OpenSpace-Edit
         // hiSSS
-        message = RegexUpperS.Replace(message, "ссс"); // OpenSpace-Edit
+        message = RegexUpperS.Replace(message, "ССС"); // OpenSpace-Edit
         // ekssit
         // message = RegexInternalX.Replace(message, "$1ксс"); // OpenSpace-Edit
         // // ecks
