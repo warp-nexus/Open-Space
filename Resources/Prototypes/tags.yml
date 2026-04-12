@@ -1588,6 +1588,12 @@
 - type: Tag
   id: HumanoidXeno # Гуманоидные ксеноморфы
 
+- type: Tag
+  id: Helmet # Обозначает предмет, как шлем
+
+- type: Tag
+  id: NoXeno # Для ограничений ксеноморфов (в будущем)
+
 ## Y ##
 ## Z ##
 # ALPHABETICAL

@@ -4,7 +4,7 @@
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/tails.rsi
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidXeno/tails.rsi
     state: tail_drone
 
 - type: marking
@@ -13,11 +13,11 @@
   markingCategory: Head
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/head.rsi
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidXeno/head.rsi
     state: head_drone
-  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/head.rsi
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidXeno/head.rsi
     state: teeth_drone
-  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/head.rsi
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidXeno/head.rsi
     state: shine_drone
 
 - type: marking
@@ -26,6 +26,6 @@
   markingCategory: Tracheas
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _OpenSpace/Mobs/Customization/HumanoidSexo/tracheas.rsi
+  - sprite: _OpenSpace/Mobs/Customization/HumanoidXeno/tracheas.rsi
     state: tubes_drone
 

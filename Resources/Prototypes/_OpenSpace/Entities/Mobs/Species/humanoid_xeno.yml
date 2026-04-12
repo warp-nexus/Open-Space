@@ -61,8 +61,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenomorph
-  - type: ToggleableNightVision
-    effect: EffectNightVisionXeno
+  #- type: ToggleableNightVision
+    #effect: EffectNightVisionXeno
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -120,7 +120,7 @@
         Asphyxiation: 0.5
         Caustic: 0.05
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
-    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    sprite: _OpenSpace/Mobs/Species/HumanoidXeno/parts.rsi
     state: full
   - type: Perishable
   - type: Butcherable
@@ -138,7 +138,7 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: jumpsuit-female
       head:
         sizeMaps:
@@ -164,48 +164,48 @@
       shoes:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: shoes
       socks-body-curved-small-muzzle:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: socks
       outerClothing:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: outer
       hardsuit:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
     maleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: jumpsuit
       shoes:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: shoes
       socks:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: socks
       outerClothing:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: outer
       hardsuit-body-normal:
         sizeMaps:
           32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
     species: HumanoidXeno
   - type: Tag
@@ -230,7 +230,7 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: jumpsuit-female
       head:
         sizeMaps:
@@ -256,74 +256,74 @@
       shoes:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: shoes
       socks:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: socks
       outerClothing:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: outer
       hardsuit-body-normal:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
     maleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: jumpsuit
       shoes:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: shoes
       socks:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: socks
       outerClothing:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: outer
       hardsuit-body-normal:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
     unsexedDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: jumpsuit
       shoes:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: shoes
       socks:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: socks
       outerClothing:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: outer
       hardsuit-body-normal:
         sizeMaps:
           32:
-            sprite: _OpenSpace/Mobs/Species/Reptilian/displacement.rsi
+            sprite: Mobs/Species/Reptilian/displacement.rsi
             state: hardsuit
   - type: Body
     prototype: HumanoidXeno
