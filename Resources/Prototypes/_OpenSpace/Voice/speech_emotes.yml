@@ -42,7 +42,7 @@
     - BorgChassis
   chatMessages: ["chat-emote-msg-rumble"]
   chatTriggers:
-   - рокочет
+    - рокочет
     - рокочет.
     - рокочет!
     - рокотать

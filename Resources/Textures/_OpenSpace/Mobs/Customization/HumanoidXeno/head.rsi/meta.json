@@ -8,7 +8,7 @@
   },
   "states": [
     {
-        "name:": "head_drone",
+        "name": "head_drone",
         "directions": 4
     },
     {
