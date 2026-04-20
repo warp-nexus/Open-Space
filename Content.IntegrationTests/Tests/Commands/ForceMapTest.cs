@@ -9,6 +9,7 @@ namespace Content.IntegrationTests.Tests.Commands;
 [TestFixture]
 public sealed class ForceMapTest : GameTest
 {
+    private const string ForceMapCommand = "setgamemap";
     private const string DefaultMapName = "Empty";
     private const string BadMapName = "asdf_asd-fa__sdfAsd_f"; // Hopefully no one ever names a map this...
     private const string TestMapEligibleName = "ForceMapTestEligible";
@@ -60,22 +61,22 @@ public sealed class ForceMapTest : GameTest
                 $"Test didn't start on expected map ({DefaultMapName})!");
 
             // Try changing to a map that doesn't exist
-            consoleHost.ExecuteCommand($"forcemap {BadMapName}");
+            consoleHost.ExecuteCommand($"{ForceMapCommand} {BadMapName}");
             Assert.That(gameMapMan.GetSelectedMap()?.ID, Is.EqualTo(DefaultMapName),
                 $"Forcemap succeeded with a map that does not exist ({BadMapName})!");
 
             // Try changing to a valid map
-            consoleHost.ExecuteCommand($"forcemap {TestMapEligibleName}");
+            consoleHost.ExecuteCommand($"{ForceMapCommand} {TestMapEligibleName}");
             Assert.That(gameMapMan.GetSelectedMap()?.ID, Is.EqualTo(TestMapEligibleName),
                 $"Forcemap failed with a valid map ({TestMapEligibleName})");
 
             // Try changing to a map that exists but is ineligible
-            consoleHost.ExecuteCommand($"forcemap {TestMapIneligibleName}");
+            consoleHost.ExecuteCommand($"{ForceMapCommand} {TestMapIneligibleName}");
             Assert.That(gameMapMan.GetSelectedMap()?.ID, Is.EqualTo(TestMapIneligibleName),
                 $"Forcemap failed with valid but ineligible map ({TestMapIneligibleName})!");
 
             // Try clearing the force-selected map
-            consoleHost.ExecuteCommand("forcemap \"\"");
+            consoleHost.ExecuteCommand($"{ForceMapCommand} \"\"");
             Assert.That(gameMapMan.GetSelectedMap(), Is.Null,
                 $"Running 'forcemap \"\"' did not clear the forced map!");
 
