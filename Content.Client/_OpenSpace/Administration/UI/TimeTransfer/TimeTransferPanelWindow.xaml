@@ -1,0 +1,65 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Title="{Loc time-transfer-panel-title}"
+    MinWidth="760"
+    MinHeight="520">
+    <BoxContainer Orientation="Vertical" Margin="6" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+            <Label Text="{Loc time-transfer-panel-player}" MinWidth="90" VerticalAlignment="Center"/>
+            <LineEdit Name="PlayerLine" PlaceHolder="{Loc time-transfer-panel-player-placeholder}" HorizontalExpand="True"/>
+            <Control MinWidth="10"/>
+            <Label Text="{Loc time-transfer-panel-minutes}" VerticalAlignment="Center"/>
+            <SpinBox Name="MinutesSpinBox" MinWidth="190"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+            <CheckBox Name="OverallCheckBox" Text="{Loc time-transfer-panel-overall}"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+            <cc:PlayerListControl Name="PlayerList" MinWidth="250" VerticalExpand="True"/>
+            <Control MinWidth="8"/>
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+                    <Button Name="GroupButton" Text="{Loc time-transfer-panel-group}" ToggleMode="True"/>
+                    <Control MinWidth="4"/>
+                    <Button Name="SelectAllButton" Text="{Loc time-transfer-panel-select-visible}"/>
+                    <Control MinWidth="4"/>
+                    <Button Name="ClearButton" Text="{Loc time-transfer-panel-clear}"/>
+                </BoxContainer>
+
+                <TabContainer Name="ModeTabs" VerticalExpand="True">
+                    <BoxContainer Name="RolesTab" Orientation="Vertical" VerticalExpand="True">
+                        <LineEdit Name="RoleSearch" PlaceHolder="{Loc time-transfer-panel-role-search}" HorizontalExpand="True"/>
+                        <Control MinHeight="4"/>
+                        <PanelContainer VerticalExpand="True">
+                            <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                                <BoxContainer Name="RolesContainer" Orientation="Vertical"/>
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+
+                    <BoxContainer Name="DepartmentsTab" Orientation="Vertical" VerticalExpand="True">
+                        <LineEdit Name="DepartmentSearch" PlaceHolder="{Loc time-transfer-panel-department-search}" HorizontalExpand="True"/>
+                        <Control MinHeight="4"/>
+                        <PanelContainer VerticalExpand="True">
+                            <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                                <BoxContainer Name="DepartmentsContainer" Orientation="Vertical"/>
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </TabContainer>
+            </BoxContainer>
+        </BoxContainer>
+
+        <Label Name="SummaryLabel" Margin="0 6 0 0"/>
+        <Label Name="StatusLabel" Margin="0 2 0 0"/>
+
+        <BoxContainer Orientation="Horizontal" Margin="0 8 0 0">
+            <Button Name="AddButton" Text="{Loc time-transfer-panel-add}" HorizontalExpand="True"/>
+            <Control MinWidth="6"/>
+            <Button Name="DismissButton" Text="{Loc time-transfer-panel-close}"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
