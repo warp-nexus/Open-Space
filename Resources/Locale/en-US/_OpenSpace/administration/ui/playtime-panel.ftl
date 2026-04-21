@@ -1,0 +1,31 @@
+playtime-panel-title = Time Transfer
+playtime-panel-username = Username:
+playtime-panel-username-placeholder = Player login
+playtime-panel-lookup = Lookup
+playtime-panel-refresh = Refresh
+playtime-panel-tab-roles = By Roles
+playtime-panel-tab-departments = By Departments
+playtime-panel-group-minutes = Group minutes:
+playtime-panel-apply-selected = Apply to selected
+playtime-panel-select-all = Select all
+playtime-panel-select-none = Select none
+playtime-panel-add = Add
+playtime-panel-overall = Overall playtime: {$hours}h {$minutes}m
+playtime-panel-overall-add = Overall minutes:
+playtime-panel-row-current = Current: {$hours}h {$minutes}m
+playtime-panel-dept-trackers = Trackers: {$count}
+playtime-panel-empty-list = (nothing to show)
+
+playtime-panel-status-empty = Enter a username and press Lookup.
+playtime-panel-status-not-online = Player "{$player}" is not online. They must be connected to receive play-time changes.
+playtime-panel-status-found = Target: {$player}
+playtime-panel-status-invalid-minutes = Enter a valid integer number of minutes.
+playtime-panel-status-no-selection = No rows selected.
+playtime-panel-status-no-player = No target player selected.
+playtime-panel-status-empty-department = The selected department has no play-time trackers.
+playtime-panel-status-applied = Applied: {$trackers} tracker(s), overall {$overall} min.
+playtime-panel-chat-applied = Play-time updated for {$player}: {$trackers} tracker(s), overall {$overall} min.
+
+cmd-playtimepanel-desc = Opens the play-time transfer admin panel for the calling admin.
+cmd-playtimepanel-help = Usage: {$command} [user name]
+cmd-playtimepanel-arg-user = [user name]

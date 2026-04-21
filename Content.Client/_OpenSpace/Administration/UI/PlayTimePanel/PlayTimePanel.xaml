@@ -1,0 +1,75 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Title="{Loc playtime-panel-title}"
+    MinSize="560 600"
+    SetSize="640 680">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4">
+
+        <!-- Player selection row -->
+        <BoxContainer Orientation="Horizontal" Margin="4 4 4 0">
+            <Label Text="{Loc playtime-panel-username}" />
+            <Control MinWidth="6" />
+            <LineEdit Name="PlayerNameInput"
+                      HorizontalExpand="True"
+                      MinWidth="160"
+                      PlaceHolder="{Loc playtime-panel-username-placeholder}" />
+            <Control MinWidth="6" />
+            <Button Name="LookupButton" Text="{Loc playtime-panel-lookup}" />
+            <Button Name="RefreshButton" Text="{Loc playtime-panel-refresh}" />
+        </BoxContainer>
+
+        <Label Name="StatusLabel" Margin="4 0 4 0" />
+        <Label Name="OverallLabel" Margin="4 0 4 0" />
+
+        <!-- Group (batch) controls -->
+        <cc:HSeparator Margin="4 2 4 2" />
+        <BoxContainer Orientation="Horizontal" Margin="4 2 4 2">
+            <Label Text="{Loc playtime-panel-group-minutes}" />
+            <Control MinWidth="6" />
+            <LineEdit Name="GroupMinutesInput"
+                      PlaceHolder="0"
+                      MinWidth="90" />
+            <Control MinWidth="10" />
+            <Button Name="GroupApplyButton" Text="{Loc playtime-panel-apply-selected}" />
+            <Control MinWidth="10" />
+            <Button Name="SelectAllButton" Text="{Loc playtime-panel-select-all}" />
+            <Button Name="SelectNoneButton" Text="{Loc playtime-panel-select-none}" />
+        </BoxContainer>
+
+        <!-- Tab container with By Roles / By Departments -->
+        <TabContainer Name="Tabs"
+                      VerticalExpand="True"
+                      HorizontalExpand="True">
+            <ScrollContainer Name="RolesTab"
+                             VerticalExpand="True"
+                             HorizontalExpand="True"
+                             HScrollEnabled="False">
+                <BoxContainer Name="RolesContainer"
+                              Orientation="Vertical"
+                              HorizontalExpand="True" />
+            </ScrollContainer>
+            <ScrollContainer Name="DepartmentsTab"
+                             VerticalExpand="True"
+                             HorizontalExpand="True"
+                             HScrollEnabled="False">
+                <BoxContainer Name="DepartmentsContainer"
+                              Orientation="Vertical"
+                              HorizontalExpand="True" />
+            </ScrollContainer>
+        </TabContainer>
+
+        <!-- Overall playtime add -->
+        <cc:HSeparator Margin="4 2 4 2" />
+        <BoxContainer Orientation="Horizontal" Margin="4 2 4 4">
+            <Label Text="{Loc playtime-panel-overall-add}" />
+            <Control MinWidth="6" />
+            <LineEdit Name="OverallMinutesInput"
+                      PlaceHolder="0"
+                      MinWidth="90" />
+            <Control MinWidth="10" />
+            <Button Name="OverallAddButton" Text="{Loc playtime-panel-add}" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

@@ -6,3 +6,6 @@ admin-player-actions-window-shuttle = (Re)call Shuttle
 admin-player-actions-window-admin-logs = Admin Logs
 admin-player-actions-window-admin-fax = Admin Fax
 admin-player-actions-window-admin-chat = Admin Chat
+# Open-Space Edit start
+admin-player-actions-window-playtime-panel = Time Transfer
+# Open-Space Edit end

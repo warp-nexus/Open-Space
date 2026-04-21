@@ -1,0 +1,31 @@
+playtime-panel-title = Перенос времени
+playtime-panel-username = Ник:
+playtime-panel-username-placeholder = Логин игрока
+playtime-panel-lookup = Найти
+playtime-panel-refresh = Обновить
+playtime-panel-tab-roles = По ролям
+playtime-panel-tab-departments = По отделам
+playtime-panel-group-minutes = Минут (группой):
+playtime-panel-apply-selected = Применить к выбранным
+playtime-panel-select-all = Выделить всё
+playtime-panel-select-none = Снять выделение
+playtime-panel-add = Добавить
+playtime-panel-overall = Общее время: {$hours}ч {$minutes}м
+playtime-panel-overall-add = Минуты в общее время:
+playtime-panel-row-current = Сейчас: {$hours}ч {$minutes}м
+playtime-panel-dept-trackers = Трекеров: {$count}
+playtime-panel-empty-list = (пусто)
+
+playtime-panel-status-empty = Введите ник и нажмите «Найти».
+playtime-panel-status-not-online = Игрок «{$player}» не в сети. Он должен быть онлайн, чтобы получить изменения времени.
+playtime-panel-status-found = Цель: {$player}
+playtime-panel-status-invalid-minutes = Введите целое число минут.
+playtime-panel-status-no-selection = Нет выбранных строк.
+playtime-panel-status-no-player = Цель не выбрана.
+playtime-panel-status-empty-department = В отделе нет трекеров времени.
+playtime-panel-status-applied = Применено: трекеров {$trackers}, общее {$overall} мин.
+playtime-panel-chat-applied = Обновлено время для {$player}: трекеров {$trackers}, общее {$overall} мин.
+
+cmd-playtimepanel-desc = Открывает админ-панель переноса игрового времени.
+cmd-playtimepanel-help = Использование: {$command} [ник]
+cmd-playtimepanel-arg-user = [ник]

@@ -6,3 +6,6 @@ admin-player-actions-window-shuttle = Вызвать/отозвать шаттл
 admin-player-actions-window-admin-logs = Админ логи
 admin-player-actions-window-admin-fax = Админ факс
 admin-player-actions-window-admin-chat = Админ чат
+# Open-Space Edit start
+admin-player-actions-window-playtime-panel = Перенос времени
+# Open-Space Edit end

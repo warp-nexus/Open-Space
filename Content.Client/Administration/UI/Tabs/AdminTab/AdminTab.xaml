@@ -15,6 +15,9 @@
             <cc:CommandButton Command="adminlogs" Text="{Loc admin-player-actions-window-admin-logs}"/>
             <cc:CommandButton Command="faxui" Text="{Loc admin-player-actions-window-admin-fax}"/>
             <cc:CommandButton Command="achatwindow" Text="{Loc admin-player-actions-window-admin-chat}"/>
+            <!-- Open-Space Edit start -->
+            <cc:CommandButton Command="playtimepanel" Text="{Loc admin-player-actions-window-playtime-panel}"/>
+            <!-- Open-Space Edit end -->
         </GridContainer>
     </BoxContainer>
 </Control>
