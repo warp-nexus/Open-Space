@@ -33,6 +33,11 @@ public sealed class TimeTransferPanelEuiState : EuiStateBase
 
 public static class TimeTransferPanelEuiMsg
 {
+    public const int MaxPlayerLength = 128;
+    public const int MaxTrackerLength = 128;
+    public const int MaxEntriesCount = 256;
+    public const int MaxMinutes = 5259600;
+
     [Serializable, NetSerializable]
     public sealed class AddTime : EuiMessageBase
     {

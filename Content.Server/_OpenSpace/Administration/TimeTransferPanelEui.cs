@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -12,13 +13,14 @@ using Content.Shared.Eui;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._OpenSpace.Administration;
 
 public sealed class TimeTransferPanelEui : BaseEui
 {
-    private const int MaxMinutes = 5259600;
+    private const int MaxMinutes = TimeTransferPanelEuiMsg.MaxMinutes;
 
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -32,6 +34,7 @@ public sealed class TimeTransferPanelEui : BaseEui
     private readonly ISawmill _sawmill;
     private string _status = string.Empty;
     private TimeTransferPanelStatusKind _statusKind = TimeTransferPanelStatusKind.None;
+    private bool _inProgress;
 
     public TimeTransferPanelEui()
     {
@@ -64,21 +67,54 @@ public sealed class TimeTransferPanelEui : BaseEui
     {
         base.HandleMessage(msg);
 
-        if (msg is TimeTransferPanelEuiMsg.AddTime addTime)
-            AddTime(addTime);
+        if (msg is not TimeTransferPanelEuiMsg.AddTime addTime)
+            return;
+
+        if (_inProgress)
+        {
+            SetStatus(Loc.GetString("time-transfer-panel-status-in-progress"), TimeTransferPanelStatusKind.Info);
+            return;
+        }
+
+        _ = AddTimeSafe(addTime);
     }
 
-    private async void AddTime(TimeTransferPanelEuiMsg.AddTime msg)
+    private async Task AddTimeSafe(TimeTransferPanelEuiMsg.AddTime msg)
     {
-        if (!_admins.HasAdminFlag(Player, AdminFlags.Moderator))
+        _inProgress = true;
+
+        try
         {
-            _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to edit playtime without Moderator flag.");
-            SetStatus(Loc.GetString("time-transfer-panel-error-no-access"), TimeTransferPanelStatusKind.Error);
+            await AddTime(msg);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Unhandled exception in time transfer panel: {ex}");
+            SetStatus(Loc.GetString("time-transfer-panel-error-unhandled"), TimeTransferPanelStatusKind.Error);
+        }
+        finally
+        {
+            _inProgress = false;
+        }
+    }
+
+    private async Task AddTime(TimeTransferPanelEuiMsg.AddTime msg)
+    {
+        if (!TryRequireModerator(out var admin))
+        {
+            _sawmill.Warning("A disconnected or unauthorized player tried to edit playtime.");
             Close();
             return;
         }
 
-        var target = msg.Player.Trim();
+        var rawTarget = msg.Player ?? string.Empty;
+        if (rawTarget.Length > TimeTransferPanelEuiMsg.MaxPlayerLength)
+        {
+            SetStatus(Loc.GetString("time-transfer-panel-error-invalid-payload"), TimeTransferPanelStatusKind.Error);
+            return;
+        }
+
+        var target = rawTarget.Trim();
         if (string.IsNullOrWhiteSpace(target))
         {
             SetStatus(Loc.GetString("time-transfer-panel-error-no-player"), TimeTransferPanelStatusKind.Error);
@@ -86,13 +122,26 @@ public sealed class TimeTransferPanelEui : BaseEui
         }
 
         var messageEntries = msg.Entries ?? Array.Empty<TimeTransferPanelEntry>();
+        if (messageEntries.Length > TimeTransferPanelEuiMsg.MaxEntriesCount)
+        {
+            SetStatus(Loc.GetString("time-transfer-panel-error-invalid-payload"), TimeTransferPanelStatusKind.Error);
+            return;
+        }
+
         var minutesByTracker = new Dictionary<string, int>(StringComparer.Ordinal);
         foreach (var entry in messageEntries)
         {
             if (entry == null)
                 continue;
 
-            var tracker = entry.Tracker.Trim();
+            var rawTracker = entry.Tracker ?? string.Empty;
+            if (rawTracker.Length > TimeTransferPanelEuiMsg.MaxTrackerLength)
+            {
+                SetStatus(Loc.GetString("time-transfer-panel-error-invalid-payload"), TimeTransferPanelStatusKind.Error);
+                return;
+            }
+
+            var tracker = rawTracker.Trim();
             if (string.IsNullOrWhiteSpace(tracker))
                 continue;
 
@@ -123,6 +172,9 @@ public sealed class TimeTransferPanelEui : BaseEui
         SetStatus(Loc.GetString("time-transfer-panel-status-applying"), TimeTransferPanelStatusKind.Info);
 
         var located = await _playerLocator.LookupIdByNameOrIdAsync(target);
+        if (!TryRequireModerator(out admin))
+            return;
+
         if (located == null)
         {
             SetStatus(
@@ -133,28 +185,16 @@ public sealed class TimeTransferPanelEui : BaseEui
 
         var targetWasOnline = false;
 
-        if (_players.TryGetSessionById(located.UserId, out var session))
+        if (!TryApplyOnlineTime(located.UserId, located.Username, minutesByTracker, out targetWasOnline))
+            return;
+
+        if (!targetWasOnline)
         {
-            targetWasOnline = true;
-            if (!_playTime.TryGetTrackerTimes(session, out _))
-            {
-                SetStatus(
-                    Loc.GetString("time-transfer-panel-error-playtime-loading", ("player", located.Username)),
-                    TimeTransferPanelStatusKind.Error);
+            var offlineResult = await AddOfflineTime(located.UserId, located.Username, minutesByTracker);
+            if (!TryRequireModerator(out admin) || offlineResult == TimeTransferApplyResult.Aborted)
                 return;
-            }
 
-            foreach (var entry in minutesByTracker)
-            {
-                _playTime.AddTimeToTracker(session, entry.Key, TimeSpan.FromMinutes(entry.Value));
-            }
-
-            _playTime.QueueSendTimers(session);
-            _playTime.SaveSession(session);
-        }
-        else
-        {
-            await AddOfflineTime(located.UserId, minutesByTracker);
+            targetWasOnline = offlineResult == TimeTransferApplyResult.Online;
         }
 
         var totalMinutes = 0;
@@ -183,9 +223,51 @@ public sealed class TimeTransferPanelEui : BaseEui
             TimeTransferPanelStatusKind.Success);
     }
 
-    private async Task AddOfflineTime(NetUserId userId, IReadOnlyDictionary<string, int> minutesByTracker)
+    private bool TryApplyOnlineTime(
+        NetUserId userId,
+        string username,
+        IReadOnlyDictionary<string, int> minutesByTracker,
+        out bool targetWasOnline)
+    {
+        targetWasOnline = false;
+
+        if (!_players.TryGetSessionById(userId, out var session))
+            return true;
+
+        targetWasOnline = true;
+        if (!_playTime.TryGetTrackerTimes(session, out _))
+        {
+            SetStatus(
+                Loc.GetString("time-transfer-panel-error-playtime-loading", ("player", username)),
+                TimeTransferPanelStatusKind.Error);
+            return false;
+        }
+
+        foreach (var entry in minutesByTracker)
+        {
+            _playTime.AddTimeToTracker(session, entry.Key, TimeSpan.FromMinutes(entry.Value));
+        }
+
+        _playTime.QueueSendTimers(session);
+        _playTime.SaveSession(session);
+        return true;
+    }
+
+    private async Task<TimeTransferApplyResult> AddOfflineTime(
+        NetUserId userId,
+        string username,
+        IReadOnlyDictionary<string, int> minutesByTracker)
     {
         var current = await _db.GetPlayTimes(userId.UserId);
+        if (!TryRequireModerator(out _))
+            return TimeTransferApplyResult.Aborted;
+
+        if (!TryApplyOnlineTime(userId, username, minutesByTracker, out var targetWasOnline))
+            return TimeTransferApplyResult.Aborted;
+
+        if (targetWasOnline)
+            return TimeTransferApplyResult.Online;
+
         var currentByTracker = current.ToDictionary(time => time.Tracker, time => time.TimeSpent);
         var updates = new List<PlayTimeUpdate>(minutesByTracker.Count);
 
@@ -196,6 +278,10 @@ public sealed class TimeTransferPanelEui : BaseEui
         }
 
         await _db.UpdatePlayTimes(updates);
+        if (!TryRequireModerator(out _))
+            return TimeTransferApplyResult.Aborted;
+
+        return TimeTransferApplyResult.Offline;
     }
 
     private static string FormatEntrySummary(IReadOnlyDictionary<string, int> minutesByTracker)
@@ -216,9 +302,26 @@ public sealed class TimeTransferPanelEui : BaseEui
         StateDirty();
     }
 
+    private bool TryRequireModerator([NotNullWhen(true)] out ICommonSession? admin)
+    {
+        admin = Player;
+        if (admin != null && _admins.HasAdminFlag(admin, AdminFlags.Moderator))
+            return true;
+
+        SetStatus(Loc.GetString("time-transfer-panel-error-no-access"), TimeTransferPanelStatusKind.Error);
+        return false;
+    }
+
     private void OnPermsChanged(AdminPermsChangedEventArgs args)
     {
         if (args.Player == Player)
             StateDirty();
+    }
+
+    private enum TimeTransferApplyResult : byte
+    {
+        Aborted,
+        Offline,
+        Online,
     }
 }

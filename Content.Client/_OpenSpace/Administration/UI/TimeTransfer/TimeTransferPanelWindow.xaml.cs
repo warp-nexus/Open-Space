@@ -16,7 +16,7 @@ namespace Content.Client._OpenSpace.Administration.UI.TimeTransfer;
 public sealed partial class TimeTransferPanelWindow : DefaultWindow
 {
     private const string OverallTracker = "Overall";
-    private const int MaxMinutes = 5259600;
+    private const int MaxMinutes = TimeTransferPanelEuiMsg.MaxMinutes;
 
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -78,6 +78,8 @@ public sealed partial class TimeTransferPanelWindow : DefaultWindow
 
         if (!string.IsNullOrWhiteSpace(state.Status))
             SetLocalStatus(state.Status, state.StatusKind);
+        else
+            SetLocalStatus(Loc.GetString("time-transfer-panel-status-ready"), TimeTransferPanelStatusKind.Info);
     }
 
     private void PopulateChoices()
