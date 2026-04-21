@@ -17,6 +17,7 @@ ion-storm-x-and-y = { $x } И { $y }
 # joined is short for {$number} {$adjective}
 # subjects can generally be threats or jobs or objects
 # thing is specified above it
+# open-space edit start
 ion-storm-law-on-station = НА СТАНЦИИ ОБНАРУЖЕНЫ {ION-NUMBER-BASE($ion)} {ION-NUMBER-MOD($ion)} {ION-ADJECTIVE($ion)} {ION-SUBJECT($ion)}
 ion-storm-law-call-shuttle = ШАТТЛ ДОЛЖЕН БЫТЬ ВЫЗВАН ИЗ-ЗА {ION-ADJECTIVE($ion)} {ION-SUBJECT($ion)} НА СТАНЦИИ
 ion-storm-law-crew-are = {ION-WHO($ion)} ТЕПЕРЬ {ION-NUMBER-BASE($ion)} {ION-NUMBER-MOD($ion)} {ION-ADJECTIVE($ion)} {ION-SUBJECT($ion)}
@@ -105,3 +106,4 @@ ion-law-error-dataset-empty-or-not-found = НУЖНЫЙ ФАЙЛ НЕ НАЙДЕ
 ion-law-error-fallback-dataset-empty-or-not-found = СБОЙ ТОЧКИ ВОССТАНОВЛЕНИЯ СИСТЕМЫ
 ion-law-error-no-selector-selected = ВЫБРАННЫЙ РЕСУРС БЫЛ ПЕРЕМЕЩЁН ИЛИ УДАЛЁН
 ion-law-error-no-bool-value = ЭТО ПРЕДЛОЖЕНИЕ ЛОЖНО
+# open-space edit end
