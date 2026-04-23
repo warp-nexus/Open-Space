@@ -203,6 +203,7 @@ public sealed partial class MappingScreen : InGameScreen
     public override void SetChatSize(Vector2 size)
     {
         // open-space edit start
+        ChatContainer.Size = size;
         OnChatResized?.Invoke(size);
         // open-space edit end
     }

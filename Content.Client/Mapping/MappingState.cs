@@ -8,6 +8,7 @@ using Content.Client.ContextMenu.UI;
 using Content.Client.Decals;
 using Content.Client.Gameplay;
 // open-space edit start
+using Content.Client.Markers;
 using Content.Client.Movement.Systems;
 using Content.Client.SubFloor;
 // open-space edit end
@@ -74,6 +75,7 @@ public sealed class MappingState : GameplayStateBase
     [Dependency] private readonly ILightManager _light = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IStateManager _state = default!;
+    [Dependency] private readonly MarkerSystem _marker = default!;
     // open-space edit end
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IEntityNetworkManager _entityNetwork = default!;
@@ -127,71 +129,71 @@ public sealed class MappingState : GameplayStateBase
     // open-space edit start
     private static readonly QuickPaletteEntry[] QuickPaletteEntries =
     {
-        new(MappingQuickPaletteKind.Tile, "Space"),
-        new(MappingQuickPaletteKind.Delete, "ActionMappingEraser"),
-        new(MappingQuickPaletteKind.Tile, "Plating"),
-        new(MappingQuickPaletteKind.Tile, "FloorSteel"),
-        new(MappingQuickPaletteKind.Entity, "Firelock"),
-        new(MappingQuickPaletteKind.Entity, "Grille"),
-        new(MappingQuickPaletteKind.Entity, "Window"),
-        new(MappingQuickPaletteKind.Entity, "ReinforcedWindow"),
-        new(MappingQuickPaletteKind.Entity, "WallReinforced"),
-        new(MappingQuickPaletteKind.Entity, "WallSolid"),
-        new(MappingQuickPaletteKind.Entity, "GasPipeStraight"),
-        new(MappingQuickPaletteKind.Entity, "GasPipeBend"),
-        new(MappingQuickPaletteKind.Entity, "GasPipeTJunction"),
-        new(MappingQuickPaletteKind.Entity, "GasPipeFourway"),
-        new(MappingQuickPaletteKind.Entity, "GasVentScrubber"),
-        new(MappingQuickPaletteKind.Entity, "GasVentPump"),
-        new(MappingQuickPaletteKind.Entity, "AirAlarm"),
-        new(MappingQuickPaletteKind.Entity, "FireAlarm"),
-        new(MappingQuickPaletteKind.Entity, "APCBasic"),
-        new(MappingQuickPaletteKind.Entity, "CableApcExtension"),
-        new(MappingQuickPaletteKind.Entity, "CableMV"),
-        new(MappingQuickPaletteKind.Entity, "CableHV"),
-        new(MappingQuickPaletteKind.Entity, "SubstationBasic"),
-        new(MappingQuickPaletteKind.Entity, "Poweredlight"),
-        new(MappingQuickPaletteKind.Entity, "PoweredSmallLight"),
-        new(MappingQuickPaletteKind.Entity, "EmergencyLight"),
-        new(MappingQuickPaletteKind.Entity, "SMESBasic"),
-        new(MappingQuickPaletteKind.Entity, "TableWood"),
-        new(MappingQuickPaletteKind.Entity, "Table"),
-        new(MappingQuickPaletteKind.Entity, "TableCounterWood"),
-        new(MappingQuickPaletteKind.Entity, "TableCounterMetal"),
-        new(MappingQuickPaletteKind.Entity, "ChairWood"),
-        new(MappingQuickPaletteKind.Entity, "Chair"),
-        new(MappingQuickPaletteKind.Entity, "ChairOfficeLight"),
-        new(MappingQuickPaletteKind.Entity, "ChairOfficeDark"),
-        new(MappingQuickPaletteKind.Entity, "Stool"),
-        new(MappingQuickPaletteKind.Entity, "StoolBar"),
-        new(MappingQuickPaletteKind.Entity, "Rack"),
-        new(MappingQuickPaletteKind.Entity, "LampGold"),
-        new(MappingQuickPaletteKind.Entity, "DisposalPipe"),
-        new(MappingQuickPaletteKind.Entity, "DisposalBend"),
-        new(MappingQuickPaletteKind.Entity, "DisposalJunction"),
-        new(MappingQuickPaletteKind.Entity, "DisposalJunctionFlipped"),
-        new(MappingQuickPaletteKind.Entity, "DisposalRouter"),
-        new(MappingQuickPaletteKind.Entity, "DisposalRouterFlipped"),
-        new(MappingQuickPaletteKind.Entity, "DisposalUnit"),
-        new(MappingQuickPaletteKind.Entity, "DisposalTrunk"),
-        new(MappingQuickPaletteKind.Entity, "SignDisposalSpace"),
-        new(MappingQuickPaletteKind.Entity, "Windoor"),
-        new(MappingQuickPaletteKind.Entity, "WindowDirectional"),
-        new(MappingQuickPaletteKind.Entity, "WindowReinforcedDirectional"),
-        new(MappingQuickPaletteKind.Entity, "PlasmaWindowDirectional"),
-        new(MappingQuickPaletteKind.Entity, "Railing"),
-        new(MappingQuickPaletteKind.Entity, "RailingCorner"),
-        new(MappingQuickPaletteKind.Entity, "RailingCornerSmall"),
-        new(MappingQuickPaletteKind.Entity, "RailingRound"),
-        new(MappingQuickPaletteKind.Entity, "AirlockMaintLocked"),
-        new(MappingQuickPaletteKind.Entity, "AirlockGlass"),
-        new(MappingQuickPaletteKind.Entity, "AirlockServiceLocked"),
-        new(MappingQuickPaletteKind.Entity, "AirlockSecurityLocked"),
-        new(MappingQuickPaletteKind.Entity, "AirlockCommand"),
-        new(MappingQuickPaletteKind.Entity, "AirlockScience"),
-        new(MappingQuickPaletteKind.Entity, "AirlockMedical"),
-        new(MappingQuickPaletteKind.Entity, "AirlockEngineering"),
-        new(MappingQuickPaletteKind.Entity, "AirlockCargo"),
+        QuickPaletteEntry.Tile("Space"),
+        QuickPaletteEntry.Delete("ActionMappingEraser"),
+        QuickPaletteEntry.Tile("Plating"),
+        QuickPaletteEntry.Tile("FloorSteel"),
+        QuickPaletteEntry.Entity("Firelock"),
+        QuickPaletteEntry.Entity("Grille"),
+        QuickPaletteEntry.Entity("Window"),
+        QuickPaletteEntry.Entity("ReinforcedWindow"),
+        QuickPaletteEntry.Entity("WallReinforced"),
+        QuickPaletteEntry.Entity("WallSolid"),
+        QuickPaletteEntry.Entity("GasPipeStraight"),
+        QuickPaletteEntry.Entity("GasPipeBend"),
+        QuickPaletteEntry.Entity("GasPipeTJunction"),
+        QuickPaletteEntry.Entity("GasPipeFourway"),
+        QuickPaletteEntry.Entity("GasVentScrubber"),
+        QuickPaletteEntry.Entity("GasVentPump"),
+        QuickPaletteEntry.Entity("AirAlarm"),
+        QuickPaletteEntry.Entity("FireAlarm"),
+        QuickPaletteEntry.Entity("APCBasic"),
+        QuickPaletteEntry.Entity("CableApcExtension"),
+        QuickPaletteEntry.Entity("CableMV"),
+        QuickPaletteEntry.Entity("CableHV"),
+        QuickPaletteEntry.Entity("SubstationBasic"),
+        QuickPaletteEntry.Entity("Poweredlight"),
+        QuickPaletteEntry.Entity("PoweredSmallLight"),
+        QuickPaletteEntry.Entity("EmergencyLight"),
+        QuickPaletteEntry.Entity("SMESBasic"),
+        QuickPaletteEntry.Entity("TableWood"),
+        QuickPaletteEntry.Entity("Table"),
+        QuickPaletteEntry.Entity("TableCounterWood"),
+        QuickPaletteEntry.Entity("TableCounterMetal"),
+        QuickPaletteEntry.Entity("ChairWood"),
+        QuickPaletteEntry.Entity("Chair"),
+        QuickPaletteEntry.Entity("ChairOfficeLight"),
+        QuickPaletteEntry.Entity("ChairOfficeDark"),
+        QuickPaletteEntry.Entity("Stool"),
+        QuickPaletteEntry.Entity("StoolBar"),
+        QuickPaletteEntry.Entity("Rack"),
+        QuickPaletteEntry.Entity("LampGold"),
+        QuickPaletteEntry.Entity("DisposalPipe"),
+        QuickPaletteEntry.Entity("DisposalBend"),
+        QuickPaletteEntry.Entity("DisposalJunction"),
+        QuickPaletteEntry.Entity("DisposalJunctionFlipped"),
+        QuickPaletteEntry.Entity("DisposalRouter"),
+        QuickPaletteEntry.Entity("DisposalRouterFlipped"),
+        QuickPaletteEntry.Entity("DisposalUnit"),
+        QuickPaletteEntry.Entity("DisposalTrunk"),
+        QuickPaletteEntry.Entity("SignDisposalSpace"),
+        QuickPaletteEntry.Entity("Windoor"),
+        QuickPaletteEntry.Entity("WindowDirectional"),
+        QuickPaletteEntry.Entity("WindowReinforcedDirectional"),
+        QuickPaletteEntry.Entity("PlasmaWindowDirectional"),
+        QuickPaletteEntry.Entity("Railing"),
+        QuickPaletteEntry.Entity("RailingCorner"),
+        QuickPaletteEntry.Entity("RailingCornerSmall"),
+        QuickPaletteEntry.Entity("RailingRound"),
+        QuickPaletteEntry.Entity("AirlockMaintLocked"),
+        QuickPaletteEntry.Entity("AirlockGlass"),
+        QuickPaletteEntry.Entity("AirlockServiceLocked"),
+        QuickPaletteEntry.Entity("AirlockSecurityLocked"),
+        QuickPaletteEntry.Entity("AirlockCommand"),
+        QuickPaletteEntry.Entity("AirlockScience"),
+        QuickPaletteEntry.Entity("AirlockMedical"),
+        QuickPaletteEntry.Entity("AirlockEngineering"),
+        QuickPaletteEntry.Entity("AirlockCargo"),
     };
     // open-space edit end
 
@@ -1260,7 +1262,7 @@ public sealed class MappingState : GameplayStateBase
         if (!color.StartsWith('#'))
             color = $"#{color}";
 
-        _console.RemoteExecuteCommand(null, $"colornetwork {netEntity.Value.Id} {group} {color}");
+        _console.RemoteExecuteCommand(null, $"colornetwork {netEntity.Value.Id} {QuoteCommandArgument(group)} {QuoteCommandArgument(color)}");
     }
 
     private void ApplyGridInfo()
@@ -1280,7 +1282,7 @@ public sealed class MappingState : GameplayStateBase
             color = $"#{color}";
 
         var name = Screen.GridNameLineEdit.Text.Trim();
-        _console.RemoteExecuteCommand(null, $"mappinguigridset {netEntity.Value.Id} {color} {QuoteCommandArgument(name)}");
+        _console.RemoteExecuteCommand(null, $"mappinguigridset {netEntity.Value.Id} {QuoteCommandArgument(color)} {QuoteCommandArgument(name)}");
     }
 
     private void ExitMappingUi()
@@ -1289,6 +1291,7 @@ public sealed class MappingState : GameplayStateBase
             _light.Enabled = true;
 
         _subfloor.ShowAll = false;
+        _marker.MarkersVisible = false;
 
         if (_player.LocalEntity is { } player && _entityManager.HasComponent<EyeComponent>(player))
         {
@@ -1797,6 +1800,11 @@ public sealed class MappingState : GameplayStateBase
         Delete
     }
 
-    private readonly record struct QuickPaletteEntry(MappingQuickPaletteKind Kind, string Id);
+    private readonly record struct QuickPaletteEntry(MappingQuickPaletteKind Kind, string Id)
+    {
+        public static QuickPaletteEntry Entity(EntProtoId id) => new(MappingQuickPaletteKind.Entity, id);
+        public static QuickPaletteEntry Tile(ProtoId<ContentTileDefinition> id) => new(MappingQuickPaletteKind.Tile, id);
+        public static QuickPaletteEntry Delete(string id) => new(MappingQuickPaletteKind.Delete, id);
+    }
     // open-space edit end
 }

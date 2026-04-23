@@ -77,13 +77,10 @@ public sealed class MappingUiCommand : LocalizedEntityCommands
 
         if (player.AttachedEntity is { Valid: true } playerEntity &&
             (EntityManager.GetComponent<MetaDataComponent>(playerEntity).EntityPrototype is not { } proto ||
-             proto != GameTicker.AdminObserverPrototypeName))
+             proto.ID != GameTicker.AdminObserverPrototypeName))
         {
             shell.ExecuteCommand("aghost");
         }
-
-        shell.ExecuteCommand("changecvar events.enabled false");
-        shell.ExecuteCommand("changecvar shuttle.auto_call_time 0");
 
         _mapping.ToggleAutosave(mapId, $"MAPPINGUI-{(int) mapId}");
 

@@ -116,8 +116,7 @@ public sealed class MappingUiGridSetCommand : LocalizedEntityCommands
         if (args.Length == 3)
         {
             var name = args[2].Trim();
-            if (!string.IsNullOrWhiteSpace(name))
-                _metadata.SetEntityName(grid, name);
+            _metadata.SetEntityName(grid, name);
         }
 
         shell.WriteLine(Loc.GetString("cmd-mappinguigridset-success"));
