@@ -44,15 +44,13 @@ public sealed partial class MappingScreen : InGameScreen
 
         AutoscaleMaxResolution = new Vector2i(1080, 770);
 
+        // open-space edit start
         SetAnchorPreset(ScreenContainer, LayoutPreset.Wide);
+        SetAnchorPreset(MainArea, LayoutPreset.Wide);
         SetAnchorPreset(ViewportContainer, LayoutPreset.Wide);
-        SetAnchorPreset(SpawnContainer, LayoutPreset.Wide);
+        SetAnchorPreset(SpawnPanel, LayoutPreset.Wide);
         SetAnchorPreset(MainViewport, LayoutPreset.Wide);
-        SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
-        SetAnchorAndMarginPreset(Actions, LayoutPreset.TopWide, margin: 5);
-
-        ScreenContainer.OnSplitResizeFinished += () =>
-            OnChatResized?.Invoke(new Vector2(ScreenContainer.SplitFraction, 0));
+        // open-space edit end
 
         var rotationSpinBox = new FloatSpinBox(90.0f, 0)
         {
@@ -97,14 +95,20 @@ public sealed partial class MappingScreen : InGameScreen
         Pick.Texture.TexturePath = "/Textures/Interface/eyedropper.svg.png";
         Delete.Texture.TexturePath = "/Textures/Interface/eraser.svg.png";
         Flip.Texture.TexturePath = "/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png";
-        Flip.OnPressed += args => FlipSides();
+
+        // open-space edit start
+        TilesPaletteButton.Pressed = true;
+        GroupPaletteButton.Pressed = true;
+        SideButton.OnPressed += args => FlipSides();
+        // open-space edit end
     }
 
     public void FlipSides()
     {
-        ScreenContainer.Flip();
-
-        if (SpawnContainer.GetPositionInParent() == 0)
+        // open-space edit start
+        // Keep the viewport stable: only move the compact tool strip, never flip the main split.
+        ToolPanel.SetPositionInParent(ToolPanel.GetPositionInParent() == 0 ? 1 : 0);
+        if (ToolPanel.GetPositionInParent() == 0)
         {
             Flip.Texture.TexturePath = "/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png";
         }
@@ -112,6 +116,7 @@ public sealed partial class MappingScreen : InGameScreen
         {
             Flip.Texture.TexturePath = "/Textures/Interface/VerbIcons/rotate_ccw.svg.192dpi.png";
         }
+        // open-space edit end
     }
 
     private void OnDecalColorPicked(Color color)
@@ -197,7 +202,9 @@ public sealed partial class MappingScreen : InGameScreen
 
     public override void SetChatSize(Vector2 size)
     {
-        ScreenContainer.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
+        // open-space edit start
+        OnChatResized?.Invoke(size);
+        // open-space edit end
     }
 
     public void UnPressActionsExcept(Control except)
@@ -208,5 +215,8 @@ public sealed partial class MappingScreen : InGameScreen
         Move.Pressed = Move == except;
         Pick.Pressed = Pick == except;
         Delete.Pressed = Delete == except;
+        // open-space edit start
+        DeleteToolButton.Pressed = Delete == except;
+        // open-space edit end
     }
 }

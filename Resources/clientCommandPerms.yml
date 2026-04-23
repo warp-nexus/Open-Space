@@ -80,6 +80,13 @@
 - Flags: MAPPING
   Commands:
     - mapping
+    # open-space edit start
+    - mappingui
+    - mappinguiclientsidesetup
+    - mappinguigridtp
+    - mappinguigridset
+    - colornetwork
+    # open-space edit end
     - mappingclientsidesetup
     - showsubfloor
     - showsubfloorforever

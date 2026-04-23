@@ -21,6 +21,13 @@ public sealed class MappingPrototype
     /// </summary>
     public readonly string Name;
 
+    // open-space edit start
+    /// <summary>
+    ///     Extra searchable text for localized or aliased prototype names.
+    /// </summary>
+    public readonly string SearchText;
+    // open-space edit end
+
     /// <summary>
     ///     Which other prototypes (buttons) this one is nested inside of.
     /// </summary>
@@ -31,9 +38,14 @@ public sealed class MappingPrototype
     /// </summary>
     public List<MappingPrototype>? Children;
 
-    public MappingPrototype(IPrototype? prototype, string name)
+    // open-space edit start
+    public MappingPrototype(IPrototype? prototype, string name, string? searchText = null)
+    // open-space edit end
     {
         Prototype = prototype;
         Name = name;
+        // open-space edit start
+        SearchText = searchText ?? name;
+        // open-space edit end
     }
 }

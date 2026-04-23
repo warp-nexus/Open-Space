@@ -1,9 +1,16 @@
 using System.Linq;
+// open-space edit start
+using System.Globalization;
+// open-space edit end
 using System.Numerics;
 using Content.Client.Administration.Managers;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Decals;
 using Content.Client.Gameplay;
+// open-space edit start
+using Content.Client.Movement.Systems;
+using Content.Client.SubFloor;
+// open-space edit end
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Verbs;
@@ -11,16 +18,35 @@ using Content.Shared.Administration;
 using Content.Shared.Decals;
 using Content.Shared.Input;
 using Content.Shared.Maps;
+// open-space edit start
+using Content.Shared.Shuttles.Components;
+// open-space edit end
 using Robust.Client.GameObjects;
+// open-space edit start
+using Robust.Client.Console;
+// open-space edit end
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Placement;
+// open-space edit start
+using Robust.Client.Player;
+// open-space edit end
 using Robust.Client.ResourceManagement;
+// open-space edit start
+using Robust.Client.State;
+// open-space edit end
 using Robust.Client.UserInterface;
+// open-space edit start
+using Robust.Client.UserInterface.Controls;
+using Robust.Client.ViewVariables;
+// open-space edit end
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Enums;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
+// open-space edit start
+using Robust.Shared.Maths;
+// open-space edit end
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Sequence;
@@ -41,6 +67,14 @@ public sealed class MappingState : GameplayStateBase
     [Dependency] private readonly IClientAdminManager _admin = default!;
     #endif
 
+    // open-space edit start
+    [Dependency] private readonly IClientConsoleHost _console = default!;
+    [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private readonly IClientViewVariablesManager _viewVariables = default!;
+    [Dependency] private readonly ILightManager _light = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IStateManager _state = default!;
+    // open-space edit end
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IEntityNetworkManager _entityNetwork = default!;
     [Dependency] private readonly IInputManager _input = default!;
@@ -56,6 +90,10 @@ public sealed class MappingState : GameplayStateBase
     private EntityMenuUIController _entityMenuController = default!;
 
     private DecalPlacementSystem _decal = default!;
+    // open-space edit start
+    private ContentEyeSystem _contentEye = default!;
+    private SubFloorHideSystem _subfloor = default!;
+    // open-space edit end
     private SpriteSystem _sprite = default!;
     private TransformSystem _transform = default!;
     private VerbSystem _verbs = default!;
@@ -67,6 +105,17 @@ public sealed class MappingState : GameplayStateBase
     private readonly Dictionary<IPrototype, MappingPrototype> _allPrototypesDict = new();
     private readonly Dictionary<Type, Dictionary<string, MappingPrototype>> _idDict = new();
     private readonly List<MappingPrototype> _prototypes = new();
+    // open-space edit start
+    private readonly List<MappingPrototype> _paletteRoots = new();
+    private MappingPrototype? _entitiesRoot;
+    private MappingPrototype? _tilesRoot;
+    private MappingPaletteMode _paletteMode = MappingPaletteMode.Tiles;
+    private bool _paletteGrouped = true;
+    private EntityUid? _inspectedEntity;
+    private EntityUid? _selectedGrid;
+    private TimeSpan _nextGridRefresh;
+    private MappingPaletteFilter _paletteFilter = MappingPaletteFilter.None;
+    // open-space edit end
     private (TimeSpan At, MappingSpawnButton Button)? _lastClicked;
     private Control? _scrollTo;
     private bool _updatePlacement;
@@ -74,6 +123,77 @@ public sealed class MappingState : GameplayStateBase
 
     private MappingScreen Screen => (MappingScreen) UserInterfaceManager.ActiveScreen!;
     private MainViewport Viewport => UserInterfaceManager.ActiveScreen!.GetWidget<MainViewport>()!;
+
+    // open-space edit start
+    private static readonly QuickPaletteEntry[] QuickPaletteEntries =
+    {
+        new(MappingQuickPaletteKind.Tile, "Space"),
+        new(MappingQuickPaletteKind.Delete, "ActionMappingEraser"),
+        new(MappingQuickPaletteKind.Tile, "Plating"),
+        new(MappingQuickPaletteKind.Tile, "FloorSteel"),
+        new(MappingQuickPaletteKind.Entity, "Firelock"),
+        new(MappingQuickPaletteKind.Entity, "Grille"),
+        new(MappingQuickPaletteKind.Entity, "Window"),
+        new(MappingQuickPaletteKind.Entity, "ReinforcedWindow"),
+        new(MappingQuickPaletteKind.Entity, "WallReinforced"),
+        new(MappingQuickPaletteKind.Entity, "WallSolid"),
+        new(MappingQuickPaletteKind.Entity, "GasPipeStraight"),
+        new(MappingQuickPaletteKind.Entity, "GasPipeBend"),
+        new(MappingQuickPaletteKind.Entity, "GasPipeTJunction"),
+        new(MappingQuickPaletteKind.Entity, "GasPipeFourway"),
+        new(MappingQuickPaletteKind.Entity, "GasVentScrubber"),
+        new(MappingQuickPaletteKind.Entity, "GasVentPump"),
+        new(MappingQuickPaletteKind.Entity, "AirAlarm"),
+        new(MappingQuickPaletteKind.Entity, "FireAlarm"),
+        new(MappingQuickPaletteKind.Entity, "APCBasic"),
+        new(MappingQuickPaletteKind.Entity, "CableApcExtension"),
+        new(MappingQuickPaletteKind.Entity, "CableMV"),
+        new(MappingQuickPaletteKind.Entity, "CableHV"),
+        new(MappingQuickPaletteKind.Entity, "SubstationBasic"),
+        new(MappingQuickPaletteKind.Entity, "Poweredlight"),
+        new(MappingQuickPaletteKind.Entity, "PoweredSmallLight"),
+        new(MappingQuickPaletteKind.Entity, "EmergencyLight"),
+        new(MappingQuickPaletteKind.Entity, "SMESBasic"),
+        new(MappingQuickPaletteKind.Entity, "TableWood"),
+        new(MappingQuickPaletteKind.Entity, "Table"),
+        new(MappingQuickPaletteKind.Entity, "TableCounterWood"),
+        new(MappingQuickPaletteKind.Entity, "TableCounterMetal"),
+        new(MappingQuickPaletteKind.Entity, "ChairWood"),
+        new(MappingQuickPaletteKind.Entity, "Chair"),
+        new(MappingQuickPaletteKind.Entity, "ChairOfficeLight"),
+        new(MappingQuickPaletteKind.Entity, "ChairOfficeDark"),
+        new(MappingQuickPaletteKind.Entity, "Stool"),
+        new(MappingQuickPaletteKind.Entity, "StoolBar"),
+        new(MappingQuickPaletteKind.Entity, "Rack"),
+        new(MappingQuickPaletteKind.Entity, "LampGold"),
+        new(MappingQuickPaletteKind.Entity, "DisposalPipe"),
+        new(MappingQuickPaletteKind.Entity, "DisposalBend"),
+        new(MappingQuickPaletteKind.Entity, "DisposalJunction"),
+        new(MappingQuickPaletteKind.Entity, "DisposalJunctionFlipped"),
+        new(MappingQuickPaletteKind.Entity, "DisposalRouter"),
+        new(MappingQuickPaletteKind.Entity, "DisposalRouterFlipped"),
+        new(MappingQuickPaletteKind.Entity, "DisposalUnit"),
+        new(MappingQuickPaletteKind.Entity, "DisposalTrunk"),
+        new(MappingQuickPaletteKind.Entity, "SignDisposalSpace"),
+        new(MappingQuickPaletteKind.Entity, "Windoor"),
+        new(MappingQuickPaletteKind.Entity, "WindowDirectional"),
+        new(MappingQuickPaletteKind.Entity, "WindowReinforcedDirectional"),
+        new(MappingQuickPaletteKind.Entity, "PlasmaWindowDirectional"),
+        new(MappingQuickPaletteKind.Entity, "Railing"),
+        new(MappingQuickPaletteKind.Entity, "RailingCorner"),
+        new(MappingQuickPaletteKind.Entity, "RailingCornerSmall"),
+        new(MappingQuickPaletteKind.Entity, "RailingRound"),
+        new(MappingQuickPaletteKind.Entity, "AirlockMaintLocked"),
+        new(MappingQuickPaletteKind.Entity, "AirlockGlass"),
+        new(MappingQuickPaletteKind.Entity, "AirlockServiceLocked"),
+        new(MappingQuickPaletteKind.Entity, "AirlockSecurityLocked"),
+        new(MappingQuickPaletteKind.Entity, "AirlockCommand"),
+        new(MappingQuickPaletteKind.Entity, "AirlockScience"),
+        new(MappingQuickPaletteKind.Entity, "AirlockMedical"),
+        new(MappingQuickPaletteKind.Entity, "AirlockEngineering"),
+        new(MappingQuickPaletteKind.Entity, "AirlockCargo"),
+    };
+    // open-space edit end
 
     public CursorState State { get; set; }
 
@@ -116,6 +236,27 @@ public sealed class MappingState : GameplayStateBase
         Screen.EntityPlacementMode.OnItemSelected += OnEntityPlacementSelected;
         Screen.EraseEntityButton.OnToggled += OnEraseEntityPressed;
         Screen.EraseDecalButton.OnToggled += OnEraseDecalPressed;
+        // open-space edit start
+        Screen.CcwButton.OnPressed += OnRotateCcwPressed;
+        Screen.CwButton.OnPressed += OnRotateCwPressed;
+        Screen.DeleteEntityButton.OnPressed += OnDeleteEntityPressed;
+        Screen.DeselectButton.OnPressed += OnDeselectPressed;
+        Screen.DeleteToolButton.OnPressed += OnDeletePressed;
+        Screen.CableToolButton.OnPressed += OnCableToolPressed;
+        Screen.PipeToolButton.OnPressed += OnPipeToolPressed;
+        Screen.QuickFilterAllButton.OnPressed += OnQuickFilterAllPressed;
+        Screen.QuickFilterCablesButton.OnPressed += OnQuickFilterCablesPressed;
+        Screen.QuickFilterAirlocksButton.OnPressed += OnQuickFilterAirlocksPressed;
+        Screen.QuickFilterPipesButton.OnPressed += OnQuickFilterPipesPressed;
+        Screen.QuickFilterDisposalButton.OnPressed += OnQuickFilterDisposalPressed;
+        Screen.ApplyPipeColorButton.OnPressed += OnApplyPipeColorPressed;
+        Screen.OpenGridButton.OnPressed += OnOpenGridPressed;
+        Screen.ApplyGridButton.OnPressed += OnApplyGridPressed;
+        Screen.ExitMappingButton.OnPressed += OnExitMappingPressed;
+        Screen.TilesPaletteButton.OnPressed += OnTilesPalettePressed;
+        Screen.EntitiesPaletteButton.OnPressed += OnEntitiesPalettePressed;
+        Screen.GroupPaletteButton.OnPressed += OnGroupPalettePressed;
+        // open-space edit end
         _placement.PlacementChanged += OnPlacementChanged;
 
         CommandBinds.Builder
@@ -133,7 +274,12 @@ public sealed class MappingState : GameplayStateBase
 
         _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
 
-        Screen.Prototypes.UpdateVisible(_prototypes);
+        // open-space edit start
+        PopulateQuickPalette();
+        RefreshPalette();
+        RefreshGridList(true);
+        RefreshGridInfo();
+        // open-space edit end
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs obj)
@@ -146,6 +292,10 @@ public sealed class MappingState : GameplayStateBase
         }
 
         ReloadPrototypes();
+        // open-space edit start
+        PopulateQuickPalette();
+        RefreshPalette();
+        // open-space edit end
     }
 
     private bool HandleOpenContextMenu(in PointerInputCmdArgs args)
@@ -175,6 +325,27 @@ public sealed class MappingState : GameplayStateBase
         Screen.EntityPlacementMode.OnItemSelected -= OnEntityPlacementSelected;
         Screen.EraseEntityButton.OnToggled -= OnEraseEntityPressed;
         Screen.EraseDecalButton.OnToggled -= OnEraseDecalPressed;
+        // open-space edit start
+        Screen.CcwButton.OnPressed -= OnRotateCcwPressed;
+        Screen.CwButton.OnPressed -= OnRotateCwPressed;
+        Screen.DeleteEntityButton.OnPressed -= OnDeleteEntityPressed;
+        Screen.DeselectButton.OnPressed -= OnDeselectPressed;
+        Screen.DeleteToolButton.OnPressed -= OnDeletePressed;
+        Screen.CableToolButton.OnPressed -= OnCableToolPressed;
+        Screen.PipeToolButton.OnPressed -= OnPipeToolPressed;
+        Screen.QuickFilterAllButton.OnPressed -= OnQuickFilterAllPressed;
+        Screen.QuickFilterCablesButton.OnPressed -= OnQuickFilterCablesPressed;
+        Screen.QuickFilterAirlocksButton.OnPressed -= OnQuickFilterAirlocksPressed;
+        Screen.QuickFilterPipesButton.OnPressed -= OnQuickFilterPipesPressed;
+        Screen.QuickFilterDisposalButton.OnPressed -= OnQuickFilterDisposalPressed;
+        Screen.ApplyPipeColorButton.OnPressed -= OnApplyPipeColorPressed;
+        Screen.OpenGridButton.OnPressed -= OnOpenGridPressed;
+        Screen.ApplyGridButton.OnPressed -= OnApplyGridPressed;
+        Screen.ExitMappingButton.OnPressed -= OnExitMappingPressed;
+        Screen.TilesPaletteButton.OnPressed -= OnTilesPalettePressed;
+        Screen.EntitiesPaletteButton.OnPressed -= OnEntitiesPalettePressed;
+        Screen.GroupPaletteButton.OnPressed -= OnGroupPalettePressed;
+        // open-space edit end
         _placement.PlacementChanged -= OnPlacementChanged;
         _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
 
@@ -207,6 +378,10 @@ public sealed class MappingState : GameplayStateBase
         _entityMenuController = UserInterfaceManager.GetUIController<EntityMenuUIController>();
 
         _decal = _entityManager.System<DecalPlacementSystem>();
+        // open-space edit start
+        _contentEye = _entityManager.System<ContentEyeSystem>();
+        _subfloor = _entityManager.System<SubFloorHideSystem>();
+        // open-space edit end
         _sprite = _entityManager.System<SpriteSystem>();
         _transform = _entityManager.System<TransformSystem>();
         _verbs = _entityManager.System<VerbSystem>();
@@ -215,8 +390,21 @@ public sealed class MappingState : GameplayStateBase
 
     private void ReloadPrototypes()
     {
+        // open-space edit start
+        _allPrototypes.Clear();
+        _allPrototypesDict.Clear();
+        _idDict.Clear();
+        _prototypes.Clear();
+        _paletteRoots.Clear();
+        _entitiesRoot = null;
+        _tilesRoot = null;
+        // open-space edit end
+
         var entities = new MappingPrototype(null, Loc.GetString("mapping-entities")) { Children = new List<MappingPrototype>() };
         _prototypes.Add(entities);
+        // open-space edit start
+        _entitiesRoot = entities;
+        // open-space edit end
 
         var mappings = new Dictionary<string, MappingPrototype>();
         foreach (var entity in _prototypeManager.EnumeratePrototypes<EntityPrototype>())
@@ -229,6 +417,9 @@ public sealed class MappingState : GameplayStateBase
 
         var tiles = new MappingPrototype(null, Loc.GetString("mapping-tiles")) { Children = new List<MappingPrototype>() };
         _prototypes.Add(tiles);
+        // open-space edit start
+        _tilesRoot = tiles;
+        // open-space edit end
 
         foreach (var tile in _prototypeManager.EnumeratePrototypes<ContentTileDefinition>())
         {
@@ -308,7 +499,9 @@ public sealed class MappingState : GameplayStateBase
                 if (node.TryGet("suffix", out ValueDataNode? suffix))
                     name = $"{name} [{suffix.Value}]";
 
-                mapping = new MappingPrototype(prototype, name);
+                // open-space edit start
+                mapping = new MappingPrototype(prototype, name, BuildPrototypeSearchText(id, name));
+                // open-space edit end
                 _allPrototypes.Add(mapping);
                 ids.Add(id, mapping);
 
@@ -360,12 +553,16 @@ public sealed class MappingState : GameplayStateBase
             else
             {
                 var entity = prototype as EntityPrototype;
-                var name = entity?.Name ?? prototype.ID;
+                // open-space edit start
+                var name = GetMappingPrototypeName(prototype);
+                // open-space edit end
 
                 if (!string.IsNullOrWhiteSpace(entity?.EditorSuffix))
                     name = $"{name} [{entity.EditorSuffix}]";
 
-                mapping = new MappingPrototype(prototype, name);
+                // open-space edit start
+                mapping = new MappingPrototype(prototype, name, GetMappingPrototypeSearchText(prototype, name));
+                // open-space edit end
                 _allPrototypes.Add(mapping);
                 _allPrototypesDict.Add(prototype, mapping);
                 ids.Add(prototype.ID, mapping);
@@ -420,9 +617,11 @@ public sealed class MappingState : GameplayStateBase
         }
 
         var matches = new List<MappingPrototype>();
-        foreach (var prototype in _allPrototypes)
+        // open-space edit start
+        foreach (var prototype in GetPaletteSearchPrototypes())
+        // open-space edit end
         {
-            if (prototype.Name.Contains(args.Text, OrdinalIgnoreCase))
+            if (prototype.SearchText.Contains(args.Text, OrdinalIgnoreCase))
                 matches.Add(prototype);
         }
 
@@ -451,6 +650,259 @@ public sealed class MappingState : GameplayStateBase
         Screen.Prototypes.SearchBar.Text = string.Empty;
         OnSearch(new LineEditEventArgs(Screen.Prototypes.SearchBar, string.Empty));
     }
+
+    // open-space edit start
+    private void PopulateQuickPalette()
+    {
+        Screen.QuickPaletteList.RemoveAllChildren();
+
+        foreach (var entry in QuickPaletteEntries)
+        {
+            var label = GetQuickPaletteLabel(entry);
+            if (label == null)
+                continue;
+
+            var button = new Button
+            {
+                Text = label,
+                ToolTip = entry.Id,
+                HorizontalExpand = true,
+                StyleClasses = { "ButtonSquare" },
+            };
+
+            button.OnPressed += _ => OnQuickPalettePressed(entry);
+            Screen.QuickPaletteList.AddChild(button);
+        }
+    }
+
+    private string? GetQuickPaletteLabel(QuickPaletteEntry entry)
+    {
+        return entry.Kind switch
+        {
+            MappingQuickPaletteKind.Delete => Loc.GetString("mappingui-quick-delete-objects"),
+            MappingQuickPaletteKind.Entity => GetMappingById(typeof(EntityPrototype), entry.Id)?.Name,
+            MappingQuickPaletteKind.Tile => GetMappingById(typeof(ContentTileDefinition), entry.Id)?.Name,
+            _ => entry.Id
+        };
+    }
+
+    private void OnQuickPalettePressed(QuickPaletteEntry entry)
+    {
+        switch (entry.Kind)
+        {
+            case MappingQuickPaletteKind.Delete:
+                EnableDelete();
+                break;
+            case MappingQuickPaletteKind.Entity:
+                SelectEntityPrototype(entry.Id);
+                break;
+            case MappingQuickPaletteKind.Tile:
+                SelectTilePrototype(entry.Id);
+                break;
+        }
+    }
+
+    private void RefreshPalette()
+    {
+        _paletteRoots.Clear();
+        foreach (var root in GetPaletteRoots())
+        {
+            _paletteRoots.Add(root);
+        }
+
+        Screen.TilesPaletteButton.Pressed = _paletteMode == MappingPaletteMode.Tiles;
+        Screen.EntitiesPaletteButton.Pressed = _paletteMode == MappingPaletteMode.Entities;
+        Screen.GroupPaletteButton.Pressed = _paletteGrouped;
+        Screen.GroupPaletteButton.Disabled = _paletteFilter != MappingPaletteFilter.None;
+        Screen.QuickFilterAllButton.Pressed = _paletteMode == MappingPaletteMode.Entities &&
+                                             _paletteFilter == MappingPaletteFilter.None;
+        Screen.QuickFilterCablesButton.Pressed = _paletteFilter == MappingPaletteFilter.Cables;
+        Screen.QuickFilterAirlocksButton.Pressed = _paletteFilter == MappingPaletteFilter.Airlocks;
+        Screen.QuickFilterPipesButton.Pressed = _paletteFilter == MappingPaletteFilter.Pipes;
+        Screen.QuickFilterDisposalButton.Pressed = _paletteFilter == MappingPaletteFilter.Disposal;
+        Screen.Prototypes.UpdateVisible(_paletteRoots);
+        OnSearch(new LineEditEventArgs(Screen.Prototypes.SearchBar, Screen.Prototypes.SearchBar.Text));
+    }
+
+    private IEnumerable<MappingPrototype> GetPaletteRoots()
+    {
+        if (_paletteMode == MappingPaletteMode.Tiles)
+        {
+            if (_tilesRoot != null)
+            {
+                if (_paletteGrouped)
+                {
+                    yield return _tilesRoot;
+                }
+                else
+                {
+                    foreach (var child in EnumeratePaletteChildren(_tilesRoot))
+                    {
+                        yield return child;
+                    }
+                }
+            }
+
+            yield break;
+        }
+
+        if (_paletteFilter != MappingPaletteFilter.None)
+        {
+            foreach (var child in GetFilteredEntityPalette(_paletteFilter))
+            {
+                yield return child;
+            }
+
+            yield break;
+        }
+
+        if (_entitiesRoot != null)
+            yield return _entitiesRoot;
+    }
+
+    private IEnumerable<MappingPrototype> GetFilteredEntityPalette(MappingPaletteFilter filter)
+    {
+        if (_entitiesRoot == null)
+            yield break;
+
+        foreach (var child in EnumeratePaletteChildren(_entitiesRoot)
+                     .Where(child => child.Prototype is EntityPrototype entity &&
+                                     PaletteFilterMatches(filter, entity.ID))
+                     .OrderBy(child => child.Name, StringComparer.OrdinalIgnoreCase))
+        {
+            yield return child;
+        }
+    }
+
+    private static bool PaletteFilterMatches(MappingPaletteFilter filter, string id)
+    {
+        return filter switch
+        {
+            MappingPaletteFilter.Cables => id.Equals("CableApcExtension", OrdinalIgnoreCase) ||
+                                           id.Equals("CableMV", OrdinalIgnoreCase) ||
+                                           id.Equals("CableHV", OrdinalIgnoreCase),
+            MappingPaletteFilter.Airlocks => id.Contains("Airlock", OrdinalIgnoreCase) ||
+                                             id.Contains("Windoor", OrdinalIgnoreCase),
+            MappingPaletteFilter.Pipes => id.Contains("GasPipe", OrdinalIgnoreCase) ||
+                                          id.Contains("GasVent", OrdinalIgnoreCase),
+            MappingPaletteFilter.Disposal => id.Contains("Disposal", OrdinalIgnoreCase),
+            _ => true
+        };
+    }
+
+    private IEnumerable<MappingPrototype> GetPaletteSearchPrototypes()
+    {
+        foreach (var root in GetPaletteRoots())
+        {
+            foreach (var child in EnumeratePaletteChildren(root))
+            {
+                yield return child;
+            }
+        }
+    }
+
+    private IEnumerable<MappingPrototype> EnumeratePaletteChildren(MappingPrototype prototype)
+    {
+        if (prototype.Prototype != null)
+            yield return prototype;
+
+        if (prototype.Children == null)
+            yield break;
+
+        foreach (var child in prototype.Children)
+        {
+            foreach (var nested in EnumeratePaletteChildren(child))
+            {
+                yield return nested;
+            }
+        }
+    }
+
+    private void SetPaletteMode(MappingPaletteMode mode)
+    {
+        var previousFilter = _paletteFilter;
+        _paletteFilter = MappingPaletteFilter.None;
+
+        if (_paletteMode == mode && previousFilter == _paletteFilter)
+            return;
+
+        _paletteMode = mode;
+        RefreshPalette();
+    }
+
+    private void SetPaletteFilter(MappingPaletteFilter filter)
+    {
+        _paletteMode = MappingPaletteMode.Entities;
+        _paletteFilter = filter;
+        Screen.Prototypes.SearchBar.Text = string.Empty;
+        RefreshPalette();
+    }
+
+    private MappingPrototype? GetMappingById(Type prototypeType, string prototypeId)
+    {
+        if (!_idDict.TryGetValue(prototypeType, out var ids) ||
+            !ids.TryGetValue(prototypeId, out var mapping))
+        {
+            return null;
+        }
+
+        return mapping;
+    }
+
+    private string GetMappingPrototypeName(IPrototype prototype)
+    {
+        if (prototype is ContentTileDefinition tile)
+            return GetLocalizedTileName(tile);
+
+        return prototype is EntityPrototype entity
+            ? entity.Name
+            : prototype.ID;
+    }
+
+    private string GetMappingPrototypeSearchText(IPrototype prototype, string displayName)
+    {
+        if (prototype is ContentTileDefinition tile)
+            return BuildPrototypeSearchText(tile.ID, displayName, tile.Name, SplitPrototypeId(tile.ID));
+
+        if (prototype is EntityPrototype entity)
+            return BuildPrototypeSearchText(entity.ID, displayName, entity.EditorSuffix, SplitPrototypeId(entity.ID));
+
+        return BuildPrototypeSearchText(prototype.ID, displayName, SplitPrototypeId(prototype.ID));
+    }
+
+    private string GetLocalizedTileName(ContentTileDefinition tile)
+    {
+        if (string.IsNullOrWhiteSpace(tile.Name))
+            return tile.ID;
+
+        return Loc.GetString(tile.Name);
+    }
+
+    private static string BuildPrototypeSearchText(params string?[] values)
+    {
+        return string.Join(' ', values.Where(value => !string.IsNullOrWhiteSpace(value)));
+    }
+
+    private static string SplitPrototypeId(string id)
+    {
+        var chars = new List<char>(id.Length * 2);
+
+        for (var i = 0; i < id.Length; i++)
+        {
+            var current = id[i];
+            if (i > 0 &&
+                char.IsUpper(current) &&
+                (char.IsLower(id[i - 1]) || i + 1 < id.Length && char.IsLower(id[i + 1])))
+            {
+                chars.Add(' ');
+            }
+
+            chars.Add(current);
+        }
+
+        return new string(chars.ToArray());
+    }
+    // open-space edit end
 
     private void OnGetData(IPrototype prototype, List<Texture> textures)
     {
@@ -645,6 +1097,218 @@ public sealed class MappingState : GameplayStateBase
             DisableDelete();
     }
 
+    // open-space edit start
+    private void OnRotateCcwPressed(ButtonEventArgs args)
+    {
+        RotatePlacement(clockwise: false);
+    }
+
+    private void OnRotateCwPressed(ButtonEventArgs args)
+    {
+        RotatePlacement(clockwise: true);
+    }
+
+    private void OnDeleteEntityPressed(ButtonEventArgs args)
+    {
+        EnableDelete();
+    }
+
+    private void OnDeselectPressed(ButtonEventArgs args)
+    {
+        Deselect();
+    }
+
+    private void OnCableToolPressed(ButtonEventArgs args)
+    {
+        SelectEntityPrototype("CableMV");
+    }
+
+    private void OnPipeToolPressed(ButtonEventArgs args)
+    {
+        SelectEntityPrototype("GasPipeStraight");
+    }
+
+    private void OnQuickFilterAllPressed(ButtonEventArgs args)
+    {
+        SetPaletteFilter(MappingPaletteFilter.None);
+    }
+
+    private void OnQuickFilterCablesPressed(ButtonEventArgs args)
+    {
+        SetPaletteFilter(MappingPaletteFilter.Cables);
+    }
+
+    private void OnQuickFilterAirlocksPressed(ButtonEventArgs args)
+    {
+        SetPaletteFilter(MappingPaletteFilter.Airlocks);
+    }
+
+    private void OnQuickFilterPipesPressed(ButtonEventArgs args)
+    {
+        SetPaletteFilter(MappingPaletteFilter.Pipes);
+    }
+
+    private void OnQuickFilterDisposalPressed(ButtonEventArgs args)
+    {
+        SetPaletteFilter(MappingPaletteFilter.Disposal);
+    }
+
+    private void OnApplyPipeColorPressed(ButtonEventArgs args)
+    {
+        ApplyPipeColor();
+    }
+
+    private void OnTilesPalettePressed(ButtonEventArgs args)
+    {
+        SetPaletteMode(MappingPaletteMode.Tiles);
+    }
+
+    private void OnEntitiesPalettePressed(ButtonEventArgs args)
+    {
+        SetPaletteMode(MappingPaletteMode.Entities);
+    }
+
+    private void OnGroupPalettePressed(ButtonEventArgs args)
+    {
+        _paletteGrouped = args.Button.Pressed;
+        RefreshPalette();
+    }
+
+    private void OnOpenGridPressed(ButtonEventArgs args)
+    {
+        if (_selectedGrid is not { } grid ||
+            _entityManager.Deleted(grid) ||
+            !_entityManager.TryGetNetEntity(grid, out var netEntity))
+        {
+            return;
+        }
+
+        _viewVariables.OpenVV(netEntity.Value);
+    }
+
+    private void OnApplyGridPressed(ButtonEventArgs args)
+    {
+        ApplyGridInfo();
+    }
+
+    private void OnExitMappingPressed(ButtonEventArgs args)
+    {
+        ExitMappingUi();
+    }
+
+    private void RotatePlacement(bool clockwise)
+    {
+        var direction = _placement.Direction == Direction.Invalid
+            ? Direction.South
+            : _placement.Direction;
+
+        _placement.Direction = RotateDirection(direction, clockwise);
+    }
+
+    private static Direction RotateDirection(Direction direction, bool clockwise)
+    {
+        if (clockwise)
+            return direction.GetClockwise90Degrees();
+
+        var rotated = direction;
+        for (var i = 0; i < 3; i++)
+        {
+            rotated = rotated.GetClockwise90Degrees();
+        }
+
+        return rotated;
+    }
+
+    private void SelectEntityPrototype(string prototypeId)
+    {
+        if (GetMappingById(typeof(EntityPrototype), prototypeId) is not { } mapping)
+        {
+            return;
+        }
+
+        SetPaletteMode(MappingPaletteMode.Entities);
+        OnSelected(mapping);
+    }
+
+    private void SelectTilePrototype(string prototypeId)
+    {
+        if (GetMappingById(typeof(ContentTileDefinition), prototypeId) is not { } mapping)
+        {
+            return;
+        }
+
+        SetPaletteMode(MappingPaletteMode.Tiles);
+        OnSelected(mapping);
+    }
+
+    private void ApplyPipeColor()
+    {
+        if (_inspectedEntity is not { } entity ||
+            !_entityManager.TryGetNetEntity(entity, out var netEntity))
+        {
+            return;
+        }
+
+        var group = Screen.PipeTypeLineEdit.Text.Trim();
+        if (string.IsNullOrWhiteSpace(group))
+            group = "Pipe";
+
+        var color = Screen.PipeColorLineEdit.Text.Trim();
+        if (string.IsNullOrWhiteSpace(color))
+            return;
+
+        if (!color.StartsWith('#'))
+            color = $"#{color}";
+
+        _console.RemoteExecuteCommand(null, $"colornetwork {netEntity.Value.Id} {group} {color}");
+    }
+
+    private void ApplyGridInfo()
+    {
+        if (_selectedGrid is not { } grid ||
+            _entityManager.Deleted(grid) ||
+            !_entityManager.TryGetNetEntity(grid, out var netEntity))
+        {
+            return;
+        }
+
+        var color = Screen.GridRadarColorLineEdit.Text.Trim();
+        if (string.IsNullOrWhiteSpace(color))
+            return;
+
+        if (!color.StartsWith('#'))
+            color = $"#{color}";
+
+        var name = Screen.GridNameLineEdit.Text.Trim();
+        _console.RemoteExecuteCommand(null, $"mappinguigridset {netEntity.Value.Id} {color} {QuoteCommandArgument(name)}");
+    }
+
+    private void ExitMappingUi()
+    {
+        if (!_light.LockConsoleAccess)
+            _light.Enabled = true;
+
+        _subfloor.ShowAll = false;
+
+        if (_player.LocalEntity is { } player && _entityManager.HasComponent<EyeComponent>(player))
+        {
+            _contentEye.RequestEye(true, true);
+        }
+        else
+        {
+            _eye.CurrentEye.DrawFov = true;
+            _eye.CurrentEye.DrawLight = true;
+        }
+
+        _state.RequestStateChange<GameplayState>();
+    }
+
+    private static string QuoteCommandArgument(string argument)
+    {
+        return $"\"{argument.Replace("\\", "\\\\").Replace("\"", "\\\"")}\"";
+    }
+    // open-space edit end
+
     private void OnEntityReplacePressed(ButtonToggledEventArgs args)
     {
         _placement.Replacement = args.Pressed;
@@ -732,6 +1396,9 @@ public sealed class MappingState : GameplayStateBase
     private void DisableDelete()
     {
         Screen.Delete.Pressed = false;
+        // open-space edit start
+        Screen.DeleteToolButton.Pressed = false;
+        // open-space edit end
         State = CursorState.None;
         DisableEraser();
     }
@@ -889,6 +1556,169 @@ public sealed class MappingState : GameplayStateBase
         ToggleCollapse(button);
     }
 
+    // open-space edit start
+    private void RefreshHoveredEntityInfo()
+    {
+        if (GetHoveredEntity() is { } hovered)
+            _inspectedEntity = hovered;
+        else if (_inspectedEntity != null && _entityManager.Deleted(_inspectedEntity))
+            _inspectedEntity = null;
+
+    }
+
+    private void RefreshEntityInfo()
+    {
+        var none = Loc.GetString("mappingui-entity-none");
+        if (_inspectedEntity is not { } entity || _entityManager.Deleted(entity))
+        {
+            Screen.EntityIdLabel.Text = none;
+            Screen.EntityNameLabel.Text = none;
+            Screen.EntityPositionLabel.Text = none;
+            Screen.EntityRotationLabel.Text = none;
+            return;
+        }
+
+        Screen.EntityIdLabel.Text = _entityManager.TryGetNetEntity(entity, out var netEntity)
+            ? netEntity.Value.Id.ToString(CultureInfo.InvariantCulture)
+            : entity.ToString();
+        Screen.EntityNameLabel.Text = _entityManager.TryGetComponent(entity, out MetaDataComponent? meta)
+            ? meta.EntityName
+            : none;
+
+        if (!_entityManager.TryGetComponent(entity, out TransformComponent? xform))
+        {
+            Screen.EntityPositionLabel.Text = none;
+            Screen.EntityRotationLabel.Text = none;
+            return;
+        }
+
+        var mapPos = _transform.ToMapCoordinates(xform.Coordinates);
+        Screen.EntityPositionLabel.Text = $"{mapPos.X:0.##}, {mapPos.Y:0.##} [{(int) mapPos.MapId}]";
+        Screen.EntityRotationLabel.Text = $"{xform.LocalRotation.Degrees:0.#}°";
+    }
+
+    private void RefreshGridInfo()
+    {
+        var none = Loc.GetString("mappingui-grid-none");
+        if (_selectedGrid is not { } grid || _entityManager.Deleted(grid))
+        {
+            Screen.GridIdLabel.Text = none;
+            Screen.GridMapLabel.Text = none;
+            Screen.GridPositionLabel.Text = none;
+            if (!Screen.GridNameLineEdit.HasKeyboardFocus())
+                Screen.GridNameLineEdit.Text = string.Empty;
+            if (!Screen.GridRadarColorLineEdit.HasKeyboardFocus())
+                Screen.GridRadarColorLineEdit.Text = Color.Gold.ToHexNoAlpha();
+            Screen.OpenGridButton.Disabled = true;
+            Screen.ApplyGridButton.Disabled = true;
+            return;
+        }
+
+        Screen.OpenGridButton.Disabled = false;
+        Screen.ApplyGridButton.Disabled = false;
+        Screen.GridIdLabel.Text = _entityManager.TryGetNetEntity(grid, out var netEntity)
+            ? netEntity.Value.Id.ToString(CultureInfo.InvariantCulture)
+            : grid.ToString();
+
+        if (!_entityManager.TryGetComponent(grid, out TransformComponent? xform))
+        {
+            Screen.GridMapLabel.Text = none;
+            Screen.GridPositionLabel.Text = none;
+            return;
+        }
+
+        var mapPos = _transform.ToMapCoordinates(xform.Coordinates);
+        Screen.GridMapLabel.Text = ((int) mapPos.MapId).ToString(CultureInfo.InvariantCulture);
+        Screen.GridPositionLabel.Text = $"{mapPos.X:0.##}, {mapPos.Y:0.##}";
+
+        if (_entityManager.TryGetComponent(grid, out MetaDataComponent? meta) &&
+            !Screen.GridNameLineEdit.HasKeyboardFocus())
+        {
+            Screen.GridNameLineEdit.Text = meta.EntityName;
+        }
+
+        if (!Screen.GridRadarColorLineEdit.HasKeyboardFocus())
+        {
+            var color = _entityManager.TryGetComponent(grid, out IFFComponent? iff)
+                ? iff.Color
+                : Color.Gold;
+            Screen.GridRadarColorLineEdit.Text = color.ToHexNoAlpha();
+        }
+    }
+
+    private void RefreshGridList(bool force = false)
+    {
+        if (!force && _timing.CurTime < _nextGridRefresh)
+            return;
+
+        _nextGridRefresh = _timing.CurTime + TimeSpan.FromSeconds(1);
+        Screen.GridList.RemoveAllChildren();
+
+        var mapId = _eye.CurrentEye.Position.MapId;
+        var grids = _mapMan.GetAllGrids(mapId).ToList();
+        if (grids.Count == 0)
+        {
+            _selectedGrid = null;
+            Screen.GridList.AddChild(new Label
+            {
+                Text = Loc.GetString("mappingui-no-grids"),
+                ClipText = true
+            });
+            RefreshGridInfo();
+            return;
+        }
+
+        if (_selectedGrid is not { } selectedGrid ||
+            _entityManager.Deleted(selectedGrid) ||
+            grids.All(grid => grid.Owner != selectedGrid))
+        {
+            _selectedGrid = grids.OrderBy(grid => grid.Owner.Id).First().Owner;
+        }
+
+        var map = _entityManager.System<SharedMapSystem>();
+        foreach (var grid in grids.OrderBy(grid => grid.Owner.Id))
+        {
+            var center = map.LocalToWorld(grid.Owner, grid.Comp, grid.Comp.LocalAABB.Center);
+            var netEntity = _entityManager.GetNetEntity(grid.Owner);
+            var gridId = netEntity is { } net
+                ? net.Id.ToString(CultureInfo.InvariantCulture)
+                : grid.Owner.ToString();
+            var name = _entityManager.TryGetComponent(grid.Owner, out MetaDataComponent? meta) &&
+                       !string.IsNullOrWhiteSpace(meta.EntityName)
+                ? meta.EntityName
+                : Loc.GetString("mappingui-grid-unnamed");
+            var button = new Button
+            {
+                Text = $"{gridId} {name}",
+                ClipText = true,
+                StyleClasses = { "ButtonSquare" },
+                ToolTip = $"{center.X:0.##}, {center.Y:0.##}",
+                ToggleMode = true,
+                Pressed = _selectedGrid == grid.Owner
+            };
+            var gridUid = grid.Owner;
+            button.OnPressed += _ =>
+            {
+                _selectedGrid = gridUid;
+                RefreshGridInfo();
+                TeleportToGridCenter(gridUid);
+                RefreshGridList(true);
+            };
+            Screen.GridList.AddChild(button);
+        }
+
+        RefreshGridInfo();
+    }
+
+    private void TeleportToGridCenter(EntityUid grid)
+    {
+        if (!_entityManager.TryGetNetEntity(grid, out var netEntity))
+            return;
+
+        _console.RemoteExecuteCommand(null, $"mappinguigridtp {netEntity.Value.Id}");
+    }
+    // open-space edit end
+
     public EntityUid? GetHoveredEntity()
     {
         if (UserInterfaceManager.CurrentlyHovered is not IViewportControl viewport ||
@@ -903,6 +1733,12 @@ public sealed class MappingState : GameplayStateBase
 
     public override void FrameUpdate(FrameEventArgs e)
     {
+        // open-space edit start
+        RefreshHoveredEntityInfo();
+        RefreshGridList();
+        RefreshGridInfo();
+        // open-space edit end
+
         if (_updatePlacement)
         {
             _updatePlacement = false;
@@ -937,4 +1773,30 @@ public sealed class MappingState : GameplayStateBase
         Pick,
         Delete
     }
+
+    // open-space edit start
+    private enum MappingPaletteMode
+    {
+        Tiles,
+        Entities
+    }
+
+    private enum MappingPaletteFilter
+    {
+        None,
+        Cables,
+        Airlocks,
+        Pipes,
+        Disposal
+    }
+
+    private enum MappingQuickPaletteKind
+    {
+        Entity,
+        Tile,
+        Delete
+    }
+
+    private readonly record struct QuickPaletteEntry(MappingQuickPaletteKind Kind, string Id);
+    // open-space edit end
 }
