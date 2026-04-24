@@ -2,16 +2,22 @@
   id: NamesMilitaryFirstLeader
   values:
     prefix: names-military-leader-first-dataset-
-    count: 4
+    # open-space edit start
+    count: 5
+    # open-space edit end
 
 - type: localizedDataset
   id: NamesMilitaryFirst
   values:
     prefix: names-military-first-dataset-
-    count: 3
+    # open-space edit start
+    count: 5
+    # open-space edit end
 
 - type: localizedDataset
   id: NamesMilitaryLast
   values:
     prefix: names-military-last-dataset-
-    count: 42
+    # open-space edit start
+    count: 43
+    # open-space edit end

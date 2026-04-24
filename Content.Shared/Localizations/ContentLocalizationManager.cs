@@ -32,7 +32,8 @@ namespace Content.Shared.Localizations
             _loc.LoadCulture(culture);
             _loc.LoadCulture(fallbackCulture); // Corvax-Localization
             _loc.SetFallbackCluture(fallbackCulture); // Corvax-Localization
-            _loc.AddFunction(culture, "MANY", FormatMany); // Corvax-Localization: To prevent problems in auto-generated locale files
+            _loc.AddFunction(culture, "MAKEPLURAL", FormatManyRu);  // OpenSpace
+            _loc.AddFunction(culture, "MANY", FormatManyRu);  // OpenSpace
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);
@@ -41,10 +42,9 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "UNITS", FormatUnits);
             _loc.AddFunction(culture, "TOSTRING", args => FormatToString(culture, args));
             _loc.AddFunction(culture, "LOC", FormatLoc);
-            _loc.AddFunction(culture, "NATURALFIXED", FormatNaturalFixed);
-            _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
+            _loc.AddFunction(culture, "NATURALFIXED", args => FormatNaturalFixed(culture, args));  // OpenSpace
+            _loc.AddFunction(culture, "NATURALPERCENT", args => FormatNaturalPercent(culture, args));  // OpenSpace
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
-
 
             /*
              * The following language functions are specific to the english localization. When working on your own
@@ -55,7 +55,25 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
+            // OpenSpace Start
+            _loc.AddFunction(fallbackCulture, "PRESSURE", FormatPressure);
+            _loc.AddFunction(fallbackCulture, "POWERWATTS", FormatPowerWatts);
+            _loc.AddFunction(fallbackCulture, "POWERJOULES", FormatPowerJoules);
+            _loc.AddFunction(fallbackCulture, "ENERGYWATTHOURS", FormatEnergyWattHours);
+            _loc.AddFunction(fallbackCulture, "UNITS", FormatUnits);
+            _loc.AddFunction(fallbackCulture, "TOSTRING", args => FormatToString(fallbackCulture, args));
+            _loc.AddFunction(fallbackCulture, "LOC", FormatLoc);
+            _loc.AddFunction(fallbackCulture, "NATURALFIXED", args => FormatNaturalFixed(fallbackCulture, args));
+            _loc.AddFunction(fallbackCulture, "NATURALPERCENT", args => FormatNaturalPercent(fallbackCulture, args));
+            _loc.AddFunction(fallbackCulture, "PLAYTIME", FormatPlaytime);
+            // OpenSpace End
         }
+        // OpenSpace Start
+        private ILocValue FormatManyRu(LocArgs args)
+        {
+            return (LocValueString) args.Args[0];
+        }
+        // OpenSpace End
 
         private ILocValue FormatMany(LocArgs args)
         {
@@ -71,20 +89,20 @@ namespace Content.Shared.Localizations
             }
         }
 
-        private ILocValue FormatNaturalPercent(LocArgs args)
+        private ILocValue FormatNaturalPercent(CultureInfo culture, LocArgs args)  // OpenSpace
         {
             var number = ((LocValueNumber) args.Args[0]).Value * 100;
             var maxDecimals = (int)Math.Floor(((LocValueNumber) args.Args[1]).Value);
-            var formatter = (NumberFormatInfo)NumberFormatInfo.GetInstance(CultureInfo.GetCultureInfo(Culture)).Clone();
+            var formatter = (NumberFormatInfo)NumberFormatInfo.GetInstance(culture).Clone();  // OpenSpace
             formatter.NumberDecimalDigits = maxDecimals;
             return new LocValueString(string.Format(formatter, "{0:N}", number).TrimEnd('0').TrimEnd(char.Parse(formatter.NumberDecimalSeparator)) + "%");
         }
 
-        private ILocValue FormatNaturalFixed(LocArgs args)
+        private ILocValue FormatNaturalFixed(CultureInfo culture, LocArgs args)  // OpenSpace
         {
             var number = ((LocValueNumber) args.Args[0]).Value;
             var maxDecimals = (int)Math.Floor(((LocValueNumber) args.Args[1]).Value);
-            var formatter = (NumberFormatInfo)NumberFormatInfo.GetInstance(CultureInfo.GetCultureInfo(Culture)).Clone();
+            var formatter = (NumberFormatInfo)NumberFormatInfo.GetInstance(culture).Clone();  // OpenSpace
             formatter.NumberDecimalDigits = maxDecimals;
             return new LocValueString(string.Format(formatter, "{0:N}", number).TrimEnd('0').TrimEnd(char.Parse(formatter.NumberDecimalSeparator)));
         }

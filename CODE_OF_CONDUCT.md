@@ -15,7 +15,7 @@ This isn’t an exhaustive list of things that you can’t do. Rather, take it i
 This code of conduct applies specifically to the GitHub repositories and spaces managed by the ss14-art organization.
 
 If you believe someone is violating the code of conduct, we ask that you report it by emailing:
-**als@stopco.ru**
+**support@stopco.ru**
 
 - **Be friendly and patient.**
 - **Be welcoming.** We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to members of any race, ethnicity, culture, national origin, colour, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
@@ -40,7 +40,7 @@ Deviating from the Code of Conduct on the GitHub repository may result in modera
 
 This is to ensure ss14-art is a healthy community in which contributors feel encouraged and empowered to contribute, and to give you as a member of this community a chance to reflect on how you are interacting with it. While outright offensive and bigoted content will *always* be unacceptable on the repository, Maintainers are at liberty to take moderative actions against more ambiguous content that fail to provide constructive criticism, or that provides constructive criticism in a non-constructive manner. Examples of this include using hyperbole, bringing up PRs/changes unrelated to the discussion at hand, hostile tone, off-topic comments, creating PRs/Issues for the sole purpose of causing discussions, skirting the line of acceptable behavior, etc. Disagreeing with content or each other is fine and appreciated, but only as long as it's done with respect and in a constructive manner.
 
-If you believe you had an action incorrectly applied against you, you are encouraged to contact staff via email: **als@stopco.ru**.
+If you believe you had an action incorrectly applied against you, you are encouraged to contact staff via email: **support@stopco.ru**.
 
 ### Attribution
 
@@ -84,7 +84,7 @@ This Code of Conduct is an edited version of the [Django Code of Conduct](https:
 
 Это делается для того, чтобы ss14-art оставался здоровым сообществом, в котором контрибьюторы чувствуют поддержку, и чтобы дать вам шанс порефлексировать над своим поведением. Откровенно оскорбительный и фанатичный контент *всегда* будет неприемлем. Мейнтейнеры также вправе применять меры к более неоднозначному контенту, который не содержит конструктивной критики или преподносит её в неконструктивной манере. Примеры включают использование гипербол, упоминание нерелевантных PR/изменений в обсуждении, враждебный тон, оффтоп, создание Issue/PR исключительно ради спора, балансирование на грани допустимого поведения и т.д. Не соглашаться с контентом или друг другом — это нормально и приветствуется, но только до тех пор, пока это делается с уважением и конструктивно.
 
-Если вы считаете, что к вам несправедливо применили меры модерации, пожалуйста, свяжитесь с администрацией по почте: **als@stopco.ru**.
+Если вы считаете, что к вам несправедливо применили меры модерации, пожалуйста, свяжитесь с администрацией по почте: **support@stopco.ru**.
 
 ### Атрибуция
 

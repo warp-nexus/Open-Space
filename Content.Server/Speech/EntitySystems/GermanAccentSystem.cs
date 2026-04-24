@@ -59,12 +59,14 @@ public sealed class GermanAccentSystem : EntitySystem
                 {
                     msgBuilder[i] = msgBuilder[i] switch
                     {
-                        'A' => 'Ä',
-                        'a' => 'ä',
-                        'O' => 'Ö',
-                        'o' => 'ö',
-                        'U' => 'Ü',
-                        'u' => 'ü',
+                        // OpenSpace-Edit Start
+                        'А' => 'Ä',
+                        'а' => 'ä',
+                        'О' => 'Ö',
+                        'о' => 'ö',
+                        'У' => 'Ü',
+                        'у' => 'ü',
+                        // OpenSpace-Edit End
                         _ => msgBuilder[i]
                     };
                     umlautCooldown = 4;

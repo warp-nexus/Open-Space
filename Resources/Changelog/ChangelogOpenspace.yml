@@ -47,3 +47,24 @@ Entries:
   id: 6
   time: '2026-04-07T13:39:16.000000+00:00'
   url: https://github.com/ss14-art/open-space/pull/32
+- author: Soragy
+  changes:
+  - type: Fix
+    message: Исправлена ошибки локализации при использовании пользовательских функций.
+  id: 7
+  time: '2026-04-12T08:33:48.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/33
+- author: ReWAFFlution
+  changes:
+  - type: Tweak
+    message: Переработаны французский, немецкий, змеиный, собачий и кошачий акценты.
+  id: 8
+  time: '2026-04-12T19:04:43.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/36
+- author: cryals
+  changes:
+  - type: Add
+    message: Добавлена админ-панель переноса времени.
+  id: 9
+  time: '2026-04-21T18:39:07.000000+00:00'
+  url: https://github.com/ss14-art/open-space/pull/43

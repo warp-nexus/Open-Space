@@ -2,4 +2,6 @@
   id: Adjectives
   values:
     prefix: adjectives-dataset-
-    count: 396
+    # open-space edit start
+    count: 956
+    # open-space edit end

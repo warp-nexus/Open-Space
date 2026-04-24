@@ -18,7 +18,7 @@ license (e.g., GPL, AGPL) are not accepted, unless Contributor is the original r
 and explicitly grants rights under this CLA.
 – “Project” refers to any repository or software project managed by ss14-art.
 – “Contributor” is any individual or entity submitting a Contribution to the Project.
-– “Licensor” means ss14-art Organization. For licensing inquiries, contact: als@stopco.ru.
+– “Licensor” means ss14-art Organization. For licensing inquiries, contact: support@stopco.ru .
 
 By providing a Contribution, Contributor grants the Organization a free, non-exclusive,
 irrevocable license for the full term of Contributor’s rights in such Contribution.

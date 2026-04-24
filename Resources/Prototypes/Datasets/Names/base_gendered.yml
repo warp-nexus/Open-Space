@@ -2,10 +2,14 @@
   id: NamesFirstMale
   values:
     prefix: names-first-male-dataset-
-    count: 666
+    # open-space edit start
+    count: 986
+    # open-space edit end
 
 - type: localizedDataset
   id: NamesFirstFemale
   values:
     prefix: names-first-female-dataset-
-    count: 771
+    # open-space edit start
+    count: 1145
+    # open-space edit end

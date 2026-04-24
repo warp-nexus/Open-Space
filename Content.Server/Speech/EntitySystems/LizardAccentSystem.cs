@@ -6,11 +6,11 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class LizardAccentSystem : EntitySystem
 {
-    private static readonly Regex RegexLowerS = new("s+");
-    private static readonly Regex RegexUpperS = new("S+");
-    private static readonly Regex RegexInternalX = new(@"(\w)x");
-    private static readonly Regex RegexLowerEndX = new(@"\bx([\-|r|R]|\b)");
-    private static readonly Regex RegexUpperEndX = new(@"\bX([\-|r|R]|\b)");
+    private static readonly Regex RegexLowerS = new("с+");
+    private static readonly Regex RegexUpperS = new("С+");
+    // private static readonly Regex RegexInternalX = new(@"(\w)x");
+    // private static readonly Regex RegexLowerEndX = new(@"\bx([\-|r|R]|\b)");
+    // private static readonly Regex RegexUpperEndX = new(@"\bX([\-|r|R]|\b)");
 
     public override void Initialize()
     {
@@ -23,15 +23,15 @@ public sealed class LizardAccentSystem : EntitySystem
         var message = args.Message;
 
         // hissss
-        message = RegexLowerS.Replace(message, "sss");
+        message = RegexLowerS.Replace(message, "ссс"); // OpenSpace-Edit
         // hiSSS
-        message = RegexUpperS.Replace(message, "SSS");
+        message = RegexUpperS.Replace(message, "ССС"); // OpenSpace-Edit
         // ekssit
-        message = RegexInternalX.Replace(message, "$1kss");
-        // ecks
-        message = RegexLowerEndX.Replace(message, "ecks$1");
-        // eckS
-        message = RegexUpperEndX.Replace(message, "ECKS$1");
+        // message = RegexInternalX.Replace(message, "$1ксс"); // OpenSpace-Edit
+        // // ecks
+        // message = RegexLowerEndX.Replace(message, "екс$1"); // OpenSpace-Edit
+        // // eckS
+        // message = RegexUpperEndX.Replace(message, "ЕКС$1"); // OpenSpace-Edit
 
         args.Message = message;
     }

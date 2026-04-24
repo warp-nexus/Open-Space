@@ -3,8 +3,11 @@
 #
 # Код
 /Content.*/** @ReWAFFlution
+
 # Ресурсы
-# /Resources/Textures/**
+/Resources/** @ReWAFFlution # Временная мера пока не будет ещё больше ревьюверов
+
+/Resources/Textures/**
 # /Resources/Maps/**
 /Resources/Prototypes/** @ReWAFFlution
-/Resources/Locale/** @ReWAFFlution
+/Resources/Locale/**

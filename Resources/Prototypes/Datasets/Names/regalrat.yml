@@ -2,7 +2,9 @@
   id: NamesRegalratKingdom
   values:
     prefix: names-regal-rat-kingdom-dataset-
-    count: 15
+    # open-space edit start
+    count: 16
+    # open-space edit end
 
 - type: localizedDataset
   id: NamesRegalratTitle
