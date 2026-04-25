@@ -7,7 +7,7 @@
   id: BlueShieldBountyHat
   equipment:
     back: ClothingHeadHatBlueShieldSheriff
-    
+
 - type: loadout
   id: BlueShieldBackpack
   equipment:
@@ -62,6 +62,11 @@
   id: BlueShieldHud
   equipment:
     eyes: ClothingEyesHudBlueShield
+
+- type: loadout
+  id: BlueShieldEyePatchHud
+  equipment:
+    eyes: ClothingEyesEyepatchHudBlueShield
 
 - type: loadout
   id: BlueShieldCoat
