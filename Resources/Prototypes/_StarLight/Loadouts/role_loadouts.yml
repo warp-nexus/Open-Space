@@ -83,20 +83,6 @@
   - SurvivalSecurity
 
 - type: roleLoadout
-  id: JobMiningSpecialist
-  groups:
-  - SalvageSpecialistBackpack
-  - MiningSpecialistJumpsuit
-  - SalvageSpecialistOuterClothing
-  - SalvageSpecialistShoes
-  - MiningSpecialistPDA
-  - Glasses
-  - Survival
-  - Trinkets
-  - Scarves
-  - Pens
-
-- type: roleLoadout
   id: JobMailTech
   groups:
   - CargoTechnicianHead
@@ -128,19 +114,6 @@
     - SecurityNonLethalWeapon
     - SecuritySidearm
     - SurvivalSecurity
-    - Trinkets
-
-- type: roleLoadout
-  id: JobSalvageLead
-  groups:
-    - SalvageSpecialistBackpack
-    - SalvageLeadJumpsuit
-    - SalvageLeadNeck
-    - SalvageSpecialistOuterClothing
-    - SalvageSpecialistShoes
-    - SalvageLeadPDA
-    - Glasses
-    - Survival
     - Trinkets
 
 # Antagonist Loadouts

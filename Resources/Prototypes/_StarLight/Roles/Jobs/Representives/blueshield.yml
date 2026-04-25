@@ -57,8 +57,9 @@
     ears: ClothingHeadsetAltBSO # Starlight
     # belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
-    pocket1: WeaponMultiphaseGun
-    pocket2: HandheldBSOCrewMonitor
+    # pocket1: WeaponMultiphaseGun
+    # pocket2: HandheldBSOCrewMonitor
+    pocket2: HandheldCrewMonitor # open space-edit
   storage:
     back:
     - Flash

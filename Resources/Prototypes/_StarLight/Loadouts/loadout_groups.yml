@@ -1,30 +1,4 @@
 - type: loadoutGroup
-  id: Scarves
-  name: loadout-group-scarves
-  minLimit: 0
-  loadouts:
-  - ScarfRed
-  - ScarfBlue
-  - ScarfGreen
-  - ScarfBlack
-  - ScarfBrown
-  - ScarfLightBlue
-  - ScarfOrange
-  - ScarfPurple
-  - ScarfPrideAce
-  - ScarfPrideAro
-  - ScarfPrideAroace
-  - ScarfPrideBisexual
-  - ScarfPrideGay
-  - ScarfPrideIntersex
-  - ScarfPrideLesbian
-  - ScarfPridePansexual
-  - ScarfPrideNonbinary
-  - ScarfPrideRainbow
-  - ScarfPrideTrans
-  - ScarfPrideLongBacon
-
-- type: loadoutGroup
   id: Pens
   name: loadout-group-pens
   minLimit: 1
@@ -395,28 +369,6 @@
   - CombatBoots
   - HighHeelBootsFilled
 
-# Salvage Lead
-- type: loadoutGroup
-  id: SalvageLeadJumpsuit
-  name: loadout-group-salvage-lead-jumpsuit
-  loadouts:
-    - SalvageLeadJumpsuit
-    - SalvageLeadJumpskirt
-
-- type: loadoutGroup
-  id: SalvageLeadNeck
-  name: loadout-group-salvage-lead-mantle
-  loadouts:
-    - SalvageLeaderMantle
-    - SalvageVeteranMantle
-
-- type: loadoutGroup
-  id: SalvageLeadPDA
-  name: loadout-group-salvagelead-id
-  loadouts:
-  - SalvageLeadPDA
-  - VeteranSalvageLeadPDA
-
 # Mining Specialist
 - type: loadoutGroup
   id: MiningSpecialistJumpsuit
@@ -431,14 +383,6 @@
   loadouts:
   - MiningPDA
   - VeteranMiningPDA
-
-# Salvage Specialist
-- type: loadoutGroup
-  id: SalvageSpecialistPDA
-  name: loadout-group-salvage-id
-  loadouts:
-    - SalvagePDA
-    - VeteranSalvagePDA
 
 # Silicon Brain Type
 - type: loadoutGroup
@@ -527,15 +471,6 @@
     - BrigmedicDetNeckTie
 
 - type: loadoutGroup
-  id: BrigmedicPDA
-  name: loadout-group-brigmedic-id
-  loadouts:
-    - BrigmedicPDA
-    - VeteranBrigmedicPDA
-    - CorpsmanPDA
-    - VeteranCorpsmanPDA
-
-- type: loadoutGroup
   id: BrigmedicBeaker
   name: loadout-group-brigmedic-beaker
   loadouts:
@@ -549,16 +484,6 @@
   loadouts:
     - BrighteyeTatteredClothes
     - BrighteyeGladiator
-
-- type: loadoutGroup
-  id: BrighteyeNeck
-  name: Loadout-group-brighteye-neck
-  loadouts:
-    - BrighteyeTatteredHood
-    - BrighteyeMantle
-    - BrighteyeOldMantle
-    - BrighteyeGoliathCloak
-    - BrighteyeCloakVoid
 
 - type: loadoutGroup
   id: BrighteyeShoes
