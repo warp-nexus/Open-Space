@@ -10,8 +10,6 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 72000 # 20 hrs
-    - !type:RolesRequirement
-      proto: ExtRolesReq
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned

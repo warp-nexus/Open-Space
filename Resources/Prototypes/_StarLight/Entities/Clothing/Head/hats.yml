@@ -8,7 +8,7 @@
     sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
-    
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBlueShield
@@ -63,7 +63,7 @@
 
 #USSP
 - type: entity
-  parent: [ClothingHeadBase, BaseSovietContraband]
+  parent: [ClothingHeadBase]
   id: ClothingHeadHatUshankaAlt
   name: SNKVD ushanka
   description: Disappearances are entirely voluntary, tovarisch.
@@ -83,7 +83,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadBase, BaseSovietContraband]
+  parent: [ClothingHeadBase]
   id: ClothingHeadHatSovietAdmiralHat
   name: soviet admiral hat
   description: This hat clearly belongs to someone very important.
@@ -91,7 +91,7 @@
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi 
+    sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -107,7 +107,7 @@
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi 
+    sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -122,7 +122,7 @@
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi 
+    sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -137,7 +137,7 @@
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi 
+    sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -192,7 +192,7 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hats/pancake.rsi
 # Fashion-O-Mat-End
-    
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatNTRTophat
