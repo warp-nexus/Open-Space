@@ -19,11 +19,11 @@
         - id: WeaponDisabler
         - id: LuxuryPen
         - id: BoxFolderClipboardFilled
-        - id: PrinterDocFlatpack
-        - id: FaxMachineFlatpack
-        - id: PlushieEmmie
+        # - id: PrinterDocFlatpack
+        # - id: FaxMachineFlatpack
+        # - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
-  
+
 - type: entity
   id: LockerRepresentativeFilledBluespaced
   suffix: Filled, Bluespaced
@@ -49,8 +49,8 @@
         - id: TrackingImplanter
           amount: 3
         - id: MedkitAdvancedFilled
-        - id: WeaponPistolSP8T
-        - id: MagazinePistol40SP
+        # - id: WeaponPistolSP8T
+        # - id: MagazinePistol40SP
           amount: 2
         - id: ClothingEyesGlassesBlueShield
         - id: ClothingEyesHudBlueShield
@@ -66,6 +66,9 @@
         - id: ClothingOuterCoatBlueShield
         - id: ClothingNeckCloakBsoCape
         - id: RubberStampBSO
+        - id: WeaponSubMachineGunDrozd
+        - id: MagazinePistolSubMachineGun
+          amount: 3
 
 - type: entity
   id: LockerBSOFilledBluespaced

@@ -7,48 +7,12 @@
   - FancyPen
 
 - type: loadoutGroup
-  id: ClownPens
-  name: loadout-group-pens
-  minLimit: 1
-  loadouts:
-  - CrayonOrange
-  - Pen
-  - FancyPen
-
-- type: loadoutGroup
-  id: MimePens
-  name: loadout-group-pens
-  minLimit: 1
-  loadouts:
-  - CrayonMime
-  - Pen
-  - FancyPen
-
-- type: loadoutGroup
   id: LuxuryPens
   name: loadout-group-pens
   minLimit: 1
   loadouts:
   - FancyPenNoReq
   - Pen
-
-- type: loadoutGroup
-  id: HoPPens
-  name: loadout-group-pens
-  minLimit: 1
-  loadouts:
-  - PenHop
-  - Pen
-  - FancyPen
-
-- type: loadoutGroup
-  id: CapPens
-  name: loadout-group-pens
-  minLimit: 1
-  loadouts:
-  - PenCap
-  - Pen
-  - FancyPen
 
 - type: loadoutGroup
   id: NTRPens
@@ -67,93 +31,6 @@
   - PenCentcom
   - Pen
   - FancyPen
-
-- type: loadoutGroup
-  id: AssistantGlasses
-  name: loadout-group-assistant-glasses
-  minLimit: 0
-  loadouts:
-  - Glasses
-  - GlassesJamjar
-  - GlassesJensen
-  - CheapSunnies
-  - AssistantNoirGlasses
-
-- type: loadoutGroup
-  id: AssistantHead
-  name: loadout-group-assistant-head
-  minLimit: 0
-  loadouts:
-  - GreyCowboy
-  - GreyBandana
-  - GreyFlatcap
-  - GreyCap
-  - CorpoCap
-  - SyndieCap
-  - GreyFedoraA
-  - SolidHeadband
-  - GreytideBizarreAdventures
-  - BrimHat
-  - FeatheredHat
-
-- type: loadoutGroup
-  id: AssistantBackpack
-  name: loadout-group-assistant-backpack
-  loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
-  - LeatherSatchel
-
-- type: loadoutGroup
-  id: RoboticistJumpsuit
-  name: loadout-group-roboticist-jumpsuit
-  loadouts:
-  - RoboticistJumpsuit
-  - RoboticistJumpskirt
-
-- type: loadoutGroup
-  id: RoboticistOuterClothing
-  name: loadout-group-roboticist-outerclothing
-  minLimit: 0
-  loadouts:
-  - RoboticistLabCoat
-  - RoboticistWintercoat
-
-- type: loadoutGroup
-  id: RoboticistHead
-  name: loadout-group-roboticist-head
-  minLimit: 0
-  loadouts:
-  - RoboticistCap
-  - SkullBandana
-  - RoboticistBlackCapFlipped
-
-- type: loadoutGroup
-  id: RoboticistGloves
-  name: loadout-group-roboticist-gloves
-  minLimit: 0
-  loadouts:
-  - LatexGloves
-  - PurpleGloves
-  - RobohandsGloves
-
-- type: loadoutGroup
-  id: RoboticistGoggles
-  name: loadout-group-roboticist-goggles
-  minLimit: 0
-  loadouts:
-  - RoboticistWeldingGoggles
-  - RoboticistDiagnosticsHud
-
-- type: loadoutGroup
-  id: RoboticistBackpack
-  name: loadout-group-roboticist-backpack
-  loadouts:
-  - RoboticistBackpack
-  - RoboticistSatchel
-  - RoboticistDuffel
-  - LeatherSatchel
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeHead
@@ -259,55 +136,7 @@
   - BlueShieldHud
   - BlueShieldEyePatchHud
 
-- type: loadoutGroup
-  id: SecurityNonLethalWeapon
-  name: loadout-group-security-non-lethal-weapon
-  loadouts:
-  - SecurityTaser
-  - SecurityDominator
-
-- type: loadoutGroup
-  id: SecuritySidearm
-  name: loadout-group-security-sidearm
-  loadouts:
-  - SecurityMk58
-  - SecurityPistolDP
-  - SecurityPistolEnforcer
-
 # Assorted Boots
-- type: loadoutGroup
-  id: RoboticistShoes
-  name: loadout-group-roboticist-shoes
-  minLimit: 1
-  loadouts:
-  - BlackShoes
-  - ScienceWinterBoots
-  - Heels
-  - LeatherShoes
-
-- type: loadoutGroup
-  id: CaptainShoes
-  name: loadout-group-captain-shoes
-  minLimit: 1
-  loadouts:
-  - LaceupShoes
-  - Heels
-  - LeatherShoes
-  - CowboyBootsBrownFilled
-  - CowboyBootsBlackFilled
-  - CowboyBootsWhiteFilled
-  - HighHeelBootsFilled
-
-- type: loadoutGroup
-  id: HoPShoes
-  name: loadout-group-hop-shoes
-  minLimit: 1
-  loadouts:
-  - BrownShoes
-  - Heels
-  - LaceupShoes
-  - LeatherShoes
-
 - type: loadoutGroup
   id: MagistrateShoes
   name: loadout-group-magistrate-shoes
@@ -326,32 +155,6 @@
   - LeatherShoes
 
 - type: loadoutGroup
-  id: DetectiveShoes
-  name: loadout-group-detective-shoes
-  minLimit: 1
-  loadouts:
-  - JackBoots
-  - SecurityWinterBoots
-  - LaceupShoes
-  - CowboyBootsBrownFilled
-  - CowboyBootsBlackFilled
-  - CowboyBootsWhiteFilled
-  - Heels
-  - HighHeelBootsFilled
-
-- type: loadoutGroup
-  id: CivilianShoes
-  name: loadout-group-civilian-shoes
-  minLimit: 1
-  loadouts:
-  - BlackShoes
-  - WhiteShoes
-  - GreenShoes
-  - LeatherShoes
-  - Heels
-  - LaceupShoes
-
-- type: loadoutGroup
   id: LawyerShoes
   name: loadout-group-iia-shoes
   minLimit: 1
@@ -368,114 +171,6 @@
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
-
-# Mining Specialist
-- type: loadoutGroup
-  id: MiningSpecialistJumpsuit
-  name: loadout-group-mining-specialist-jumpsuit
-  loadouts:
-    - MiningSpecialistJumpsuit
-    - MiningSpecialistJumpskirt
-
-- type: loadoutGroup
-  id: MiningSpecialistPDA
-  name: loadout-group-mining-id
-  loadouts:
-  - MiningPDA
-  - VeteranMiningPDA
-
-# Silicon Brain Type
-- type: loadoutGroup
-  id: SiliconBrainType
-  name: loadout-group-borg-brain-type
-  minLimit: 1
-  maxLimit: 1
-  loadouts:
-  - LoadoutSiliconPositronicBrain
-  - LoadoutSiliconSpeciesBrain
-
-# Chemist
-- type: loadoutGroup
-  id: ChemistHead
-  name: loadout-group-chemist-head
-  minLimit: 0
-  loadouts:
-    - ChemistryBeret
-    - ChemistNurseHat
-    - ChemistTruckersHat
-    - ChemistFisherCap
-
-- type: loadoutGroup
-  id: ChemistBag
-  name: loadout-group-chemist-bag
-  loadouts:
-    - ChemBag
-    - SeniorChemBag
-
-- type: loadoutGroup
-  id: ChemistShoes
-  name: loadout-group-chemist-shoes
-  loadouts:
-  - WhiteShoes
-  - ChemistWinterBoots
-  - MedicalWinterBoots
-  - Heels
-  - LaceupShoes
-  - LeatherShoes
-
-- type: loadoutGroup
-  id: ChemistPDA
-  name: loadout-group-chemist-id
-  loadouts:
-    - ChemistPDA
-    - SeniorChemistPDA
-
-- type: loadoutGroup
-  id: ChemistEyewear
-  name: loadout-group-chemist-eyewear
-  loadouts:
-    - ChemicalGoggles
-    - ChemicalHud
-    - ChemicalEyePatchHud
-    - ChemicalJensens
-
-- type: loadoutGroup
-  id: ChemistBeaker
-  name: loadout-group-chemist-beaker
-  loadouts:
-    - LightBeaker
-    - SilverBeakerChemist
-
-- type: loadoutGroup
-  id: ChemistLabeler
-  name: loadout-group-chemist-labeler
-  loadouts:
-    - ChemistHandLabeler
-    - GoldenHandLabeler
-    
-# Brigmedic
-- type: loadoutGroup
-  id: BrigmedicMask
-  name: loadout-group-brigmedic-mask
-  minLimit: 1
-  loadouts:
-    - BrigmedicBreathMaskMedicalSecurity
-    - BrigmedicMaskGasSecurity
-
-- type: loadoutGroup
-  id: BrigmedicTie
-  name: loadout-group-brigmedic-tie
-  minLimit: 0
-  loadouts:
-    - BrigmedicRedNeckTie
-    - BrigmedicDetNeckTie
-
-- type: loadoutGroup
-  id: BrigmedicBeaker
-  name: loadout-group-brigmedic-beaker
-  loadouts:
-    - DarkBeaker
-    - SilverBeakerBrigmedic
 
 # Brighteye
 - type: loadoutGroup
@@ -498,3 +193,30 @@
   name: loadout-group-brighteye-gloves
   loadouts:
     - BrighteyeClothWrapGlove
+
+
+- type: loadoutGroup
+  id: Scarves
+  name: loadout-group-scarves
+  minLimit: 0
+  loadouts:
+  - ScarfRed
+  - ScarfBlue
+  - ScarfGreen
+  - ScarfBlack
+  - ScarfBrown
+  - ScarfLightBlue
+  - ScarfOrange
+  - ScarfPurple
+  - ScarfPrideAce
+  - ScarfPrideAro
+  - ScarfPrideAroace
+  - ScarfPrideBisexual
+  - ScarfPrideGay
+  - ScarfPrideIntersex
+  - ScarfPrideLesbian
+  - ScarfPridePansexual
+  - ScarfPrideNonbinary
+  - ScarfPrideRainbow
+  - ScarfPrideTrans
+  - ScarfPrideLongBacon

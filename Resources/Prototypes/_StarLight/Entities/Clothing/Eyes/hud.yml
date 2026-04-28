@@ -1,0 +1,101 @@
+- type: entity
+  parent: [ClothingEyesBase]
+  id: ClothingEyesHudBlueShield
+  name: blue shield hud
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+    - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+    - type: Tag
+      tags:
+        - HudMedical
+    - type: EyeProtection
+      protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesHudBlueShield, ClothingHeadEyeBaseFlippable]
+  id: ClothingEyesEyepatchHudBlueShield
+  name: blue shield hud eyepatch
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information. For true patriots.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Hud/blueshieldpatch.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Hud/blueshieldpatch.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - WhitelistChameleon
+        - HudMedical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBlueShieldFlipped
+  name: blue shield hud eyepatch
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudSkills
+  name: skills hud
+  description: Visor with a built-in skills HUD, showing the employment history of nearby NT crew members.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Hud/hudskill.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Hud/hudskill.rsi
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: EyeProtection
+      protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesBase]
+  id: ClothingEyesHudCentComm
+  name: CentComm officer's hud
+  description: A Innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Hud/centcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Hud/centcomm.rsi
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+    - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+    - type: Tag
+      tags:
+        - HudMedical
+    - type: EyeProtection
+      protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesBase]
+  id: ClothingEyesNTRMonocle
+  name: NanoTrasen representative monocle
+  description: A fancy monocle that also functions as a HUD to make sure no functionality is lost for style.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Hud/ntrmonocle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Hud/ntrmonocle.rsi
+    - type: ShowJobIcons
+    - type: Tag
+      tags:
+        - PetWearable

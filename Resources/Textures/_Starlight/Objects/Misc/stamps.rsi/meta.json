@@ -8,13 +8,16 @@
   },
   "states": [
     {
-      "name": "stamp-magistrate"
+        "name": "stamp-magistrate"
     },
     {
-      "name": "stamp-ntrep"
+        "name": "stamp-ntrep"
     },
     {
-      "name": "stamp-iaa"
+        "name": "stamp-iaa"
+    },
+    {
+        "name": "stamp-bso"
     }
   ]
 }

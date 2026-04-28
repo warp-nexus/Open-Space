@@ -11,7 +11,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi
     state: stamp-magistrate
-    
+
 - type: entity
   name: NT representative's rubber stamp
   parent: RubberStampBase
@@ -25,7 +25,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi
     state: stamp-ntrep
-    
+
 - type: entity
   name: internal affairs agent's rubber stamp
   parent: RubberStampBase
@@ -39,3 +39,17 @@
     - type: Sprite
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-iaa
+
+- type: entity
+  name: blueshield rubber stamp
+  parent: [ RubberStampBase ]
+  id: RubberStampBSO
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Blueshield Officer"
+    stampedColor: "#004281"
+    stampState: "paper_stamp-bso"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-bso

@@ -58,7 +58,7 @@
     # belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
     # pocket1: WeaponMultiphaseGun
-    # pocket2: HandheldBSOCrewMonitor
+    pocket1: WeaponAdvancedLaserBSO
     pocket2: HandheldCrewMonitor # open space-edit
   storage:
     back:
@@ -71,3 +71,44 @@
   equipment:
     head: ClothingHeadHatBeretBlueShield
     gloves: ClothingHandsGlovesCombat
+
+# open space-edit start
+# TODO: переделать это в нормальную пушку для синего щита
+- type: entity
+  id: WeaponAdvancedLaserBSO
+  name: BlueShield laser pistol
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
+  description: A standard-issue laser pistol for BlueShield officers. Reliable energy sidearm for protecting command staff.
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: BatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 63
+  - type: Tag
+    tags:
+    - Sidearm
+    - LaserWeapon
+# open space-edit stop

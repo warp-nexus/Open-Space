@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCommandContraband]
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
   id: ClothingBeltBlueShieldWebbing
   name: blueshield webbing
   description: A tactical rig that can hold many items to save the lives of command.
@@ -16,7 +16,7 @@
     damageCoefficient: 0.5
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCommandContraband]
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
   id: ClothingBeltBlueShieldMedicalBelt
   name: blueshield medical belt
   description: A tactical belt that can hold many items to save the lives of command.
