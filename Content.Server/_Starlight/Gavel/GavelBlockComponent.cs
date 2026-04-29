@@ -6,7 +6,7 @@ namespace Content.Server.Starlight.Gavel;
 public sealed partial class GavelBlockComponent : Component
 {
     [DataField]
-    public SoundSpecifier HitSound;
+    public SoundSpecifier? HitSound;
 
     [DataField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(0.5);
