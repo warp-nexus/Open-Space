@@ -43,58 +43,7 @@
             "name": "sparking"
         },
         {
-            "name": "miner"
-        },
-        {
-            "name": "miner_door"
-        },
-        {
-            "name": "miner_open"
-        },
-        {
             "name": "panel_open"
-        },
-        {
-            "name": "salvagelead"
-        },
-        {
-            "name": "salvagelead_door"
-        },
-        {
-            "name": "salvagelead_open"
-        },
-        {
-            "name": "janitor"
-        },
-        {
-            "name": "janitor_door"
-        },
-        {
-            "name": "janitor_open"
-        },
-        {
-            "name": "magi",
-			"copyright": "wonderfulnewworld"
-        },
-        {
-            "name": "magi_door",
-			"copyright": "wonderfulnewworld"
-        },
-        {
-            "name": "magi_open",
-			"copyright": "wonderfulnewworld"
-        },
-        {
-            "name": "iaa",
-			"copyright": "wonderfulnewworld"
-        },
-        {
-            "name": "iaa_door",
-			"copyright": "wonderfulnewworld"
-        },
-        {
-            "name": "iaa_open",
-			"copyright": "wonderfulnewworld"
         }
     ]
 }
