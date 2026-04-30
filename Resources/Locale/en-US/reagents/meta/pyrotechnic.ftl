@@ -10,6 +10,11 @@ reagent-desc-phlogiston = Catches you on fire and makes you ignite.
 reagent-name-chlorine-trifluoride = chlorine trifluoride
 reagent-desc-chlorine-trifluoride = You really, REALLY don't want to get this shit anywhere near you.
 
+# open-space edit start
+reagent-name-cryostylane = cryostylane
+reagent-desc-cryostylane = A cryogenic mix used in os_chem. It rapidly cools whatever it touches and is a key part of cryoxadone production.
+# open-space edit end
+
 reagent-name-foaming-agent = foaming agent
 reagent-desc-foaming-agent = Makes foam such as that's required in metal foam grenades.
 

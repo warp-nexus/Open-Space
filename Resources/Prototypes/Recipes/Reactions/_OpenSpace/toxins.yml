@@ -1,0 +1,14 @@
+# open-space edit start
+- type: reaction
+  id: Cyanide
+  minTemp: 380
+  reactants:
+    Oil:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    Cyanide: 3
+# open-space edit end

@@ -1,37 +1,36 @@
-﻿<Document>
-# Chemicals
+<Document>
+# Реагенты
 
-Chemicals are a powerful tool that can cause a variety of effects when consumed. Some can be found in plants, purchased from cargo, or be synthesized through combination with other chemicals.
+Здесь собран список базовых элементов, лекарств, токсинов, наркотиков и прочих химических соединений.
+Каждая запись показывает описание и эффекты реагента из текущей серверной химии.
 
-Knowing different types of chemicals and their effects is important for being able to manage injury and danger.
-
-## Elements
+## Базовые элементы
 <GuideReagentGroupEmbed Group="Elements"/>
 
-## Medicine
+## Медицинские реагенты
 <GuideReagentGroupEmbed Group="Medicine"/>
 
-## Narcotics
+## Наркотики
 <GuideReagentGroupEmbed Group="Narcotics"/>
 
-## Pyrotechnics
+## Пиротехника
 <GuideReagentGroupEmbed Group="Pyrotechnic"/>
 
-## Toxins
+## Токсины
 <GuideReagentGroupEmbed Group="Toxins"/>
 
-## Foods
+## Пищевые реагенты
 <GuideReagentGroupEmbed Group="Foods"/>
 
-## Botanical
+## Ботанические реагенты
 <GuideReagentGroupEmbed Group="Botanical"/>
 
-## Biological
+## Биологические реагенты
 <GuideReagentGroupEmbed Group="Biological"/>
 
-## Special
+## Особые вещества
 <GuideReagentGroupEmbed Group="Special"/>
 
-## Other
+## Прочее
 <GuideReagentGroupEmbed Group="Unknown"/>
 </Document>

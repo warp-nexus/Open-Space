@@ -1,6 +1,11 @@
 reagent-name-aluminium = aluminium
 reagent-desc-aluminium = A silver, soft, non-magnetic, and ductile metal.
 
+# open-space edit start
+reagent-name-bromine = bromine
+reagent-desc-bromine = A heavy red-brown halogen with a sharp, toxic smell.
+# open-space edit end
+
 reagent-name-ash = ash
 reagent-desc-ash = A light grey powdery residue
 
@@ -15,6 +20,11 @@ reagent-desc-chlorine = A yellow-green gas which is toxic to humans.
 
 reagent-name-copper = copper
 reagent-desc-copper = A soft, malleable, and ductile metal with very high thermal and electrical conductivity.
+
+# open-space edit start
+reagent-name-chromium = chromium
+reagent-desc-chromium = A hard, lustrous transition metal with a cool steel shine.
+# open-space edit end
 
 reagent-name-fluorine = fluorine
 reagent-desc-fluorine = A highly toxic pale yellow gas. Extremely reactive.

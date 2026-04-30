@@ -22,8 +22,12 @@ reagent-desc-sugar = Вкусный космический сахар!
 reagent-name-blackpepper = чёрный перец
 reagent-desc-blackpepper = Часто используется как приправа к пище, или чтобы заставить людей чихать.
 
-reagent-name-vinegar = уксус
-reagent-desc-vinegar = Часто используется как приправа к пище.
+# open-space edit start
+reagent-name-vinegar = уксусная кислота
+reagent-desc-vinegar = Кислый промежуточный реагент для продвинутой фармакологии и пищевой химии.
+reagent-name-glycerol = глицерин
+reagent-desc-glycerol = Бесцветная сладкая жидкость.
+# open-space edit end
 
 reagent-name-rice = рис
 reagent-desc-rice = Твёрдые, маленькие белые зёрнышки.

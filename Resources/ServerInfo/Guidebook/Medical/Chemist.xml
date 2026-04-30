@@ -1,51 +1,211 @@
 <Document>
-# Chemist
-Now you've done it. You picked the one job where -math- is mandatory. Grab your beaker, pull up a chair, and get cracking, it's time to cook up some chems.
+# Химик
 
-While chemists primarily make medications, there's a very wide variety of chemicals that can be made, all of which are showcased in the Chemicals entry of the Guidebook.
+Это краткая памятка по фармакологии os_chem для текущей сборки OpenSpace.
+Страница `Chemicals` показывает полный список реагентов по группам и их игровые эффекты, а эта страница нужна как шпаргалка по рецептам и маршрутам варки.
 
-[textlink="Click here to see a complete list of chemicals." link="Chemicals"]
+[textlink="Открыть страницу с лекарствами." link="Medicine"]
+[textlink="Открыть страницу по продвинутому лечению механических повреждений." link="AdvancedBrute"]
+[textlink="Открыть полный встроенный справочник по реагентам и эффектам." link="Chemicals"]
 
-## Equipment:
+## Оборудование
 
   <Box>
     <GuideEntityEmbed Entity="ChemDispenser"/>
-    <GuideEntityEmbed Entity="ChemBag"/>
-    <GuideEntityEmbed Entity="KitchenReagentGrinder"/>
     <GuideEntityEmbed Entity="ChemMaster"/>
+    <GuideEntityEmbed Entity="ChemicalHeater"/>
+    <GuideEntityEmbed Entity="ChemicalFridge"/>
   </Box>
   <Box>
     <GuideEntityEmbed Entity="LargeBeaker"/>
+    <GuideEntityEmbed Entity="ChemBag"/>
     <GuideEntityEmbed Entity="ChemistryEmptyBottle01"/>
-    <GuideEntityEmbed Entity="HandLabeler"/>
     <GuideEntityEmbed Entity="Syringe"/>
     <GuideEntityEmbed Entity="PillCanister"/>
   </Box>
 
-## The Basics:
-Chemistry is fairly straightforward once you know what to expect. Here's a simple, step-by-step process on how to begin.
+## Базовый цикл работы
 
-- Grab a beaker, Pill Canister, and if desired, some Bottles.
-- Place the beaker in the Chemical Dispenser, and Pill Canister (or bottle) in the Chem Master.
-- Open the Chemical Dispenser UI, and make your mix. Recipes are in other sections of the guidebook.
-- Alt-click the dispenser to remove your beaker, and place it in the Chem Master.
-- Open the Chem Master UI. On the Input tab, move your mix into the buffer.
-- Move to the Output tab, customise your pill, and press the Create button.
-- Alt-click the Chem Master to get the pill bottle out. You may have to remove the beaker first.
-- Click on a table, crate, or another surface to empty the pill bottle if desired. Alternatively, store or empty it into another storage container.
+- Смешайте реагенты в стакане или бикере.
+- Если рецепт требует температуру, сначала соберите смесь целиком и только потом несите её на нагреватель.
+- В `ChemMaster 4000` переносите смесь в буфер, проверяйте состав и фасуйте в таблетки или бутылочки.
+- Бутылочки теперь разливаются по выбранному объёму, а не очищают весь буфер целиком.
+- Для проверки эффектов, метаболизма и передозировки пользуйтесь страницей `Chemicals`.
 
-That's it, you've made your first set of pills! Consider checking with Medical Doctors and other crew to see what else may be requested, refilling the medical kits in medbay storage, or just experimenting!
+## Чистые вещества раздатчика
 
-You can also use the hand labeler to organize individual bottles or bags without using the Chem Master labeling system.
+- Базовый химраздатчик выдаёт: `Nitrogen`, `Aluminium`, `Bromine`, `Water`, `Hydrogen`, `Iron`, `Iodine`, `Potassium`, `Oxygen`, `Silicon`, `Lithium`, `Copper`, `Sodium`, `Plasma`, `Radium`, `Mercury`, `Sugar`, `Sulfur`, `Silver`, `Carbon`, `Phosphorus`, `Fluorine`, `Chlorine`, `Chromium`, `Ethanol`.
+- После взлома панели раздатчика становится доступен `Toxin`.
+- Дополнительные ботанические, пищевые и специальные реагенты описаны ниже и на странице `Chemicals`.
 
-## Extra Content:
+## Компоненты
 
-Speaking of experimentation, there are a few more toy you can use when it comes to chemistry. This job requires a lot of trial and error, but it was worth mentioning that these things exist! It's up to you to figure out what to make with them.
+- `Ammonia`: `3 Hydrogen + 1 Nitrogen`
+- `Diethylamine`: `Ammonia + Ethanol`, `374 K`
+- `Oil`: `Welding Fuel + Carbon + Hydrogen`
+- `Acetone`: `Oil + Welding Fuel + Oxygen`
+- `Phenol`: `Water + Chlorine + Oil`
+- `Acetaldehyde`: `Chromium + Oxygen + Copper + Ethanol`, `548 K`
+- `Formaldehyde`: `Ethanol + Oxygen + Silver`, `425 K`
+- `Acetic Acid`: `Acetaldehyde + Oxygen + 4 Nitrogen`
+- `Sulfuric Acid`: `Hydrogen + Sulfur + Oxygen`
+- `Fluorosulfuric Acid`: `Fluorine + Hydrogen + Potassium + Sulfuric Acid`, `380 K`
+- `Table Salt`: `Chlorine + Sodium + Water`
+- `Charcoal`: `Ash + Table Salt`, `380 K`
+- `Lye`: `Sodium + Hydrogen + Oxygen`
+- `Saltpetre`: `Potassium + Nitrogen + 3 Oxygen`
+- `Cryostylane`: `Water + Plasma + Nitrogen`, `20 K`
 
-  <Box>
-    <GuideEntityEmbed Entity="ModularGrenade"/>
-    <GuideEntityEmbed Entity="CableApcStack"/>
-    <GuideEntityEmbed Entity="ChemicalPayload"/>
-    <GuideEntityEmbed Entity="TimerTrigger"/>
-  </Box>
+## Основные лекарства
+
+- `Antihol`: `Ethanol + Charcoal`
+- `Bicaridine`: `Phenol + Carbon`, `374 K`
+- `Kelotane`: `Acetaldehyde + Carbon`
+- `Saline`: `Table Salt + Water + Sugar`
+- `Mannitol`: `Hydrogen + Water + Sugar`
+- `Ephedrine`: `Diethylamine + Sugar + Oil + Hydrogen`
+- `Epinephrine`: `Phenol + Acetone + Diethylamine + Oxygen + Chlorine + Hydrogen`
+- `Spaceacillin`: `Ethanol + Fungus`
+- `Liquid Solder`: `Ethanol + Copper + Silver`, `380 K`
+- `Salicylic Acid`: `Sodium + Phenol + Carbon + Oxygen + Sulfuric Acid`
+- `Salbutamol`: `Salicylic Acid + Lithium + Aluminium + Bromine + Ammonia`
+- `Silver Sulfadiazine`: `Ammonia + Silver + Sulfur + Oxygen + Chlorine`
+- `Styptic Powder`: `Aluminium + Hydrogen + Oxygen + Sulfuric Acid`
+- `Synthflesh`: `Blood + Carbon + Styptic Powder`
+- `Oculine`: `Atropine + Spaceacillin + Saline`
+- `Tranexamic Acid`: `Synthflesh + Ammonia + Salicylic Acid + Water`
+- `Sanguinius`: `Omnizine + 2 Synthflesh + 2 Iron`
+
+## Превосходные лекарства
+
+- `Atropine`: `Ethanol + Acetone + Diethylamine + Phenol + Sulfuric Acid`
+- `Cryoxadone`: `Plasma + Acetone + Unstable Mutagen + Cryostylane`
+- `AntiBurnStimulant`: `40 Synthflesh`, `474 K`
+- `Syntmorphine`: `2 Carbon + 2 Hydrogen + Ethanol + Oxygen`, `473.15 K`
+- `Pentetic Acid`: `Welding Fuel + Chlorine + Ammonia + Formaldehyde + Sodium + Cyanide`
+- `Perfluorodecalin`: `Hydrogen + Fluorine + Oil`, `374 K`
+- `Rezadone`: `CarpoToxin + Spaceacillin + Copper`
+- `Neuromatin`: `Formaldehyde + 5 Mannitol + Teporone + 3 Atropine`, `350 K`
+- `Mitocholide`: `Cryoxadone + Synthflesh + Plasma`
+- `Heparin`: `Meat Slurry + Phenol + Sulfuric Acid + Sugar`
+- `Strange Reagent`: `Omnizine + Holywater + Unstable Mutagen`
+
+## Прочие лекарства
+
+- `Mutadone`: `Unstable Mutagen + Acetone + Bromine`
+- `Calomel`: `Mercury + Chlorine`, `374 K`
+- `Synthetic Blood`: `Perfluorodecalin + Ammonia Blood`
+- `Diphenhydramine`: `Oil + Carbon + Bromine + Diethylamine + Ethanol`
+- `Ether`: `Sulfuric Acid + Ethanol + Oxygen`
+- `Fomepizole`: `Acetic Acid + Mannitol + Ammonia`
+- `Haloperidol`: `Potassium Iodide + Aluminium + Chlorine + Fluorine + Oil`
+- `Potassium Iodide`: `Potassium + Iodine`
+- `Sterilizine`: `2 Antihol + Chlorine`
+- `Teporone`: `Acetone + Silicon + Plasma`
+
+## Особые
+
+- `Chiyurizine`: появляется только из особых источников.
+- `Stimulants`: готовятся обычной станционной химией через старую стим-линейку и остаются отдельным специальным реагентом.
+- `Syndiezine`: редкий синдикатский лечебный реагент.
+- `Restorative Nanites`, `Nanites`, `Adminordrazine`, `Nano-Calcium`, `Corazone` и другие специальные вещества добываются не обычной варкой.
+
+## Наркотики
+
+- `Aranesp`: `Epinephrine + Atropine + Insulin`
+- `Bath Salts`: `Burned Food Mass + Saltpetre + Monosodium Glutamate + Space Cleaner + Enzyme + Mugwort + Mercury`, `374 K`
+- `Fliptonium`: `Ephedrine + Liquid Dark Matter + Chocolate + Gin and Tonic`
+- `Jenkem`: `Toilet Water + Water + Ammonia`
+- `Krokodil`: `Diphenhydramine + Morphine + Space Cleaner + Potassium + Phosphorus + Welding Fuel`, `390 K`
+- `LAD`: `Diethylamine + Fungus`
+- `Methamphetamine`: `Ephedrine + Iodine + Phosphorus + Hydrogen`, `374 K`
+- `Space Drugs`: `Lithium + Mercury + Sugar`
+- `Surge`: `3 Thermite + Uranium + Fluorosurfactant + Sulfuric Acid`
+- `Ultra-Lube`: `2 Space Lube + Formaldehyde + Cryostylane`
+- `Crack`: `5 Coca Extract + 3 Ammonia + 2 Welding Fuel + 5 Water`
+- `Cocaine`: `Crack + Diethylamine`
+
+## Пиротехника
+
+- `Stabilizing Agent`: `Iron + Oxygen + Hydrogen`
+- `Azide`: `Chlorine + Oxygen + Nitrogen + Ammonia + Sodium + Silver`
+- `Black Powder`: `Saltpetre + Charcoal + Sulfur`
+- `Bee Explosion`: `Honey + Strange Reagent + Radium`
+- `Chlorine Trifluoride`: `Chlorine + 3 Fluorine`, `424 K`
+- `Cryostylane`: `Water + Plasma + Nitrogen`, `20 K`
+- `Firefighting Foam`: `Chlorine + Carbon + Sulfur`
+- `Flash Powder`: `Aluminium + Chlorine + Potassium + Sulfur`
+- `Fluorosurfactant`: `2 Carbon + 2 Fluorine + Sulfuric Acid`
+- `Liquid Dark Matter`: `Plasma + Radium + Carbon`
+- `Napalm`: `Sugar + Welding Fuel + Ethanol`
+- `Phlogiston`: `Phosphorus + Sulfuric Acid + Plasma`
+- `Pyrosium`: `Plasma + Radium + Phosphorus`, `20 K`
+- `Sonic Powder`: `Oxygen + Cola + Phosphorus`
+- `Dense Smoke`: `Aluminium + Sodium + Potassium + Chlorine`
+- `Sorium`: `Mercury + Oxygen + Nitrogen + Carbon`
+- `Thermite`: `Aluminium + Iron + Oxygen`
+
+## Токсины
+
+- `Teslium`: `Plasma + Silver + Black Powder`, `374 K`
+- `Unstable Mutagen`: `Chlorine + Plasma + Radium`
+- `Stable Mutagen`: `Unstable Mutagen + Lithium + Acetone + Bromine`
+- `CarpoToxin`: добывается из мяса космического карпа.
+- `Cyanide`: `Oil + Ammonia + Oxygen`, `380 K`
+- `Glyphosate`: `Chlorine + Phosphorus + Formaldehyde + Ammonia`
+- `Atrazine`: `Chlorine + Hydrogen + Nitrogen`
+- `Neurotoxin`: `Space Drugs`, `674 K`
+- `Capulettium`: `Neurotoxin + Hydrogen + Chlorine`
+- `Capulettium Plus`: `Capulettium + Ephedrine + Methamphetamine`
+- `Pancuronium`: не варится обычным путём, встречается во взломанном медицинском оборудовании.
+- `Rotatium`: `LAD + Teslium + Methamphetamine`
+- `Sarin`: `Acetone + Atrazine + Welding Fuel + Chlorine + Fluorine + Hydrogen + Oxygen + Phosphorus`, `374 K`
+- `Sulfonal`: `Acetone + Diethylamine + Sulfur`
+- `Lipolicide`: `Mercury + Diethylamine + Ephedrine`
+
+## Яды Синдиката
+
+- `Initropidril`: синдикатский яд; возможна варка из `Crank + Histamine + Krokodil + Bath Salts + Atropine + Nicotine + Morphine`.
+- `Concentrated Initropidril`, `Coniine`, `Ketamine`, `Amanitin`, `Polonium`, `Curare`, `Sodium Thiopental`, `Gibbis`, `Nanomachines`, `Prions`, `Spider Eggs`, `Space Heartworms`, `Venom` — редкие или аплинк-ориентированные вещества, не предназначенные для обычной станциионной линии.
+
+## Ботаника
+
+- `Bungotoxin`, `Cannabidiol`, `Diluted Omnizine`, `God Blood`, `Vitrium Froth`, `Tinea Luxor`, `Entropic Polypnium`, `Earthsblood`, `Frost Oil`, `Capsaicin Oil`, `Growth Serum`, `Morphine`, `Nicotine`, `Omnizine`, `Psilocybin`, `Synaptizine`, `Tetrahydrocannabinol`, `Tirizene`, `Moonlin`, `Coca Extract` относятся к ботанической линии.
+- Часть из них добывается только через растения, часть — через Лаваленд и особые источники.
+
+## Рецепты еды
+
+- `Corn Syrup`: `Cornmeal + Sulfuric Acid`, `374 K`
+- `Cola`: `Carbon + Oxygen + Water + Sugar`
+- `Monosodium Glutamate`: обычно пищевая добавка, но также участвует в химии.
+- `Synthanol`: `Plasma + Welding Fuel + Space Lube`
+- `Very High Fructose Corn Syrup`: `Corn Syrup + Enzyme`
+
+## Другие рецепты
+
+- `Virus Food`: `Water + Milk + Oxygen`
+- `Colorful Reagent`: `Plasma + Radium + Space Drugs + Cryoxadone + Triple Citrus + Stabilizing Agent`
+- `Condensed Capsaicin`: `2 Capsaicin Oil + 5 Plasma` с плазмой как катализатором
+- `Corgium`: `Nutriment + Strange Reagent + Colorful Reagent + Blood`, `374 K`
+- `Drying Agent`: `2 Plasma + Ethanol + Sodium`
+- `Flaptonium`: `Egg + Colorful Reagent + Strange Reagent + Chicken Broth + Blood`, `374 K`
+- `Hairgrownium`: `Carpet + Synthflesh + Ephedrine`
+- `Holywater`: `Water + Mercury + Wine`
+- `Jestosterone`: `Blood + Banana Juice + Table Salt + Space Drugs + Space Lube`, `374 K`
+- `Lye`: `Sodium + Hydrogen + Oxygen`
+- `Super Hairgrownium`: `Hairgrownium + Iron + Methamphetamine`
+- `Space Cleaner`: `Ammonia + Water + Ethanol`
+- `Space Lube`: `Oxygen + Silicon + Water`
+
+## Что варить в начале смены
+
+- Для медотсека почти всегда нужны `Bicaridine`, `Kelotane`, `Saline`, `Silver Sulfadiazine`, `Styptic Powder`, `Synthflesh`, `Salbutamol`, `Mannitol`, `Epinephrine`.
+- Для критических случаев держите `Atropine`, `Cryoxadone`, `Pentetic Acid`, `Perfluorodecalin`, `Calomel`, `Tranexamic Acid`.
+- Для хирургии, глаз, инфекций и синтетиков полезны `Oculine`, `Spaceacillin`, `Liquid Solder`, `Salicylic Acid`, `Syntmorphine`, `Diphenhydramine`, `Synthetic Blood`.
+
+## Важные замечания
+
+- Точные игровые эффекты всегда проверяйте через `Chemicals`, потому что именно она собирается напрямую из текущих прототипов реагентов.
+- Если рецепт требует редкий ботанический или синдикатский компонент, это значит, что часть цепочки завязана на другой отдел или на нестандартный источник.
+- Если сомневаетесь, что уже перенесено в билд, ориентируйтесь на эту страницу и `Chemicals`, а не на старые апстримные SS14-гайды.
 </Document>

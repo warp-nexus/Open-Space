@@ -87,3 +87,6 @@ reagent-desc-toxintrash = An awful-smelling slurry efficiently refined from disc
 
 reagent-name-hemorrhinol = hemorrhinol
 reagent-desc-hemorrhinol = A toxin that causes severe damage to blood vessels, causing rapid bleeding.
+
+reagent-name-cyanide = cyanide
+reagent-desc-cyanide = A classic fast-acting poison. Faintly fragrant and extremely dangerous even in small doses.

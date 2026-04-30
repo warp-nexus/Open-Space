@@ -46,25 +46,28 @@
 
 - type: reaction
   id: Bicaridine
+  minTemp: 374
   reactants:
-    Inaprovaline:
+    Phenol:
       amount: 1
     Carbon:
       amount: 1
   products:
-    Bicaridine: 2
+    Bicaridine: 1
 
 - type: reaction
   id: Cryoxadone
   reactants:
-    Dexalin:
+    Plasma:
       amount: 1
-    Water:
+    Acetone:
       amount: 1
-    Oxygen:
+    UnstableMutagen:
+      amount: 1
+    Cryostylane:
       amount: 1
   products:
-    Cryoxadone: 3
+    Cryoxadone: 4
 
 - type: reaction
   id: Doxarubixadone
@@ -76,6 +79,17 @@
   products:
     Doxarubixadone: 2
 
+# open-space edit start
+- type: reaction
+  id: AntiBurnStimulant
+  minTemp: 474
+  reactants:
+    Synthflesh:
+      amount: 40
+  products:
+    AntiBurnStimulant: 40
+# open-space edit end
+
 - type: reaction
   id: Epinephrine
   reactants:
@@ -83,12 +97,16 @@
       amount: 1
     Acetone:
       amount: 1
+    Diethylamine:
+      amount: 1
+    Oxygen:
+      amount: 1
     Chlorine:
       amount: 1
-    Hydroxide:
+    Hydrogen:
       amount: 1
   products:
-    Epinephrine: 4
+    Epinephrine: 6
 
 - type: reaction
   id: Dermaline
@@ -162,11 +180,13 @@
 - type: reaction
   id: TranexamicAcid
   reactants:
-    Inaprovaline:
+    Synthflesh:
       amount: 1
-    SulfuricAcid:
+    Ammonia:
       amount: 1
-    Sugar:
+    SalicylicAcid:
+      amount: 1
+    Water:
       amount: 1
   products:
     TranexamicAcid: 3
@@ -174,12 +194,12 @@
 - type: reaction
   id: Kelotane
   reactants:
-    Silicon:
+    Acetaldehyde:
       amount: 1
     Carbon:
       amount: 1
   products:
-    Kelotane: 2
+    Kelotane: 1
 
 - type: reaction
   id: Leporazine
@@ -349,14 +369,14 @@
 - type: reaction
   id: Oculine
   reactants:
-    TableSalt:
+    Atropine:
       amount: 1
-    Blood:
+    Spaceacillin:
       amount: 1
-    Hydroxide:
-      amount: 2
+    Saline:
+      amount: 1
   products:
-    Oculine: 4
+    Oculine: 3
 
 - type: reaction
   id: Siderlac
@@ -401,12 +421,14 @@
 - type: reaction
   id: Saline
   reactants:
-    Water:
-      amount: 4
     TableSalt:
       amount: 1
+    Water:
+      amount: 1
+    Sugar:
+      amount: 1
   products:
-    Saline: 5
+    Saline: 3
 
 - type: reaction
   id: Lacerinol
@@ -514,20 +536,19 @@
 - type: reaction
   id: Diphenhydramine
   impact: Medium
-  minTemp: 377.59
   reactants:
     Diethylamine:
       amount: 1
     Oil:
       amount: 1
-    TableSalt:
+    Bromine:
       amount: 1
     Carbon:
       amount: 1
     Ethanol:
       amount: 1
   products:
-    Diphenhydramine: 3
+    Diphenhydramine: 4
 
 - type: reaction
   id: Pyrazine
@@ -665,11 +686,13 @@
 - type: reaction
   id: Heparin
   reactants:
+    MeatSlurry:
+      amount: 1
+    Phenol:
+      amount: 1
     SulfuricAcid:
       amount: 1
-    Nitrogen:
-      amount: 1
-    Sodium:
+    Sugar:
       amount: 1
   products:
     Heparin: 2

@@ -87,3 +87,6 @@ reagent-desc-toxintrash = Ужасно пахнущая жижа, эффекти
 
 reagent-name-hemorrhinol = геморринол
 reagent-desc-hemorrhinol = Токсин, вызывающий серьезное повреждение кровеносных сосудов и быстрое кровотечение.
+
+reagent-name-cyanide = цианид
+reagent-desc-cyanide = Классический быстродействующий яд. Слабо пахнет и крайне опасен уже в малых количествах.

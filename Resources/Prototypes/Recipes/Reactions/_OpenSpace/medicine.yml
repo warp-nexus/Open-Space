@@ -1,0 +1,259 @@
+# open-space edit start
+- type: reaction
+  id: Antihol
+  reactants:
+    Ethanol:
+      amount: 1
+    Charcoal:
+      amount: 1
+  products:
+    Antihol: 2
+
+- type: reaction
+  id: Atropine
+  reactants:
+    Ethanol:
+      amount: 1
+    Acetone:
+      amount: 1
+    Diethylamine:
+      amount: 1
+    Phenol:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    Atropine: 5
+
+- type: reaction
+  id: LiquidSolder
+  minTemp: 380
+  reactants:
+    Ethanol:
+      amount: 1
+    Copper:
+      amount: 1
+    Silver:
+      amount: 1
+  products:
+    LiquidSolder: 3
+
+- type: reaction
+  id: SalicylicAcid
+  reactants:
+    Sodium:
+      amount: 1
+    Phenol:
+      amount: 1
+    Carbon:
+      amount: 1
+    Oxygen:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    SalicylicAcid: 5
+
+- type: reaction
+  id: Salbutamol
+  reactants:
+    SalicylicAcid:
+      amount: 1
+    Lithium:
+      amount: 1
+    Aluminium:
+      amount: 1
+    Bromine:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Salbutamol: 5
+
+- type: reaction
+  id: SilverSulfadiazine
+  reactants:
+    Ammonia:
+      amount: 1
+    Silver:
+      amount: 1
+    Sulfur:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    SilverSulfadiazine: 5
+
+- type: reaction
+  id: StypticPowder
+  reactants:
+    Aluminium:
+      amount: 1
+    Hydrogen:
+      amount: 1
+    Oxygen:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    StypticPowder: 4
+
+- type: reaction
+  id: Synthflesh
+  reactants:
+    Blood:
+      amount: 1
+    Carbon:
+      amount: 1
+    StypticPowder:
+      amount: 1
+  products:
+    Synthflesh: 3
+
+- type: reaction
+  id: Syntmorphine
+  minTemp: 473.15
+  reactants:
+    Carbon:
+      amount: 2
+    Hydrogen:
+      amount: 2
+    Ethanol:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    Syntmorphine: 6
+
+- type: reaction
+  id: Teporone
+  reactants:
+    Acetone:
+      amount: 1
+    Silicon:
+      amount: 1
+    Plasma:
+      amount: 1
+  products:
+    Teporone: 2
+
+- type: reaction
+  id: PenteticAcid
+  reactants:
+    WeldingFuel:
+      amount: 1
+    Chlorine:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Formaldehyde:
+      amount: 1
+    Sodium:
+      amount: 1
+    Cyanide:
+      amount: 1
+  products:
+    PenteticAcid: 6
+
+- type: reaction
+  id: Perfluorodecalin
+  minTemp: 374
+  reactants:
+    Hydrogen:
+      amount: 1
+    Fluorine:
+      amount: 1
+    Oil:
+      amount: 1
+  products:
+    Perfluorodecalin: 3
+
+- type: reaction
+  id: Mutadone
+  reactants:
+    UnstableMutagen:
+      amount: 1
+    Acetone:
+      amount: 1
+    Bromine:
+      amount: 1
+  products:
+    Mutadone: 3
+
+- type: reaction
+  id: Calomel
+  minTemp: 374
+  reactants:
+    Mercury:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    Calomel: 2
+
+- type: reaction
+  id: Ether
+  reactants:
+    SulfuricAcid:
+      amount: 1
+    Ethanol:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    Ether: 2
+
+- type: reaction
+  id: Fomepizole
+  reactants:
+    AceticAcid:
+      amount: 1
+    Mannitol:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Fomepizole: 3
+
+- type: reaction
+  id: Acetaldehyde
+  minTemp: 548
+  reactants:
+    Chromium:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Copper:
+      amount: 1
+    Ethanol:
+      amount: 1
+  products:
+    Acetaldehyde: 4
+
+- type: reaction
+  id: Formaldehyde
+  minTemp: 425
+  reactants:
+    Ethanol:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Silver:
+      amount: 1
+  products:
+    Formaldehyde: 3
+
+- type: reaction
+  id: AceticAcid
+  reactants:
+    Acetaldehyde:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Nitrogen:
+      amount: 4
+  products:
+    AceticAcid: 6
+# open-space edit end

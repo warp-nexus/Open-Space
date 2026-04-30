@@ -9,6 +9,19 @@
   boilingPoint: 2327.0
   meltingPoint: 660.0
 
+# open-space edit start
+- type: reagent
+  id: Bromine
+  name: reagent-name-bromine
+  group: Elements
+  desc: reagent-desc-bromine
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#7a3f1d"
+  boilingPoint: 58.8
+  meltingPoint: -7.2
+# open-space edit end
+
 - type: reagent
   id: Carbon
   name: reagent-name-carbon
@@ -74,6 +87,19 @@
         - !type:MetabolizerTypeCondition
           type: [ Arachnid ]
         amount: 0.4
+
+# open-space edit start
+- type: reagent
+  id: Chromium
+  name: reagent-name-chromium
+  group: Elements
+  desc: reagent-desc-chromium
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: metallic
+  color: "#8d99a6"
+  boilingPoint: 2671.0
+  meltingPoint: 1907.0
+# open-space edit end
 
 - type: reagent
   id: Fluorine

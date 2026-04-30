@@ -136,6 +136,27 @@
         probability: 0.3
         type: Local
 
+# open-space edit start
+- type: reagent
+  id: Cryostylane
+  name: reagent-name-cryostylane
+  parent: BasePyrotechnic
+  desc: reagent-desc-cryostylane
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: cold
+  color: "#bfe9ff"
+  reactiveEffects:
+    Extinguish:
+      methods: [ Touch ]
+      effects:
+      - !type:Extinguish
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:AdjustTemperature
+        amount: -5000
+# open-space edit end
+
 - type: reagent
   id: FoamingAgent
   name: reagent-name-foaming-agent

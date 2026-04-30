@@ -426,6 +426,18 @@ entity-effect-guidebook-modify-blood-level =
                  }
     } blood level
 
+entity-effect-guidebook-modify-stamina =
+    { $chance ->
+        [1] { $deltasign ->
+                [1] Наносит
+                *[-1] Восстанавливает
+            }
+        *[other] { $deltasign ->
+                    [1] наносят
+                    *[-1] восстанавливают
+                 }
+    } {NATURALFIXED($amount, 2)} выносливости
+
 entity-effect-guidebook-paralyze =
     { $chance ->
         [1] Paralyzes

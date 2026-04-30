@@ -1,7 +1,7 @@
-﻿- type: reaction
+- type: reaction
   id: Napalm
   reactants:
-    Oil:
+    Sugar:
       amount: 1
     WeldingFuel:
       amount: 1
@@ -31,7 +31,7 @@
 
 - type: reaction
   id: ChlorineTrifluoride
-  minTemp: 370
+  minTemp: 424
   priority: 20
   reactants:
     Chlorine:
@@ -50,11 +50,26 @@
     type: Pvs
     visualType: LargeCaution
   products:
-    ChlorineTrifluoride: 4
+    ChlorineTrifluoride: 2
+
+# open-space edit start
+- type: reaction
+  id: Cryostylane
+  minTemp: 20
+  reactants:
+    Water:
+      amount: 1
+    Plasma:
+      amount: 1
+    Nitrogen:
+      amount: 1
+  products:
+    Cryostylane: 3
+# open-space edit end
 
 - type: reaction
   id: Ash
-  minTemp: 520
+  minTemp: 874
   reactants:
     Oil:
       amount: 1

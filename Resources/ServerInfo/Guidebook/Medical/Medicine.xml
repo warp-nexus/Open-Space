@@ -1,36 +1,43 @@
 <Document>
+# Базовые лекарства
 
-# Core Medications
-
-These medications are almost always useful to medbay in one way or another.
+Это основной набор препаратов, который химик варит для медотсека в текущем наборе os_chem.
 
 <GuideReagentEmbed Reagent="Bicaridine"/>
 <GuideReagentEmbed Reagent="Kelotane"/>
-<GuideReagentEmbed Reagent="Dermaline"/>
-<GuideReagentEmbed Reagent="Dylovene"/>
-<GuideReagentEmbed Reagent="Inaprovaline"/>
-<GuideReagentEmbed Reagent="Dexalin"/>
-<GuideReagentEmbed Reagent="DexalinPlus"/>
-<GuideReagentEmbed Reagent="Iron"/>
-
-# Specialty Medications
-
-These medications tend to have specific use cases.
-
-<GuideReagentEmbed Reagent="Cryoxadone"/>
+<GuideReagentEmbed Reagent="Saline"/>
+<GuideReagentEmbed Reagent="Salbutamol"/>
+<GuideReagentEmbed Reagent="Mannitol"/>
 <GuideReagentEmbed Reagent="Epinephrine"/>
-<GuideReagentEmbed Reagent="Hyronalin"/>
-<GuideReagentEmbed Reagent="Arithrazine"/>
-<GuideReagentEmbed Reagent="Phalanximine"/>
-<GuideReagentEmbed Reagent="Tricordrazine"/>
+<GuideReagentEmbed Reagent="SilverSulfadiazine"/>
+<GuideReagentEmbed Reagent="StypticPowder"/>
+<GuideReagentEmbed Reagent="Synthflesh"/>
 <GuideReagentEmbed Reagent="TranexamicAcid"/>
-<GuideReagentEmbed Reagent="Ambuzol"/>
+<GuideReagentEmbed Reagent="Spaceacillin"/>
 <GuideReagentEmbed Reagent="Oculine"/>
 
-# All Medications
+# Продвинутые лекарства
 
-This is a list of -all- medications available, including ones previously listed.
+Эти реагенты нужны для тяжёлых случаев, хирургии и редких сценариев.
+
+<GuideReagentEmbed Reagent="Atropine"/>
+<GuideReagentEmbed Reagent="Cryoxadone"/>
+<GuideReagentEmbed Reagent="PenteticAcid"/>
+<GuideReagentEmbed Reagent="Perfluorodecalin"/>
+<GuideReagentEmbed Reagent="Rezadone"/>
+<GuideReagentEmbed Reagent="LiquidSolder"/>
+<GuideReagentEmbed Reagent="SalicylicAcid"/>
+<GuideReagentEmbed Reagent="Syntmorphine"/>
+<GuideReagentEmbed Reagent="Teporone"/>
+<GuideReagentEmbed Reagent="Diphenhydramine"/>
+<GuideReagentEmbed Reagent="Calomel"/>
+<GuideReagentEmbed Reagent="Ether"/>
+<GuideReagentEmbed Reagent="Fomepizole"/>
+<GuideReagentEmbed Reagent="Mutadone"/>
+
+# Все лекарства
+
+Ниже показана полная группа `Medicine`, доступная в текущей сборке.
 
 <GuideReagentGroupEmbed Group="Medicine"/>
-
 </Document>

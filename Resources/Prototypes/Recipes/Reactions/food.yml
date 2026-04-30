@@ -214,18 +214,31 @@
       amount: 1
   products:
     Ketchup: 3
-
-- type: reaction
-  id: CookingMayoVinegar
-  reactants:
-    Vinegar:
-      amount: 5
-    Oil:
-      amount: 5
-    Egg:
-      amount: 6
-  products:
-    Mayo: 15
+# open-space edit start
+# - type: reaction
+#   id: CookingMayoVinegar
+#   reactants:
+#     AceticAcid:
+#       amount: 5
+#     Oil:
+#       amount: 5
+#     Egg:
+#       amount: 6
+#   products:
+#     Mayo: 15
+# open-space edit end
+# open-space edit start
+# - type: reaction
+#   id: CornSyrup
+#   reactants:
+#     CornStarch:
+#       amount: 1
+#     SulfuricAcid:
+#       amount: 1
+#   minTemp: 374
+#   products:
+#     CornSyrup: 2
+# open-space edit end
 
 - type: reaction
   id: CookingMayoLemon
@@ -260,17 +273,19 @@
   products:
     Ketchunaise: 2
 
-- type: reaction
-  id: CookingBbqSauce
-  reactants:
-    Ketchup:
-      amount: 1
-    Vinegar:
-      amount: 1
-    Sugar:
-      amount: 1
-  products:
-    BbqSauce: 3
+# open-space edit start
+# - type: reaction
+#   id: CookingBbqSauce
+#   reactants:
+#     Ketchup:
+#       amount: 1
+#     AceticAcid:
+#       amount: 1
+#     Sugar:
+#       amount: 1
+#   products:
+#     BbqSauce: 3
+# open-space edit end
 
 - type: reaction
   id: CookingHotsauce
@@ -296,15 +311,17 @@
   products:
     Coldsauce: 3
 
-- type: reaction
-  id: CookingVinegar
-  reactants:
-    Ethanol:
-      amount: 1
-    Oxygen:
-      amount: 1
-  products:
-    Vinegar: 2
+# open-space edit start
+# - type: reaction
+#   id: CookingVinegar
+#   reactants:
+#     Ethanol:
+#       amount: 1
+#     Oxygen:
+#       amount: 1
+#   products:
+#     AceticAcid: 2
+# open-space edit end
 
 - type: reaction
   id: CookingSoysauce
@@ -316,17 +333,19 @@
   products:
     Soysauce: 3
 
-- type: reaction
-  id: CookingVinaigrette
-  reactants:
-    Vinegar:
-      amount: 1
-    OilOlive:
-      amount: 1
-    Blackpepper:
-      amount: 1
-  products:
-    Vinaigrette: 3
+# open-space edit start
+# - type: reaction
+#   id: CookingVinaigrette
+#   reactants:
+#     AceticAcid:
+#       amount: 1
+#     OilOlive:
+#       amount: 1
+#     Blackpepper:
+#       amount: 1
+#   products:
+#     Vinaigrette: 3
+# open-space edit end
 
 - type: reaction
   id: BananaBreakdown

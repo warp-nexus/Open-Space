@@ -1,28 +1,37 @@
 <Document>
-  
-  # Specialized Brute Chemicals
+# Продвинутое Лечение Механических Повреждений
 
-  Nanotrasen's greatest scientists have synthesized three more specific brute chemicals! Each one heals a specific damage subtype.
+Старые апстримные реагенты вроде `Bruizine`, `Puncturase`, `Lacerinol` и `Razorium` не являются основной схемой этой сборки.
+Для схемы os_chem лечения механики ориентируйтесь на препараты ниже.
 
-  <GuideReagentEmbed Reagent="Bruizine"/>
-  <GuideReagentEmbed Reagent="Puncturase"/>
-  <GuideReagentEmbed Reagent="Lacerinol"/>
+## Системное лечение
 
-  # Razorium
+<GuideReagentEmbed Reagent="Bicaridine"/>
+<GuideReagentEmbed Reagent="SalicylicAcid"/>
 
-  [color=red]USE CAUTION[/color] when using the aforementioned specialized brute chemicals. Should one mix together with a different type of brute chemical, the resulting mixture will create a dangerous chemical known as Razorium!
-  <GuideReagentEmbed Reagent="Razorium"/>
-  To avoid this, make sure the patient is done metabolizing one brute medication before giving them another. Keep an eye on the rate their health is changing.
+- `Bicaridine` — базовое системное лекарство от brute-повреждений.
+- `Salicylic Acid` — поддержка при боли, лёгкое лечение brute и помощь перегретому пациенту.
 
-  [bold]Some examples of mixtures that create Razorium are as follows:[/bold]
+## Контактное лечение
 
-  Bicaridine and Puncturase
+<GuideReagentEmbed Reagent="StypticPowder"/>
+<GuideReagentEmbed Reagent="Synthflesh"/>
 
-  Puncturase and Lacerinol
+- `Styptic Powder` лучше всего подходит для быстрого закрытия внешних механических ран.
+- `Synthflesh` сильнее на смешанных внешних повреждениях и удобна сразу после боя, когда у пациента и brute, и burn.
 
-  Bruizine and Bicaridine
+## Кровотечения
 
-  Lacerinol and Bruizine
+<GuideReagentEmbed Reagent="TranexamicAcid"/>
 
-  Please note that [bold]any[/bold] combination of these 4 chemicals will likely mix and create Razorium! Be careful when creating these chemicals, as they contain Bicaridine. Any leftover Bicaridine will likely mix to create Razorium!
+- `Tranexamic Acid` не заменяет brute-лечение, но помогает замедлить или закрыть кровотечения.
+- При тяжёлых травмах сочетайте её с `Styptic Powder`, `Synthflesh` и системными лекарствами.
+
+## Практика
+
+- Лёгкие механические травмы: `Bicaridine` или `Salicylic Acid`.
+- Открытые внешние раны: сначала `Styptic Powder`.
+- Смешанные внешние brute и burn: `Synthflesh`.
+- Если пациент теряет кровь: добавьте `Tranexamic Acid`.
+- Старую схему с `Razorium` можно игнорировать: она относится к другому набору реагентов и не должна быть вашей основной памяткой.
 </Document>

@@ -29,14 +29,14 @@
   impact: Low
   quantized: true
   reactants:
-    Fat:
-      amount: 25
+# open-space edit start
     Nutriment:
-      amount: 5
-    Blood:
       amount: 10
     Carbon:
       amount: 10
+    LiquidGibs:
+      amount: 10
+# open-space edit end
   effects:
     - !type:SpawnEntity
       entity: FoodMeat
@@ -78,7 +78,9 @@
       amount: 2
   effects:
     - !type:SpawnEntity
-      entity: SheetPlastic1
+# open-space edit start
+      entity: SheetPlastic10
+# open-space edit end
 
 - type: reaction
   id: FlashFreezeIce

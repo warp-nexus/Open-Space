@@ -184,6 +184,11 @@ namespace Content.Shared.Chemistry.Reagent
         [DataField]
         public float PricePerUnit;
 
+        // open-space edit start
+        [DataField]
+        public bool GuideHidden;
+        // open-space edit end
+
         [DataField]
         public SoundSpecifier FootstepSound = new SoundCollectionSpecifier("FootstepPuddle");
 

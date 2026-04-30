@@ -958,17 +958,19 @@
   products:
     PinaColada: 6
 
-- type: reaction
-  id: Posca
-  reactants:
-    TableSalt:
-      amount: 1
-    Vinegar:
-      amount: 1
-    Water:
-      amount: 1
-  products:
-    Posca: 3
+# open-space edit start
+# - type: reaction
+#   id: Posca
+#   reactants:
+#     TableSalt:
+#       amount: 1
+#     AceticAcid:
+#       amount: 1
+#     Water:
+#       amount: 1
+#   products:
+#     Posca: 3
+# open-space edit end
 
 - type: reaction
   id: Radler
@@ -1380,10 +1382,11 @@
   products:
     WhiteGilgamesh: 3
 
+# open-space edit start
 - type: reaction
   id: Cola
   reactants:
-    Ipecac:
+    Carbon:
       amount: 1
     Oxygen:
       amount: 1
@@ -1393,6 +1396,7 @@
       amount: 1
   products:
     Cola: 4
+# open-space edit end
 
 - type: reaction
   id: Caipirinha

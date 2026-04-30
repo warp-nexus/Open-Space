@@ -22,8 +22,13 @@ reagent-desc-sugar = Tasty spacey sugar!
 reagent-name-blackpepper = black pepper
 reagent-desc-blackpepper = Often used to flavor food or make people sneeze.
 
-reagent-name-vinegar = vinegar
-reagent-desc-vinegar = Often used to flavor food.
+# open-space edit start
+reagent-name-vinegar = acetic acid
+reagent-desc-vinegar = An acidic intermediate reagent for advanced pharmacology and food chemistry.
+
+reagent-name-glycerol = glycerol
+reagent-desc-glycerol = A colorless sweet liquid.
+# open-space edit end
 
 reagent-name-rice = rice
 reagent-desc-rice = Hard, small white grains.

@@ -28,8 +28,10 @@
       amount: 1
     Water:
       amount: 1
+    Ethanol:
+      amount: 1
   products:
-    SpaceCleaner: 2
+    SpaceCleaner: 3
 
 - type: reaction
   id: SpaceLube
@@ -37,9 +39,9 @@
   reactants:
     Water:
       amount: 1
-    Fersilicite:
+    Silicon:
       amount: 1
     Oxygen:
       amount: 1
   products:
-    SpaceLube: 5
+    SpaceLube: 3

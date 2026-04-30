@@ -1,0 +1,952 @@
+# open-space edit start
+- type: reaction
+  id: Spaceacillin
+  reactants:
+    Ethanol:
+      amount: 1
+    Fungus:
+      amount: 1
+  products:
+    Spaceacillin: 2
+
+- type: reaction
+  id: StrangeReagent
+  reactants:
+    Omnizine:
+      amount: 1
+    Holywater:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+  products:
+    StrangeReagent: 3
+
+- type: reaction
+  id: Rezadone
+  reactants:
+    CarpoToxin:
+      amount: 1
+    Spaceacillin:
+      amount: 1
+    Copper:
+      amount: 1
+  products:
+    Rezadone: 3
+
+- type: reaction
+  id: Neuromatin
+  minTemp: 350
+  reactants:
+    Formaldehyde:
+      amount: 1
+    Mannitol:
+      amount: 5
+    Teporone:
+      amount: 1
+    Atropine:
+      amount: 3
+  products:
+    Neuromatin: 10
+
+- type: reaction
+  id: Sanguinius
+  reactants:
+    Omnizine:
+      amount: 1
+    Synthflesh:
+      amount: 2
+    Iron:
+      amount: 2
+  products:
+    Sanguinius: 5
+
+- type: reaction
+  id: Mitocholide
+  reactants:
+    Cryoxadone:
+      amount: 1
+    Synthflesh:
+      amount: 1
+    Plasma:
+      amount: 1
+  products:
+    Mitocholide: 3
+
+- type: reaction
+  id: SyntheticBlood
+  reactants:
+    Perfluorodecalin:
+      amount: 1
+    AmmoniaBlood:
+      amount: 1
+  products:
+    SyntheticBlood: 1
+
+- type: reaction
+  id: Aranesp
+  reactants:
+    Epinephrine:
+      amount: 1
+    Atropine:
+      amount: 1
+    Insulin:
+      amount: 1
+  products:
+    Aranesp: 3
+
+- type: reaction
+  id: LAD
+  reactants:
+    Diethylamine:
+      amount: 1
+    Fungus:
+      amount: 1
+  products:
+    LAD: 2
+
+- type: reaction
+  id: Saltpetre
+  reactants:
+    Potassium:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Oxygen:
+      amount: 3
+  products:
+    Saltpetre: 5
+
+- type: reaction
+  id: StabilizingAgent
+  reactants:
+    Iron:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Hydrogen:
+      amount: 1
+  products:
+    StabilizingAgent: 3
+
+- type: reaction
+  id: Azide
+  reactants:
+    Chlorine:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Sodium:
+      amount: 1
+    Silver:
+      amount: 1
+  products:
+    Azide: 1
+
+- type: reaction
+  id: BlackPowder
+  reactants:
+    Saltpetre:
+      amount: 1
+    Charcoal:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    BlackPowder: 3
+
+- type: reaction
+  id: BeeExplosion
+  reactants:
+    Honey:
+      amount: 1
+    StrangeReagent:
+      amount: 1
+    Radium:
+      amount: 1
+  products:
+    BeeExplosion: 3
+
+- type: reaction
+  id: EMPPulse
+  reactants:
+    Iron:
+      amount: 1
+    Uranium:
+      amount: 1
+  products:
+    EMPPulse: 2
+
+- type: reaction
+  id: FirefightingFoam
+  reactants:
+    Chlorine:
+      amount: 1
+    Carbon:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    FirefightingFoam: 3
+
+- type: reaction
+  id: FlashPowder
+  reactants:
+    Aluminium:
+      amount: 1
+    Chlorine:
+      amount: 1
+    Potassium:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    FlashPowder: 4
+
+- type: reaction
+  id: LiquidDarkMatter
+  reactants:
+    Plasma:
+      amount: 1
+    Radium:
+      amount: 1
+    Carbon:
+      amount: 1
+  products:
+    LiquidDarkMatter: 3
+
+- type: reaction
+  id: Pyrosium
+  minTemp: 20
+  reactants:
+    Plasma:
+      amount: 1
+    Radium:
+      amount: 1
+    Phosphorus:
+      amount: 1
+  products:
+    Pyrosium: 3
+
+- type: reaction
+  id: ShockExplosion
+  reactants:
+    Teslium:
+      amount: 5
+    Uranium:
+      amount: 5
+  products:
+    ShockExplosion: 1
+
+- type: reaction
+  id: SonicPowder
+  reactants:
+    Oxygen:
+      amount: 1
+    Cola:
+      amount: 1
+    Phosphorus:
+      amount: 1
+  products:
+    SonicPowder: 3
+
+- type: reaction
+  id: DenseSmoke
+  reactants:
+    Aluminium:
+      amount: 1
+    Sodium:
+      amount: 1
+    Potassium:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    DenseSmoke: 4
+
+- type: reaction
+  id: Sorium
+  reactants:
+    Mercury:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Carbon:
+      amount: 1
+  products:
+    Sorium: 4
+
+- type: reaction
+  id: Teslium
+  minTemp: 374
+  reactants:
+    Plasma:
+      amount: 1
+    Silver:
+      amount: 1
+    BlackPowder:
+      amount: 1
+  products:
+    Teslium: 3
+
+- type: reaction
+  id: Atrazine
+  reactants:
+    Chlorine:
+      amount: 1
+    Hydrogen:
+      amount: 1
+    Nitrogen:
+      amount: 1
+  products:
+    Atrazine: 3
+
+- type: reaction
+  id: Capulettium
+  reactants:
+    Neurotoxin:
+      amount: 1
+    Hydrogen:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    Capulettium: 3
+
+- type: reaction
+  id: CapulettiumPlus
+  reactants:
+    Capulettium:
+      amount: 1
+    Ephedrine:
+      amount: 1
+    Methamphetamine:
+      amount: 1
+  products:
+    CapulettiumPlus: 3
+
+- type: reaction
+  id: Sarin
+  minTemp: 374
+  reactants:
+    Acetone:
+      amount: 1
+    Atrazine:
+      amount: 1
+    WeldingFuel:
+      amount: 1
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 1
+    Hydrogen:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Phosphorus:
+      amount: 1
+  products:
+    Sarin: 8
+
+- type: reaction
+  id: Sulfonal
+  reactants:
+    Acetone:
+      amount: 1
+    Diethylamine:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    Sulfonal: 3
+
+- type: reaction
+  id: BathSalts
+  minTemp: 374
+  reactants:
+    BurnedFoodMass:
+      amount: 1
+    Saltpetre:
+      amount: 1
+    MonosodiumGlutamate:
+      amount: 1
+    SpaceCleaner:
+      amount: 1
+    Enzyme:
+      amount: 1
+      catalyst: true
+    Mugwort:
+      amount: 1
+    Mercury:
+      amount: 1
+  products:
+    BathSalts: 6
+
+- type: reaction
+  id: Crank
+  minTemp: 390
+  reactants:
+    Diphenhydramine:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Lithium:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+    WeldingFuel:
+      amount: 1
+  products:
+    Crank: 5
+
+- type: reaction
+  id: Fliptonium
+  reactants:
+    Ephedrine:
+      amount: 1
+    LiquidDarkMatter:
+      amount: 1
+    Chocolate:
+      amount: 1
+    GinAndTonic:
+      amount: 1
+  products:
+    Fliptonium: 4
+
+- type: reaction
+  id: Surge
+  reactants:
+    Thermite:
+      amount: 3
+    Uranium:
+      amount: 1
+    Fluorosurfactant:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    Surge: 6
+
+- type: reaction
+  id: UltraLube
+  reactants:
+    SpaceLube:
+      amount: 2
+    Formaldehyde:
+      amount: 1
+    Cryostylane:
+      amount: 1
+  products:
+    UltraLube: 4
+
+- type: reaction
+  id: Initropidril
+  reactants:
+    Crank:
+      amount: 1
+    Histamine:
+      amount: 1
+    Krokodil:
+      amount: 1
+    BathSalts:
+      amount: 1
+    Atropine:
+      amount: 1
+    Nicotine:
+      amount: 1
+    Morphine:
+      amount: 1
+  products:
+    Initropidril: 7
+
+- type: reaction
+  id: Jenkem
+  reactants:
+    ToiletWater:
+      amount: 1
+    Water:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Jenkem: 3
+
+- type: reaction
+  id: Krokodil
+  minTemp: 390
+  reactants:
+    Diphenhydramine:
+      amount: 1
+    Morphine:
+      amount: 1
+    SpaceCleaner:
+      amount: 1
+    Potassium:
+      amount: 1
+    Phosphorus:
+      amount: 1
+    WeldingFuel:
+      amount: 1
+  products:
+    Krokodil: 6
+
+- type: reaction
+  id: Methamphetamine
+  minTemp: 374
+  reactants:
+    Ephedrine:
+      amount: 1
+    Iodine:
+      amount: 1
+    Phosphorus:
+      amount: 1
+    Hydrogen:
+      amount: 1
+  products:
+    Methamphetamine: 4
+
+- type: reaction
+  id: Crack
+  reactants:
+    CocaExtract:
+      amount: 5
+    Ammonia:
+      amount: 3
+    WeldingFuel:
+      amount: 2
+    Water:
+      amount: 5
+  products:
+    Crack: 5
+
+- type: reaction
+  id: Cocaine
+  reactants:
+    Crack:
+      amount: 1
+    Diethylamine:
+      amount: 1
+  products:
+    Cocaine: 1
+
+- type: reaction
+  id: Rotatium
+  reactants:
+    LAD:
+      amount: 1
+    Teslium:
+      amount: 1
+    Methamphetamine:
+      amount: 1
+  products:
+    Rotatium: 3
+
+- type: reaction
+  id: Carpet
+  reactants:
+    Fungus:
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    Carpet: 2
+
+- type: reaction
+  id: Neurotoxin
+  minTemp: 674
+  reactants:
+    SpaceDrugs:
+      amount: 1
+  products:
+    Neurotoxin: 1
+
+- type: reaction
+  id: PestKiller
+  reactants:
+    Toxin:
+      amount: 1
+    Ethanol:
+      amount: 4
+  products:
+    PestKiller: 5
+
+- type: reaction
+  id: CornSyrup
+  minTemp: 374
+  reactants:
+    Cornmeal:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    CornSyrup: 2
+
+- type: reaction
+  id: VeryHighFructoseCornSyrup
+  reactants:
+    CornSyrup:
+      amount: 1
+    Enzyme:
+      amount: 1
+      catalyst: true
+  products:
+    VeryHighFructoseCornSyrup: 1
+
+- type: reaction
+  id: Synthanol
+  reactants:
+    Plasma:
+      amount: 1
+    WeldingFuel:
+      amount: 1
+    SpaceLube:
+      amount: 1
+  products:
+    Synthanol: 3
+
+- type: reaction
+  id: VirusFood
+  reactants:
+    Water:
+      amount: 1
+    Milk:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    VirusFood: 3
+
+- type: reaction
+  id: ColorfulReagent
+  reactants:
+    Plasma:
+      amount: 1
+    Radium:
+      amount: 1
+    SpaceDrugs:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+    TripleCitrus:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+  products:
+    ColorfulReagent: 6
+
+- type: reaction
+  id: CondensedCapsaicin
+  reactants:
+    CapsaicinOil:
+      amount: 2
+    Plasma:
+      amount: 5
+      catalyst: true
+  products:
+    CondensedCapsaicin: 2
+
+- type: reaction
+  id: Corgium
+  minTemp: 374
+  reactants:
+    Nutriment:
+      amount: 1
+    StrangeReagent:
+      amount: 1
+    ColorfulReagent:
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    Corgium: 4
+
+- type: reaction
+  id: DryingAgent
+  reactants:
+    Plasma:
+      amount: 2
+    Ethanol:
+      amount: 1
+    Sodium:
+      amount: 1
+  products:
+    DryingAgent: 3
+
+- type: reaction
+  id: Flaptonium
+  minTemp: 374
+  reactants:
+    Egg:
+      amount: 1
+    ColorfulReagent:
+      amount: 1
+    StrangeReagent:
+      amount: 1
+    ChickenBroth:
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    Flaptonium: 5
+
+- type: reaction
+  id: Hairgrownium
+  reactants:
+    Carpet:
+      amount: 1
+    Synthflesh:
+      amount: 1
+    Ephedrine:
+      amount: 1
+  products:
+    Hairgrownium: 3
+
+- type: reaction
+  id: HolyWaterChemistry
+  reactants:
+    Water:
+      amount: 1
+    Mercury:
+      amount: 1
+    Wine:
+      amount: 1
+  products:
+    Holywater: 3
+
+- type: reaction
+  id: Jestosterone
+  minTemp: 374
+  reactants:
+    Blood:
+      amount: 1
+    BananaJuice:
+      amount: 1
+    TableSalt:
+      amount: 1
+    SpaceDrugs:
+      amount: 1
+    SpaceLube:
+      amount: 1
+  products:
+    Jestosterone: 5
+
+- type: reaction
+  id: SuperHairgrownium
+  reactants:
+    Hairgrownium:
+      amount: 1
+    Iron:
+      amount: 1
+    Methamphetamine:
+      amount: 1
+  products:
+    SuperHairgrownium: 3
+
+- type: reaction
+  id: Hydrocodone
+  reactants:
+    Morphine:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+    Water:
+      amount: 1
+    Oil:
+      amount: 1
+  products:
+    Hydrocodone: 4
+
+- type: reaction
+  id: Sterilizine
+  reactants:
+    Antihol:
+      amount: 2
+    Chlorine:
+      amount: 1
+  products:
+    Sterilizine: 3
+
+- type: reaction
+  id: Degreaser
+  reactants:
+    Oil:
+      amount: 1
+    Sterilizine:
+      amount: 1
+  products:
+    Degreaser: 2
+
+- type: reaction
+  id: MateDeCoca
+  minTemp: 400
+  reactants:
+    Water:
+      amount: 5
+    CocaExtract:
+      amount: 1
+  products:
+    MateDeCoca: 6
+
+- type: reaction
+  id: StableMutagen
+  reactants:
+    UnstableMutagen:
+      amount: 1
+    Lithium:
+      amount: 1
+    Acetone:
+      amount: 1
+    Bromine:
+      amount: 1
+  products:
+    StableMutagen: 4
+
+- type: reaction
+  id: StableMutagenFromMutadone
+  reactants:
+    Mutadone:
+      amount: 3
+    Lithium:
+      amount: 1
+  products:
+    StableMutagen: 4
+
+- type: reaction
+  id: Glyphosate
+  reactants:
+    Chlorine:
+      amount: 1
+    Phosphorus:
+      amount: 1
+    Formaldehyde:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Glyphosate: 4
+
+- type: reaction
+  id: ItchingPowder
+  reactants:
+    WeldingFuel:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Fungus:
+      amount: 1
+  products:
+    ItchingPowder: 3
+
+- type: reaction
+  id: Nitroglycerin
+  reactants:
+    Glycerol:
+      amount: 1
+    FluorosulfuricAcid:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    Nitroglycerin: 3
+
+- type: reaction
+  id: PhlogistonDust
+  reactants:
+    Phlogiston:
+      amount: 1
+    Charcoal:
+      amount: 1
+    Phosphorus:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    PhlogistonDust: 4
+
+- type: reaction
+  id: Candlefication
+  minTemp: 374
+  impact: Low
+  quantized: true
+  reactants:
+    Oxygen:
+      amount: 1
+    LiquidGibs:
+      amount: 1
+  effects:
+  - !type:SpawnEntity
+    entity: Candle
+
+- type: reaction
+  id: Life
+  minTemp: 374
+  impact: Low
+  quantized: true
+  reactants:
+    StrangeReagent:
+      amount: 1
+    Synthflesh:
+      amount: 1
+    Blood:
+      amount: 1
+  effects:
+  - !type:SpawnEntity
+    entity: MobMouse
+
+- type: reaction
+  id: Soapification
+  minTemp: 374
+  impact: Low
+  quantized: true
+  reactants:
+    Lye:
+      amount: 10
+    LiquidGibs:
+      amount: 10
+  effects:
+  - !type:SpawnEntity
+    entity: Soap
+
+- type: reaction
+  id: IronMetalFoamWiki
+  impact: High
+  priority: -10
+  conserveEnergy: false
+  reactants:
+    Iron:
+      amount: 3
+    Fluorosurfactant:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  effects:
+  - !type:AreaReactionEffect
+    duration: 10
+    prototypeId: IronMetalFoam
+    sound:
+      path: /Audio/Effects/extinguish.ogg
+
+- type: reaction
+  id: AluminiumMetalFoamWiki
+  impact: High
+  priority: -10
+  conserveEnergy: false
+  reactants:
+    Aluminium:
+      amount: 3
+    Fluorosurfactant:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  effects:
+  - !type:AreaReactionEffect
+    duration: 10
+    prototypeId: AluminiumMetalFoam
+    sound:
+      path: /Audio/Effects/extinguish.ogg
+# open-space edit end

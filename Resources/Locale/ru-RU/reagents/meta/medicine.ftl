@@ -156,3 +156,71 @@ reagent-desc-haloperidol = Выводит из организма большин
 
 reagent-name-warfarin = варфарин
 reagent-desc-warfarin = Обычно используется в качестве антикоагулянта. Нарушает свёртываемость крови. При передозировке может вызвать внутреннее кровотечение.
+
+reagent-name-antihol = антиголь
+reagent-desc-antihol = Быстро выводит алкоголь и помогает очистить организм от лёгкого отравления.
+
+reagent-name-spaceacillin = космоциллин
+reagent-desc-spaceacillin = Космический антибиотик. В текущей сборке служит базовым медицинским компонентом и антисептиком для рецептов os_chem.
+
+reagent-name-atropine = атропин
+reagent-desc-atropine = Критический стабилизатор для тяжёлых пациентов. Лечит удушье и помогает пережить состояние на грани смерти, но вредит, если применён не к тому пациенту.
+
+reagent-name-liquid-solder = жидкий припой
+reagent-desc-liquid-solder = Металлический раствор для ремонта чувствительной электроники и позитронных мозгов.
+
+reagent-name-salicylic-acid = салициловая кислота
+reagent-desc-salicylic-acid = Лёгкое обезболивающее и средство против механических повреждений. Заодно охлаждает перегретого пациента.
+
+reagent-name-salbutamol = сальбутамол
+reagent-desc-salbutamol = Сильный препарат от гипоксии, позволяющий пережить отсутствие воздуха заметно дольше обычного.
+
+# open-space edit start
+reagent-name-anti-burn-stimulant = стимулятор против ожогов
+reagent-desc-anti-burn-stimulant = Специализированное средство для лечения ожогов. Стимулирует восстановление поврежденных тканей.
+# open-space edit end
+
+reagent-name-silver-sulfadiazine = сульфадиазин серебра
+reagent-desc-silver-sulfadiazine = Контактное средство против ожогов. Лучше всего работает при наружном применении.
+
+reagent-name-styptic-powder = кровоостанавливающая пудра
+reagent-desc-styptic-powder = Контактное средство против механических повреждений. Быстро затягивает наружные раны.
+
+reagent-name-synthflesh = синтплоть
+reagent-desc-synthflesh = Синтетическая масса для наружного лечения ожогов и механических повреждений сразу.
+
+reagent-name-syntmorphine = синтморфин
+reagent-desc-syntmorphine = Сильное обезболивающее. Глушит боль, но при накоплении вызывает сонливость и наркотический сон.
+
+reagent-name-pentetic-acid = пентетовая кислота
+reagent-desc-pentetic-acid = Агрессивный очиститель крови от токсинов и радиации. Полезен, но создаёт небольшую нагрузку на организм.
+
+reagent-name-perfluorodecalin = перфтордекалин
+reagent-desc-perfluorodecalin = Один из сильнейших препаратов против гипоксии. Позволяет выиграть время даже в очень плохой ситуации.
+
+reagent-name-rezadone = резадон
+reagent-desc-rezadone = Препарат для восстановления тяжёлых тканей и клеточных повреждений, включая изуродованное лицо.
+
+reagent-name-mutadone = мутадон
+reagent-desc-mutadone = Возвращает генетику к исходному состоянию и снимает нервную тряску.
+
+reagent-name-calomel = каломель
+reagent-desc-calomel = Очень быстро вымывает химикаты из крови, но опасен для тех, кто и так почти здоров.
+
+reagent-name-ether = эфир
+reagent-desc-ether = Седативный препарат, постепенно усыпляющий пациента.
+
+reagent-name-fomepizole = фомепизол
+reagent-desc-fomepizole = Снимает тяжёлое алкогольное опьянение и успокаивает нервную систему.
+
+reagent-name-teporone = тепорон
+reagent-desc-teporone = Выравнивает температуру тела обратно к норме, нагревая или охлаждая пациента по мере надобности.
+
+reagent-name-acetaldehyde = ацетальдегид
+reagent-desc-acetaldehyde = Уксусный альдегид, промежуточный химический компонент для более сложных рецептов os_chem.
+
+reagent-name-formaldehyde = формальдегид
+reagent-desc-formaldehyde = Ядовитый консервант и важный промежуточный компонент для медицинской и токсической химии.
+
+reagent-name-acetic-acid = уксусная кислота
+reagent-desc-acetic-acid = Кислый промежуточный реагент для продвинутой фармакологии и пищевой химии.

@@ -6,7 +6,7 @@
     Nitrogen:
       amount: 1
   products:
-    Ammonia: 4
+    Ammonia: 3
 
 - type: reaction
   id: CelluloseBreakdown
@@ -22,6 +22,7 @@
 
 - type: reaction
   id: Diethylamine
+  minTemp: 374
   reactants:
     Ammonia:
       amount: 1
@@ -33,12 +34,14 @@
 - type: reaction
   id: Phenol
   reactants:
-    Hydroxide:
+    Water:
       amount: 1
-    Benzene:
+    Chlorine:
+      amount: 1
+    Oil:
       amount: 1
   products:
-    Phenol: 2
+    Phenol: 3
 
 - type: reaction
   id: Acetone
@@ -50,7 +53,19 @@
     Oxygen:
       amount: 1
   products:
-    Acetone: 2
+    Acetone: 3
+
+# open-space edit start
+- type: reaction
+  id: Glycerol
+  reactants:
+    Cornoil:
+      amount: 3
+    SulfuricAcid:
+      amount: 1
+  products:
+    Glycerol: 1
+# open-space edit end
 
 - type: reaction
   id: FoamingAgent
@@ -82,12 +97,13 @@
     Sulfur:
       amount: 1
     Oxygen:
-      amount: 2
+      amount: 1
   products:
-    SulfuricAcid: 3
+    SulfuricAcid: 2
 
 - type: reaction
   id: FluorosulfuricAcid
+  minTemp: 380
   reactants:
     Fluorine:
       amount: 1
@@ -192,50 +208,57 @@
       sound:
         path: /Audio/Effects/extinguish.ogg
 
-- type: reaction
-  id: UraniumEmpExplosion
-  impact: High
-  priority: 20
-  conserveEnergy: false
-  reactants:
-    Iron:
-      amount: 1
-    Uranium:
-      amount: 1
-    Aluminium:
-      amount: 1
-  effects:
-    - !type:Emp
-      rangeModifier: 0.2
-      maxRange: 6
-      energyConsumption: 12500
-      duration: 15
+# open-space edit start
+# Disabled in favor of OS_CHEM EMPPulse, which uses the SS220 wiki recipe.
+# - type: reaction
+#   id: UraniumEmpExplosion
+#   impact: High
+#   priority: 20
+#   conserveEnergy: false
+#   reactants:
+#     Iron:
+#       amount: 1
+#     Uranium:
+#       amount: 1
+#   effects:
+#     - !type:Emp
+#       rangeModifier: 0.2
+#       maxRange: 6
+#       energyConsumption: 12500
+#       duration: 15
+# open-space edit end
 
-- type: reaction
-  id: Flash
-  impact: High
-  priority: 20
-  conserveEnergy: false
-  reactants:
-    Aluminium:
-      amount: 1
-    Potassium:
-      amount: 1
-    Sulfur:
-      amount: 1
-  effects:
-    - !type:Flash
+# open-space edit start
+# Disabled in favor of OS_CHEM FlashPowder, which uses the SS220 wiki recipe.
+# - type: reaction
+#   id: Flash
+#   impact: High
+#   priority: 20
+#   conserveEnergy: false
+#   reactants:
+#     Aluminium:
+#       amount: 1
+#     Chlorine:
+#       amount: 1
+#     Potassium:
+#       amount: 1
+#     Sulfur:
+#       amount: 1
+#   effects:
+#     - !type:Flash
+# open-space edit end
 
 - type: reaction
   id: TableSalt
-  minTemp: 370
   reactants:
     Chlorine:
       amount: 1
     Sodium:
       amount: 1
+    Water:
+      amount: 1
   products:
-    TableSalt: 2
+    TableSalt: 3
 
 - type: reaction
   id: TableSaltBreakdown
@@ -267,7 +290,7 @@
   reactants:
     Radium:
       amount: 1
-    Phosphorus:
+    Plasma:
       amount: 1
     Chlorine:
       amount: 1
@@ -384,13 +407,14 @@
 
 - type: reaction
   id: Charcoal
+  minTemp: 380
   reactants:
-    Carbon:
-      amount: 1
     Ash:
       amount: 1
+    TableSalt:
+      amount: 1
   products:
-    Charcoal: 1
+    Charcoal: 2
 
 - type: reaction
   id: NorepinephricAcid
@@ -534,9 +558,11 @@
 - type: reaction
   id: Lye
   reactants:
-    Water:
+    Sodium:
       amount: 1
-    Ash:
+    Hydrogen:
+      amount: 1
+    Oxygen:
       amount: 1
   products:
-    Lye: 2
+    Lye: 3

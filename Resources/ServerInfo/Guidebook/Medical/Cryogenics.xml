@@ -41,7 +41,7 @@ Once things have been set up, you're going to require a specific medication, Cry
 
 ## Additional Information:
 
-The standard pressure for a gas pump is 100.325 kpa. Cryoxadone works at under 170K, but it is standard practice to set the freezer to 100K for faster freezing.
+The standard pressure for a gas pump is 100.325 kPa. In this build, Cryoxadone starts working once the patient's body is below roughly 265K, but setting the freezer lower still cools the patient down faster.
 
 <GuideReagentEmbed Reagent="Aloxadone"/>
 <GuideReagentEmbed Reagent="Arcryox"/>
