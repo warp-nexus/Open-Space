@@ -101,10 +101,13 @@ public abstract class SharedSmartFridgeSystem : EntitySystem
     {
         var key = new SmartFridgeEntry(Identity.Name(args.Entity, EntityManager));
 
+        // open-space edit start
         if (ent.Comp.ContainedEntries.TryGetValue(key, out var contained))
         {
             contained.Remove(GetNetEntity(args.Entity));
+            TrimEmptyEntry(ent, key, contained);
         }
+        // open-space edit end
 
         Dirty(ent);
         UpdateUI(ent);
@@ -135,21 +138,55 @@ public abstract class SharedSmartFridgeSystem : EntitySystem
             return;
         }
 
-        foreach (var item in contained)
-        {
-            if (!_container.TryRemoveFromContainer(GetEntity(item)))
-                continue;
+        // open-space edit start
+        var requestedAmount = args.DispenseAll
+            ? contained.Count
+            : Math.Max(1, (int) args.Amount);
+        var dispensedAmount = 0;
 
+        while (contained.Count > 0 && dispensedAmount < requestedAmount)
+        {
+            using var enumerator = contained.GetEnumerator();
+            enumerator.MoveNext();
+            var item = enumerator.Current;
+
+            if (!_container.TryRemoveFromContainer(GetEntity(item)))
+            {
+                contained.Remove(item);
+                continue;
+            }
+
+            dispensedAmount++;
+        }
+
+        TrimEmptyEntry(ent, args.Entry, contained);
+
+        if (dispensedAmount > 0)
+        {
             _audio.PlayPredicted(ent.Comp.SoundVend, ent, args.Actor);
-            contained.Remove(item);
             Dirty(ent);
             UpdateUI(ent);
             return;
         }
+        // open-space edit end
 
         _audio.PlayPredicted(ent.Comp.SoundDeny, ent, args.Actor);
         _popup.PopupPredicted(Loc.GetString("smart-fridge-component-try-eject-out-of-stock"), ent, args.Actor);
     }
+
+    // open-space edit start
+    private void TrimEmptyEntry(Entity<SmartFridgeComponent> ent, SmartFridgeEntry entry, HashSet<NetEntity>? contained = null)
+    {
+        if (contained == null && !ent.Comp.ContainedEntries.TryGetValue(entry, out contained))
+            return;
+
+        if (contained.Count != 0)
+            return;
+
+        ent.Comp.ContainedEntries.Remove(entry);
+        ent.Comp.Entries.Remove(entry);
+    }
+    // open-space edit end
 
     private void OnGetAltVerb(Entity<SmartFridgeComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {

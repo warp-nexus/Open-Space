@@ -55,6 +55,20 @@ public sealed partial class SmartFridgeComponent : Component
     [DataField]
     public LocId FlavorText = "smart-fridge-request-generic";
 
+    // open-space edit start
+    /// <summary>
+    /// The localized window title shown in the BUI.
+    /// </summary>
+    [DataField]
+    public LocId WindowTitle = "smart-fridge-component-title";
+
+    /// <summary>
+    /// Optional authorization warning shown when the current user lacks access.
+    /// </summary>
+    [DataField]
+    public LocId? AccessDeniedBanner;
+    // open-space edit end
+
     /// <summary>
     /// Sound that plays when ejecting an item
     /// </summary>
@@ -100,10 +114,14 @@ public enum SmartFridgeUiKey : byte
 /// Sent by the client when trying to dispense an item inside the fridge.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class SmartFridgeDispenseItemMessage(SmartFridgeEntry entry) : BoundUserInterfaceMessage
+// open-space edit start
+public sealed class SmartFridgeDispenseItemMessage(SmartFridgeEntry entry, uint amount = 1, bool dispenseAll = false) : BoundUserInterfaceMessage
 {
     public SmartFridgeEntry Entry = entry;
+    public uint Amount = amount;
+    public bool DispenseAll = dispenseAll;
 }
+// open-space edit end
 
 /// <summary>
 /// Sent by the client when trying to remove an empty smart fridge entry from the list of items in the UI.

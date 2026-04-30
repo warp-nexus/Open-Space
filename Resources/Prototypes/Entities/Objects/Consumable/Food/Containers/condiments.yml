@@ -435,17 +435,18 @@
     tags:
       - Enzyme
 
+# open-space edit start
 - type: entity
   parent: BaseFoodCondimentBottle
-  id: FoodCondimentBottleVinegar
-  name: vinegar bottle
+  id: FoodCondimentBottleAceticAcid
+  name: acetic acid bottle
   description: Used in cooking to enhance flavor.
   components:
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
-        - ReagentId: Vinegar
+        - ReagentId: AceticAcid
           Quantity: 30
   - type: Sprite
     layers:
@@ -457,6 +458,7 @@
       visible: true
   - type: Icon
     state: bottle-vinegar
+# open-space edit end
 
 - type: entity
   parent: BaseFoodCondimentBottle

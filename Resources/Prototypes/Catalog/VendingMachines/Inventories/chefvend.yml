@@ -10,7 +10,9 @@
     FoodCondimentBottleHotsauce: 1
     FoodCondimentBottleKetchup: 1
     FoodCondimentBottleBBQ: 1
-    FoodCondimentBottleVinegar: 2
+# open-space edit start
+    FoodCondimentBottleAceticAcid: 2
+# open-space edit end
     ReagentContainerOliveoil: 2
     ReagentContainerMayo: 1
     VariantCubeBox: 1

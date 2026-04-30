@@ -76,7 +76,9 @@
       - !type:GroupSelector
         children:
         - id: FoodCondimentBottleColdsauce
-        - id: FoodCondimentBottleVinegar
+# open-space edit start
+        - id: FoodCondimentBottleAceticAcid
+# open-space edit end
         - id: FoodCondimentBottleHotsauce
         - id: FoodCondimentBottleKetchup
         - id: FoodCondimentBottleBBQ

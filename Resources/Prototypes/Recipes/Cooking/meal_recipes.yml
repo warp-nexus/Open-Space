@@ -1991,6 +1991,7 @@
     FoodLemon: 1
     FoodLime: 1
 
+# open-space edit start
 - type: microwaveMealRecipe
   id: RecipeKimchiSalad
   name: kimchi salad recipe
@@ -1998,12 +1999,13 @@
   time: 5
   group: Salad
   reagents:
-    Vinegar: 5
+    AceticAcid: 5
   solids:
     FoodBowlBig: 1
     FoodCarrot: 1
     FoodCabbage: 1
     FoodGarlic: 1
+# open-space edit end
 
 - type: microwaveMealRecipe
   id: RecipeFruitSalad

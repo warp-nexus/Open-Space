@@ -120,9 +120,31 @@
 - type: entity
   parent: SmartFridge
   id: SmartFridgeMedical
+  # open-space edit start
+  categories: [ HideSpawnMenu ]
+  # open-space edit end
   suffix: Medical
   components:
+  # open-space edit start
   - type: SmartFridge
+    windowTitle: chemical-fridge-component-title
+    accessDeniedBanner: chemical-fridge-component-access-required
     flavorText: smart-fridge-request-chemistry
+    whitelist:
+      components:
+      - FitsInDispenser
+      - Pill
+      tags:
+      - PillCanister
+      - Bottle
+      - Syringe
+      - ChemDispensable
   - type: AccessReader
     access: [["Medical"]]
+  # open-space edit end
+
+# open-space edit start
+- type: entity
+  parent: SmartFridgeMedical
+  id: ChemicalFridge
+# open-space edit end

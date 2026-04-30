@@ -1,24 +1,32 @@
+<!-- open-space edit start -->
 <controls:FancyWindow
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-    xmlns:co="clr-namespace:Content.Client.UserInterface.Controls"
-    MinHeight="450"
-    MinWidth="350"
-    Title="{Loc 'smart-fridge-component-title'}">
-    <BoxContainer Name="MainContainer" Orientation="Vertical">
-        <LineEdit Name="SearchBar" PlaceHolder="{Loc 'smart-fridge-component-search-filter'}" HorizontalExpand="True"  Margin ="4 4"/>
-        <co:SearchListContainer Name="VendingContents" VerticalExpand="True" Margin="4 4"/>
-         <!-- Footer -->
-        <BoxContainer Orientation="Vertical">
-            <PanelContainer StyleClasses="LowDivider" />
-            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
-                <Label Name="LeftFlavorLabel" StyleClasses="WindowFooterText" />
-                <Label Text="{Loc 'vending-machine-flavor-right'}" StyleClasses="WindowFooterText"
-                        HorizontalAlignment="Right" HorizontalExpand="True"  Margin="0 0 5 0" />
-                <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered"
-                        VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
-            </BoxContainer>
-        </BoxContainer>
+    MinHeight="500"
+    MinWidth="420">
+    <BoxContainer Name="MainContainer" Orientation="Vertical" SeparationOverride="4" Margin="6">
+        <PanelContainer Name="AuthorizationBanner" Visible="False">
+            <RichTextLabel Name="AuthorizationBannerLabel"
+                           Margin="6 4"
+                           HorizontalExpand="True"
+                           Modulate="#f1ca75" />
+        </PanelContainer>
+
+        <Label Text="{Loc 'smart-fridge-component-contents'}" StyleClasses="LabelHeading1" Margin="0 2 0 0" />
+
+        <ScrollContainer VerticalExpand="True">
+            <BoxContainer Name="EntriesContainer" Orientation="Vertical" SeparationOverride="6" />
+        </ScrollContainer>
+
+        <Label Name="EmptyLabel"
+               Text="{Loc 'smart-fridge-component-empty'}"
+               HorizontalAlignment="Center"
+               Margin="0 4 0 4"
+               Visible="False" />
+
+        <PanelContainer StyleClasses="LowDivider" />
+        <Label Name="LeftFlavorLabel" StyleClasses="WindowFooterText" Margin="4 0 4 0" />
     </BoxContainer>
 </controls:FancyWindow>
+<!-- open-space edit end -->
