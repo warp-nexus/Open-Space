@@ -14,6 +14,7 @@ namespace Content.Client.Chemistry.UI
     {
         [ViewVariables]
         private ChemMasterWindow? _window;
+        private ChemAnalysisPopup? _analysisPopup;
 
         public ChemMasterBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
@@ -32,26 +33,14 @@ namespace Content.Client.Chemistry.UI
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
 
             // Setup static button actions.
-            _window.InputEjectButton.OnPressed += _ => SendMessage(
-                new ItemSlotButtonPressedEvent(SharedChemMaster.InputSlotName));
+            _window.InputEjectButton.OnPressed += _ => SendMessage(new ChemMasterEjectBeakerMessage());
             _window.OutputEjectButton.OnPressed += _ => SendMessage(
                 new ItemSlotButtonPressedEvent(SharedChemMaster.OutputSlotName));
-            _window.BufferTransferButton.OnPressed += _ => SendMessage(
-                new ChemMasterSetModeMessage(ChemMasterMode.Transfer));
-            _window.BufferDiscardButton.OnPressed += _ => SendMessage(
-                new ChemMasterSetModeMessage(ChemMasterMode.Discard));
+            // open-space edit start
+            _window.OnBufferModeChanged += mode => SendMessage(new ChemMasterSetModeMessage(mode));
+            // open-space edit end
             _window.CreatePillButton.OnPressed += _ => SendMessage(
-                new ChemMasterCreatePillsMessage(
-                    (uint) _window.PillDosage.Value, (uint) _window.PillNumber.Value, _window.LabelLine));
-            _window.CreateBottleButton.OnPressed += _ => SendMessage(
-                new ChemMasterOutputToBottleMessage(
-                    (uint) _window.BottleDosage.Value, _window.LabelLine));
-            _window.BufferSortButton.OnPressed += _ => SendMessage(
-                    new ChemMasterSortingTypeCycleMessage());
-            _window.OutputBufferDraw.OnPressed += _ => SendMessage(
-                new ChemMasterOutputDrawSourceMessage(ChemMasterDrawSource.Internal));
-            _window.OutputBeakerDraw.OnPressed += _ => SendMessage(
-                new ChemMasterOutputDrawSourceMessage(ChemMasterDrawSource.External));
+                new ChemMasterCreatePillsMessage((uint) _window.PillDosage.Value, _window.PillLabelLine));
 
             for (uint i = 0; i < _window.PillTypeButtons.Length; i++)
             {
@@ -59,7 +48,11 @@ namespace Content.Client.Chemistry.UI
                 _window.PillTypeButtons[i].OnPressed += _ => SendMessage(new ChemMasterSetPillTypeMessage(pillType));
             }
 
-            _window.OnReagentButtonPressed += (args, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
+            _window.OnReagentAmountPressed += (reagent, amount, fromBuffer) =>
+                SendMessage(new ChemMasterReagentAmountButtonMessage(reagent, amount, fromBuffer));
+            _window.OnCustomAmountPressed += (reagent, amount, fromBuffer) =>
+                SendMessage(new ChemMasterCustomAmountMessage(reagent, amount, fromBuffer));
+            _window.OnAnalyzePressed += reagent => SendMessage(new ChemAnalyzeReagentMessage(reagent));
         }
 
         /// <summary>
@@ -76,6 +69,19 @@ namespace Content.Client.Chemistry.UI
             var castState = (ChemMasterBoundUserInterfaceState) state;
 
             _window?.UpdateState(castState); // Update window state
+        }
+
+        protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+        {
+            base.ReceiveMessage(message);
+
+            if (message is not ChemReagentAnalysisPopupMessage popup)
+                return;
+
+            _analysisPopup?.Close();
+            _analysisPopup = new ChemAnalysisPopup(popup);
+            _analysisPopup.OnPrintPressed += reagent => SendMessage(new ChemPrintAnalysisMessage(reagent));
+            _analysisPopup.OpenCentered();
         }
     }
 }

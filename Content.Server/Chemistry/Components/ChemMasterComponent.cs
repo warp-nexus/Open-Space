@@ -5,7 +5,7 @@ using Robust.Shared.Audio;
 namespace Content.Server.Chemistry.Components
 {
     /// <summary>
-    /// An industrial grade chemical manipulator with pill and bottle production included.
+    /// An industrial grade chemical manipulator with pill production included.
     /// <seealso cref="ChemMasterSystem"/>
     /// </summary>
     [RegisterComponent]
@@ -28,7 +28,7 @@ namespace Content.Server.Chemistry.Components
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
         /// <summary>
-        /// Which source the chem master should draw from when making pills/bottles.
+        /// Which source the chem master should draw from when making products.
         /// </summary>
         [DataField]
         public ChemMasterDrawSource DrawSource = ChemMasterDrawSource.Internal;

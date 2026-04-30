@@ -1,0 +1,23 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      MinSize="300 220">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+        <Label Name="TitleLabel"
+               Access="Public"
+               HorizontalAlignment="Center"
+               StyleClasses="LabelHeading" />
+        <GridContainer Columns="2">
+            <Label Text="{Loc 'chem-analysis-window-name-label'}" />
+            <Label Name="NameValue"
+                   Access="Public" />
+            <Label Text="{Loc 'chem-analysis-window-description-label'}" />
+            <RichTextLabel Name="DescriptionValue"
+                           Access="Public"
+                           MaxWidth="260" />
+        </GridContainer>
+        <Control VerticalExpand="True" />
+        <Button Name="PrintButton"
+                Access="Public"
+                Text="{Loc 'chem-analysis-window-print-button'}" />
+    </BoxContainer>
+</controls:FancyWindow>

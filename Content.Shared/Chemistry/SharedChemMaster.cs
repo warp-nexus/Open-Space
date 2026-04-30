@@ -59,28 +59,31 @@ namespace Content.Shared.Chemistry
     public sealed class ChemMasterCreatePillsMessage : BoundUserInterfaceMessage
     {
         public readonly uint Dosage;
-        public readonly uint Number;
         public readonly string Label;
 
-        public ChemMasterCreatePillsMessage(uint dosage, uint number, string label)
+        public ChemMasterCreatePillsMessage(uint dosage, string label)
         {
             Dosage = dosage;
-            Number = number;
             Label = label;
         }
     }
 
+    // open-space edit start
     [Serializable, NetSerializable]
-    public sealed class ChemMasterOutputToBottleMessage : BoundUserInterfaceMessage
-    {
-        public readonly uint Dosage;
-        public readonly string Label;
+    public sealed class ChemMasterMoveBufferToContainerMessage : BoundUserInterfaceMessage;
 
-        public ChemMasterOutputToBottleMessage(uint dosage, string label)
-        {
-            Dosage = dosage;
-            Label = label;
-        }
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterEjectBeakerAndClearBufferMessage : BoundUserInterfaceMessage;
+
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterEjectBeakerMessage : BoundUserInterfaceMessage;
+
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterCustomAmountMessage(ReagentId reagentId, FixedPoint2 amount, bool fromBuffer) : BoundUserInterfaceMessage
+    {
+        public readonly ReagentId ReagentId = reagentId;
+        public readonly FixedPoint2 Amount = amount;
+        public readonly bool FromBuffer = fromBuffer;
     }
 
     [Serializable, NetSerializable]
@@ -88,6 +91,7 @@ namespace Content.Shared.Chemistry
     {
         public readonly ChemMasterDrawSource DrawSource = drawSource;
     }
+    // open-space edit end
 
     public enum ChemMasterMode
     {
@@ -185,34 +189,34 @@ namespace Content.Shared.Chemistry
         /// </summary>
         public readonly IReadOnlyList<ReagentQuantity> BufferReagents;
 
-        public readonly ChemMasterMode Mode;
-
-        public readonly ChemMasterSortingType SortingType;
-
         public readonly FixedPoint2? BufferCurrentVolume;
+        // open-space edit start
+        public readonly ChemMasterMode Mode;
+        // open-space edit end
         public readonly uint SelectedPillType;
 
         public readonly uint PillDosageLimit;
 
-        public readonly bool UpdateLabel;
-
-        public readonly ChemMasterDrawSource DrawSource;
-
         public ChemMasterBoundUserInterfaceState(
-            ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
-            IReadOnlyList<ReagentQuantity> bufferReagents, FixedPoint2 bufferCurrentVolume,
-            uint selectedPillType, uint pillDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource)
+            ContainerInfo? inputContainerInfo,
+            ContainerInfo? outputContainerInfo,
+            IReadOnlyList<ReagentQuantity> bufferReagents,
+            FixedPoint2 bufferCurrentVolume,
+            // open-space edit start
+            ChemMasterMode mode,
+            // open-space edit end
+            uint selectedPillType,
+            uint pillDosageLimit)
         {
             InputContainerInfo = inputContainerInfo;
             OutputContainerInfo = outputContainerInfo;
             BufferReagents = bufferReagents;
-            Mode = mode;
-            SortingType = sortingType;
             BufferCurrentVolume = bufferCurrentVolume;
+            // open-space edit start
+            Mode = mode;
+            // open-space edit end
             SelectedPillType = selectedPillType;
             PillDosageLimit = pillDosageLimit;
-            UpdateLabel = updateLabel;
-            DrawSource = drawSource;
         }
     }
 

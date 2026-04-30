@@ -1,6 +1,5 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
-using Content.Shared.Storage;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry
@@ -11,6 +10,11 @@ namespace Content.Shared.Chemistry
     public sealed class SharedReagentDispenser
     {
         public const string OutputSlotName = "beakerSlot";
+
+        // open-space edit start
+        public const float DefaultEnergyCapacity = 1000f;
+        public const float DefaultRechargePerSecond = 2f;
+        // open-space edit end
     }
 
     [Serializable, NetSerializable]
@@ -67,32 +71,47 @@ namespace Content.Shared.Chemistry
     [Serializable, NetSerializable]
     public sealed class ReagentDispenserDispenseReagentMessage : BoundUserInterfaceMessage
     {
-        public readonly ItemStorageLocation StorageLocation;
+        // open-space edit start
+        public readonly ReagentId ReagentId;
 
-        public ReagentDispenserDispenseReagentMessage(ItemStorageLocation storageLocation)
+        public ReagentDispenserDispenseReagentMessage(ReagentId reagentId)
         {
-            StorageLocation = storageLocation;
+            ReagentId = reagentId;
         }
+        // open-space edit end
     }
 
-    /// <summary>
-    ///     Message sent by the user interface to ask the reagent dispenser to eject a container
-    /// </summary>
     [Serializable, NetSerializable]
-    public sealed class ReagentDispenserEjectContainerMessage : BoundUserInterfaceMessage
+    public sealed class ReagentDispenserContainerActionMessage : BoundUserInterfaceMessage
     {
-        public readonly ItemStorageLocation StorageLocation;
+        // open-space edit start
+        public readonly ReagentId ReagentId;
+        public readonly ReagentDispenserContainerAction Action;
+        public readonly FixedPoint2 Quantity;
 
-        public ReagentDispenserEjectContainerMessage(ItemStorageLocation storageLocation)
+        public ReagentDispenserContainerActionMessage(ReagentId reagentId, ReagentDispenserContainerAction action, FixedPoint2 quantity = default)
         {
-            StorageLocation = storageLocation;
+            ReagentId = reagentId;
+            Action = action;
+            Quantity = quantity;
         }
+        // open-space edit end
     }
+
+    // open-space edit start
+    [Serializable, NetSerializable]
+    public enum ReagentDispenserContainerAction : byte
+    {
+        Spill,
+        SpillAll,
+        Delete,
+        Analyze,
+    }
+    // open-space edit end
 
     [Serializable, NetSerializable]
     public sealed class ReagentDispenserClearContainerSolutionMessage : BoundUserInterfaceMessage
     {
-
     }
 
     public enum ReagentDispenserDispenseAmount
@@ -108,14 +127,15 @@ namespace Content.Shared.Chemistry
         U100 = 100,
     }
 
+    // open-space edit start
     [Serializable, NetSerializable]
-    public sealed class ReagentInventoryItem(ItemStorageLocation storageLocation, string reagentLabel, FixedPoint2 quantity, Color reagentColor)
+    public sealed class ReagentDispenserInventoryItem(ReagentId reagentId, string reagentLabel, Color reagentColor)
     {
-        public ItemStorageLocation StorageLocation = storageLocation;
+        public ReagentId ReagentId = reagentId;
         public string ReagentLabel = reagentLabel;
-        public FixedPoint2 Quantity = quantity;
         public Color ReagentColor = reagentColor;
     }
+    // open-space edit end
 
     [Serializable, NetSerializable]
     public sealed class ReagentDispenserBoundUserInterfaceState : BoundUserInterfaceState
@@ -127,16 +147,28 @@ namespace Content.Shared.Chemistry
         /// <summary>
         /// A list of the reagents which this dispenser can dispense.
         /// </summary>
-        public readonly List<ReagentInventoryItem> Inventory;
+        // open-space edit start
+        public readonly List<ReagentDispenserInventoryItem> Inventory;
+        public readonly float CurrentEnergy;
+        public readonly float MaxEnergy;
+        // open-space edit end
 
         public readonly ReagentDispenserDispenseAmount SelectedDispenseAmount;
 
-        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount)
+        public ReagentDispenserBoundUserInterfaceState(
+            ContainerInfo? outputContainer,
+            NetEntity? outputContainerEntity,
+            List<ReagentDispenserInventoryItem> inventory,
+            ReagentDispenserDispenseAmount selectedDispenseAmount,
+            float currentEnergy,
+            float maxEnergy)
         {
             OutputContainer = outputContainer;
             OutputContainerEntity = outputContainerEntity;
             Inventory = inventory;
             SelectedDispenseAmount = selectedDispenseAmount;
+            CurrentEnergy = currentEnergy;
+            MaxEnergy = maxEnergy;
         }
     }
 

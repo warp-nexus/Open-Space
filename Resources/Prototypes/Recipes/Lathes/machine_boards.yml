@@ -252,7 +252,9 @@
   result: DawInstrumentMachineCircuitboard
 
 - type: latheRecipe
-  parent: [BaseCircuitboardRecipe]
+  # open-space edit start
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  # open-space edit end
   id: SmartFridgeCircuitboard
   result: SmartFridgeCircuitboard
   

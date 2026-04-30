@@ -1353,13 +1353,19 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: SmartFridgeCircuitboard
-  name: SmartFridge machine board
-  description: A machine printed circuit board for a SmartFridge.
+  # open-space edit start
+  name: chemical fridge machine board
+  description: A machine printed circuit board for a chemical fridge.
+  # open-space edit end
   components:
   - type: Sprite
-    state: service
+    # open-space edit start
+    state: medical
+    # open-space edit end
   - type: MachineBoard
-    prototype: SmartFridge
+    # open-space edit start
+    prototype: ChemicalFridge
+    # open-space edit end
     stackRequirements:
       Glass: 5
       Manipulator: 2

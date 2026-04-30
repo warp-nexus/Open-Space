@@ -1,0 +1,16 @@
+solution-heater-window-title = Chemical heater
+solution-heater-window-parameters-label = Parameters
+solution-heater-window-target-temperature-label = Target temperature
+solution-heater-window-current-temperature-label = Current temperature
+solution-heater-window-temperature-value = {$temperature} K
+solution-heater-window-no-temperature-text = N/A
+solution-heater-window-auto-eject-on = Auto-eject: On
+solution-heater-window-auto-eject-off = Auto-eject: Off
+solution-heater-window-enabled-on = Enabled
+solution-heater-window-enabled-off = Disabled
+solution-heater-window-container-title = Container
+solution-heater-window-container-volume = {$current} / {$max} units
+solution-heater-window-eject-button = Eject
+solution-heater-window-no-container-text = No container inserted.
+solution-heater-window-empty-container-text = Container is empty.
+solution-heater-window-container-reagent = {$quantity} units {$reagent}

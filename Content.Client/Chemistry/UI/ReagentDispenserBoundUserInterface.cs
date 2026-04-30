@@ -1,5 +1,3 @@
-using Content.Client.Guidebook.Components;
-using Content.Client.UserInterface.Controls;
 using Content.Shared.Chemistry;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
@@ -16,6 +14,7 @@ namespace Content.Client.Chemistry.UI
     {
         [ViewVariables]
         private ReagentDispenserWindow? _window;
+        private ChemAnalysisPopup? _analysisPopup;
 
         public ReagentDispenserBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
@@ -32,16 +31,16 @@ namespace Content.Client.Chemistry.UI
 
             // Setup window layout/elements
             _window = this.CreateWindow<ReagentDispenserWindow>();
-            _window.SetInfoFromEntity(EntMan, Owner);
+            _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
 
             // Setup static button actions.
             _window.EjectButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(SharedReagentDispenser.OutputSlotName));
-            _window.ClearButton.OnPressed += _ => SendMessage(new ReagentDispenserClearContainerSolutionMessage());
 
             _window.AmountGrid.OnButtonPressed += s => SendMessage(new ReagentDispenserSetDispenseAmountMessage(s));
 
-            _window.OnDispenseReagentButtonPressed += (location) => SendMessage(new ReagentDispenserDispenseReagentMessage(location));
-            _window.OnEjectJugButtonPressed += (location) => SendMessage(new ReagentDispenserEjectContainerMessage(location));
+            _window.OnDispenseReagentButtonPressed += reagent => SendMessage(new ReagentDispenserDispenseReagentMessage(reagent));
+            _window.OnContainerActionPressed += (reagent, action, quantity) =>
+                SendMessage(new ReagentDispenserContainerActionMessage(reagent, action, quantity));
         }
 
         /// <summary>
@@ -57,6 +56,19 @@ namespace Content.Client.Chemistry.UI
 
             var castState = (ReagentDispenserBoundUserInterfaceState) state;
             _window?.UpdateState(castState); //Update window state
+        }
+
+        protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+        {
+            base.ReceiveMessage(message);
+
+            if (message is not ChemReagentAnalysisPopupMessage popup)
+                return;
+
+            _analysisPopup?.Close();
+            _analysisPopup = new ChemAnalysisPopup(popup);
+            _analysisPopup.OnPrintPressed += reagent => SendMessage(new ChemPrintAnalysisMessage(reagent));
+            _analysisPopup.OpenCentered();
         }
     }
 }

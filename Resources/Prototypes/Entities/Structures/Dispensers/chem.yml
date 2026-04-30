@@ -1,9 +1,9 @@
 - type: entity
   id: ChemDispenserEmpty
-  name: chemical dispenser
+  name: ХимРаздатчик 5000
   suffix: Empty
   parent: ReagentDispenserBase
-  description: An industrial grade chemical dispenser.
+  description: Автоматический синтезатор базовых реагентов с энергетическим буфером.
   components:
   - type: Sprite
     sprite: Structures/dispensers.rsi
@@ -54,28 +54,32 @@
   suffix: Filled
   parent: ChemDispenserEmpty
   components:
+  # open-space edit start
   - type: ReagentDispenser
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: JugAluminium
-        - id: JugCarbon
-        - id: JugChlorine
-        - id: JugCopper
-        - id: JugEthanol
-        - id: JugFluorine
-        - id: JugSugar
-        - id: JugHydrogen
-        - id: JugIodine
-        - id: JugIron
-        - id: JugLithium
-        - id: JugMercury
-        - id: JugNitrogen
-        - id: JugOxygen
-        - id: JugPhosphorus
-        - id: JugPotassium
-        - id: JugRadium
-        - id: JugSilicon
-        - id: JugSodium
-        - id: JugSulfur
+    dispensedReagents:
+    - Nitrogen
+    - Aluminium
+    - Bromine
+    - Water
+    - Hydrogen
+    - Iron
+    - Iodine
+    - Potassium
+    - Oxygen
+    - Silicon
+    - Lithium
+    - Copper
+    - Sodium
+    - Plasma
+    - Radium
+    - Mercury
+    - Sugar
+    - Sulfur
+    - Silver
+    - Carbon
+    - Phosphorus
+    - Fluorine
+    - Chlorine
+    - Chromium
+    - Ethanol
+  # open-space edit end

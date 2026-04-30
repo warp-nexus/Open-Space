@@ -5,15 +5,33 @@ reagent-dispenser-component-cannot-put-entity-message = Вы не можете �
 
 ## Bound UI
 
-reagent-dispenser-bound-user-interface-title = Раздатчик химикатов
+reagent-dispenser-bound-user-interface-title = ХимРаздатчик 5000
 
 ## UI
 
-reagent-dispenser-window-amount-to-dispense-label = Кол-во
-reagent-dispenser-window-clear-button = Очистить
+reagent-dispenser-window-parameters-label = Параметры
+reagent-dispenser-window-amount-to-dispense-label = Объём синтеза
+reagent-dispenser-window-reagents-label = Синтез реагентов
 reagent-dispenser-window-eject-button = Извлечь
-reagent-dispenser-window-eject-container-button = ⏏
+reagent-dispenser-window-container-title = Ёмкость
+reagent-dispenser-window-container-volume = {$current} / {$max} единиц
 reagent-dispenser-window-no-container-loaded-text = Контейнер не загружен.
-reagent-dispenser-window-reagent-name-not-found-text = Имя реагента не найдено
-reagent-dispenser-window-unknown-reagent-text = Неизвестный реагент
-reagent-dispenser-window-quantity-label-text = { $quantity } ед.
+reagent-dispenser-window-container-empty-text = Ёмкость пуста.
+reagent-dispenser-window-container-reagent = {$quantity} единиц {$reagent}
+reagent-dispenser-window-energy-value = {$current} / {$max} единиц
+reagent-dispenser-window-analyze-button = Анализ
+reagent-dispenser-window-spill-all-button = Слить
+reagent-dispenser-window-delete-button = Удалить
+reagent-dispenser-window-no-beaker-text = Вставьте ёмкость.
+reagent-dispenser-window-no-energy-text = Не хватает энергии.
+reagent-dispenser-window-container-full-text = Ёмкость больше не вмещает реагент.
+
+chem-analysis-window-title = Химический анализ
+chem-analysis-window-name-label = Название:
+chem-analysis-window-description-label = Описание:
+chem-analysis-window-print-button = Печать
+chem-analysis-paper-name = Отчёт анализа: {$reagent}
+chem-analysis-paper-title = Химический анализ
+chem-analysis-paper-name-line = Реагент: {$reagent}
+chem-analysis-paper-description-line = Описание: {$description}
+chem-analysis-paper-notes-line = Заметки:

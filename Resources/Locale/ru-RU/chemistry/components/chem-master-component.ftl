@@ -4,39 +4,38 @@ chem-master-component-activate-no-hands = У вас нет рук.
 chem-master-component-cannot-put-entity-message = Вы не можете поместить это в ХимМастер!
 
 ## Bound UI
-chem-master-bound-user-interface-title = ХимМастер 4000
+
+chem-master-bound-user-interface-title = ХимМастер 3000
 
 ## UI
 
-chem-master-window-input-tab = Вход
-chem-master-window-output-tab = Выход
-chem-master-window-container-label = Контейнер
-chem-master-window-eject-button = Извлечь
+chem-master-window-container-label = Ёмкость
+chem-master-window-eject-and-clear-button = Извлечь ёмкость
 chem-master-window-no-container-loaded-text = Контейнер не загружен.
 chem-master-window-buffer-text = Буфер
-chem-master-window-buffer-label = буфер:
 chem-master-window-buffer-all-amount = Всё
 chem-master-window-buffer-empty-text = Буфер пуст.
-chem-master-window-buffer-low-text = Недостаточно раствора в буфере
-chem-master-window-transfer-button = Перенести
-chem-master-window-discard-button = Уничтожить
-chem-master-window-packaging-text = Упаковка
-chem-master-current-text-label = Метка:
-chem-master-window-pills-label = Таблетка:
-chem-master-window-pill-type-label = Тип таблеток:
-chem-master-window-pills-number-label = Кол-во:
-chem-master-window-dose-label = Дозировка (ед.):
+chem-master-window-buffer-low-text = Недостаточно раствора в буфере.
+chem-master-window-buffer-move-button = Переместить в ёмкость
+chem-master-window-buffer-discard-checkbox = Удалять вместо перемещения в ёмкость
+chem-master-window-buffer-clear-button = Очистить буфер
+chem-master-window-products-label = Продукция
+chem-master-window-product-pill-tab = Таблетки
+chem-master-window-product-bottle-tab = Бутылки
+chem-master-window-pill-type-label = Тип
+chem-master-window-bottle-type-label = Тип
+chem-master-window-dose-label = Объём
+chem-master-window-custom-name-label = Название
 chem-master-window-create-button = Создать
-chem-master-window-bottles-label = Бутылочки:
-chem-master-window-unknown-reagent-text = Неизвестный реагент
-chem-master-window-sort-type-none = Сорт. по: Сначала старые
-chem-master-window-sort-type-alphabetical = Сорт. по: По алфавиту
-chem-master-window-sort-type-quantity = Сорт. по: Количество
-chem-master-window-sort-type-latest = Сорт. по: Сначала новые
-chem-master-output-buffer-draw = Буфер
-chem-master-output-beaker-draw = Ёмкость
-chem-master-window-no-beaker-text = Ёмкость не вставлена
-chem-master-window-beaker-empty-text = Ёмкость пуста
-chem-master-window-beaker-low-text = Недостаточно реагентов в ёмкости
-chem-master-output-source = Источник реагентов:
-chem-master-no-source = Нет источника
+chem-master-window-customization-label = Кастомизация контейнера
+chem-master-window-eject-container-button = Извлечь контейнер
+chem-master-window-no-output-container-loaded-text = Контейнер отсутствует.
+chem-master-window-custom-container-item = {$name} x{$quantity}
+chem-master-window-custom-container-reagent = {$quantity} единиц {$name}
+chem-master-window-container-volume = {$current} / {$max} единиц
+chem-master-window-container-empty-text = Контейнер пуст.
+chem-master-window-reagent-row = {$quantity} единиц {$reagent}
+chem-master-window-analyze-button = Анализ
+chem-master-window-custom-amount-button = Задать объём...
+chem-master-window-custom-amount-dialog-title = Произвольный объём
+chem-master-window-custom-amount-dialog-prompt = Единиц
