@@ -8,13 +8,27 @@ namespace Content.Client.HealthAnalyzer.UI;
 [GenerateTypedNameReferences]
 public sealed partial class HealthAnalyzerWindow : FancyWindow
 {
+    // open-space edit start
+    public event Action? OnClearPressed;
+    public event Action? OnPrintPressed;
+    // open-space edit end
+
     public HealthAnalyzerWindow()
     {
         RobustXamlLoader.Load(this);
+        // open-space edit start
+        ClearButton.OnPressed += _ => OnClearPressed?.Invoke();
+        PrintButton.OnPressed += _ => OnPrintPressed?.Invoke();
+        // open-space edit end
     }
 
     public void Populate(HealthAnalyzerScannedUserMessage msg)
     {
+        // open-space edit start
+        Title = msg.State.HasData
+            ? Loc.GetString("health-analyzer-window-title", ("patient", msg.State.PatientName))
+            : Loc.GetString("health-analyzer-window-title-empty");
+        // open-space edit end
         HealthAnalyzer.Populate(msg.State);
     }
 }

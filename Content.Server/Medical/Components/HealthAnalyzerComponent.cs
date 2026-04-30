@@ -1,5 +1,6 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.MedicalScanner;
 
 namespace Content.Server.Medical.Components;
 
@@ -67,4 +68,9 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public bool Silent;
+
+    // open-space edit start
+    [ViewVariables]
+    public HealthAnalyzerUiState LastState = new();
+    // open-space edit end
 }

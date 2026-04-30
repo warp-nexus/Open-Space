@@ -4,12 +4,22 @@
     xmlns:ui="clr-namespace:Content.Client.HealthAnalyzer.UI"
     MaxHeight="525"
     MinWidth="300">
-    <ScrollContainer
-        Margin="5 5 5 5"
-        ReturnMeasure="True"
-        VerticalExpand="True">
+    <!-- open-space edit start -->
+    <BoxContainer
+        Margin="5"
+        Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Button Name="ClearButton" Text="{Loc 'health-analyzer-window-clear'}" />
+            <Button Name="PrintButton" Text="{Loc 'health-analyzer-window-print'}" />
+        </BoxContainer>
 
-        <ui:HealthAnalyzerControl
-            Name="HealthAnalyzer"/>
-    </ScrollContainer>
+        <PanelContainer Margin="0 5" StyleClasses="LowDivider" />
+
+        <ScrollContainer
+            ReturnMeasure="True"
+            VerticalExpand="True">
+            <ui:HealthAnalyzerControl Name="HealthAnalyzer"/>
+        </ScrollContainer>
+    </BoxContainer>
+    <!-- open-space edit end -->
 </controls:FancyWindow>

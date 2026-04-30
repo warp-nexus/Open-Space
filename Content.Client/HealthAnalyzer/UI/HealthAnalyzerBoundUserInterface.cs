@@ -19,8 +19,11 @@ namespace Content.Client.HealthAnalyzer.UI
             base.Open();
 
             _window = this.CreateWindow<HealthAnalyzerWindow>();
-
-            _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+            // open-space edit start
+            _window.OnClearPressed += () => SendMessage(new HealthAnalyzerClearMessage());
+            _window.OnPrintPressed += () => SendMessage(new HealthAnalyzerPrintMessage());
+            _window.Title = Loc.GetString("health-analyzer-window-title-empty");
+            // open-space edit end
         }
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)
