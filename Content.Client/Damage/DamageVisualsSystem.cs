@@ -367,7 +367,9 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         if (damageVisComp.TargetLayers != null && damageVisComp.DamageOverlayGroups != null)
             UpdateDisabledLayers(uid, spriteComponent, component, damageVisComp);
 
+        // open-space edit start
         if (damageVisComp.Overlay && damageVisComp.TargetLayers == null)
+        // open-space edit end
             CheckOverlayOrdering((uid, spriteComponent), damageVisComp);
 
         if (AppearanceSystem.TryGetData<bool>(uid, DamageVisualizerKeys.ForceUpdate, out var update, component)
@@ -469,12 +471,14 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         SpriteSystem.RemoveLayer(spriteEnt.AsNullable(), spriteLayer);
         if (threshold == FixedPoint2.Zero) // these should automatically be invisible
             threshold = damageVisComp.Thresholds[1];
+        // open-space edit start
         spriteLayer = SpriteSystem.AddLayer(
             spriteEnt.AsNullable(),
             new SpriteSpecifier.Rsi(
                 new(sprite.Sprite),
                 $"{statePrefix}_{threshold}"
             ));
+        // open-space edit end
         SpriteSystem.LayerMapSet(spriteEnt.AsNullable(), key, spriteLayer);
         SpriteSystem.LayerSetVisible(spriteEnt.AsNullable(), spriteLayer, visibility);
         // this is somewhat iffy since it constantly reallocates
