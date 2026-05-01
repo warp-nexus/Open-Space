@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MPL-2.0
+// До 4e67dca4bf6e6239b6991c4c65851fd6e61a34e3 - MIT, после - MPL-2.0
+
 using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
