@@ -5,9 +5,11 @@ using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared._OpenSpace.BreathOrgan.Systems; // open-space edit
 using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
+using Content.Shared.StatusEffectNew; // open-space edit
 
 namespace Content.Server.Mobs;
 
@@ -22,6 +24,7 @@ public sealed class CritMobActionsSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!; // open-space edit
 
     private const int MaxLastWordsLength = 30;
 
@@ -48,11 +51,16 @@ public sealed class CritMobActionsSystem : EntitySystem
         if (!_mobState.IsCritical(uid))
             return;
 
+        // open-space edit start
+        _status.TrySetStatusEffectDuration(uid, HeldBreathSystem.HeldBreathId, out _);
+
         if (HasComp<MutedComponent>(uid))
         {
             _popupSystem.PopupEntity(Loc.GetString("fake-death-muted"), uid, uid);
+            args.Handled = true;
             return;
         }
+        // open-space edit end
 
         args.Handled = _deathgasp.Deathgasp(uid);
     }

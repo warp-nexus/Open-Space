@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
+using Content.Shared._OpenSpace.BreathOrgan.Components; // open-space edit
 using Content.Shared.Body.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -92,7 +93,9 @@ public sealed class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+            // open-space edit start
+            if (!(_mobState.IsIncapacitated(uid) || HasComp<HeldBreathComponent>(uid))) // cannot breathe in crit.
+            // open-space edit end
             {
                 switch (respirator.Status)
                 {
@@ -112,10 +115,15 @@ public sealed class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    _chat.TryEmoteWithChat(uid,
-                        respirator.GaspEmote,
-                        ChatTransmitRange.HideChat,
-                        ignoreActionBlocker: true);
+                    // open-space edit start
+                    if (!HasComp<HeldBreathComponent>(uid))
+                    {
+                        _chat.TryEmoteWithChat(uid,
+                            respirator.GaspEmote,
+                            ChatTransmitRange.HideChat,
+                            ignoreActionBlocker: true);
+                    }
+                    // open-space edit end
                 }
 
                 TakeSuffocationDamage((uid, respirator));
