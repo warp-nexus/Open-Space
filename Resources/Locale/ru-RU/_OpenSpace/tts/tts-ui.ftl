@@ -5,3 +5,4 @@ humanoid-profile-editor-voice-label = Голос:
 humanoid-profile-editor-voice-play-button = ▶
 tts-rate-limited = Вы генерируете TTS слишком быстро!
 voice-mask-tts-voice-label = Голос TTS:
+voice-mask-voice-popup-success = Голос успешно изменён.
