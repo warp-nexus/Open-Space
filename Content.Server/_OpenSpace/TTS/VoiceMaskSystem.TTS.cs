@@ -13,6 +13,18 @@ public partial class VoiceMaskSystem
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeVoiceMessage>(OnChangeVoice);
     }
 
+    private string? GetEffectiveVoiceId(Entity<VoiceMaskComponent> entity)
+    {
+        if (entity.Comp.VoiceId != null)
+            return entity.Comp.VoiceId;
+
+        if (_container.TryGetContainingContainer(entity.Owner, out var container) &&
+            TryComp<TTSComponent>(container.Owner, out var tts))
+            return tts.VoicePrototypeId;
+
+        return null;
+    }
+
     private void OnSpeakerVoiceTransform(Entity<VoiceMaskComponent> ent, ref InventoryRelayedEvent<TransformSpeakerVoiceEvent> args)
     {
         if (ent.Comp.VoiceId != null)
@@ -26,7 +38,7 @@ public partial class VoiceMaskSystem
 
         entity.Comp.VoiceId = msg.Voice;
 
-        _popupSystem.PopupEntity(Loc.GetString("voice-mask-voice-popup-success"), entity);
+        _popupSystem.PopupEntity(Loc.GetString("voice-mask-voice-popup-success"), entity, msg.Actor);
 
         UpdateUI(entity);
     }

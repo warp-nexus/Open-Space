@@ -1,4 +1,5 @@
 using Content.Shared.Speech;
+using Robust.Shared.GameObjects; // OpenSpace
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VoiceMask;
@@ -67,6 +68,7 @@ public sealed partial class VoiceMaskComponent : Component
     ///     TTS voice ID to use when wearing this mask. Null means no override.
     /// </summary>
     [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public string? VoiceId = null;
     // OpenSpace edit end
 }

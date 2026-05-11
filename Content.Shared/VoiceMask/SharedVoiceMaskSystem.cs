@@ -15,14 +15,18 @@ public sealed class VoiceMaskBuiState : BoundUserInterfaceState
     public readonly string? Verb;
     public readonly bool Active;
     public readonly bool AccentHide;
+    // OpenSpace edit start
+    public readonly string? Voice;
 
-    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide)
+    public VoiceMaskBuiState(string name, string? verb, bool active, bool accentHide, string? voice = null)
     {
         Name = name;
         Verb = verb;
         Active = active;
         AccentHide = accentHide;
+        Voice = voice;
     }
+    // OpenSpace edit end
 }
 
 [Serializable, NetSerializable]
