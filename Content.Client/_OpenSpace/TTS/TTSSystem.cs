@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Content.Client._OpenSpace.TTS;
 
-internal record struct TTSQueueElem(AudioStream Audio, bool IsWhisper, NetEntity Source);
+internal record struct TTSQueueElem(AudioStream Audio, bool IsWhisper, bool IsRadio, NetEntity Source);
 
 /// <summary>
 /// Plays TTS audio in world
@@ -41,6 +41,7 @@ public sealed class TTSSystem : EntitySystem
     private const int MaxQueuedSounds = 20;
 
     private float _volume = 0.0f;
+    private float _radioVolume = 0.0f;
     internal List<NetEntity> _toDelete = new();
 
     // Author -> Queue of sounds from different sources
@@ -52,6 +53,7 @@ public sealed class TTSSystem : EntitySystem
     {
         _sawmill = Logger.GetSawmill("tts");
         _cfg.OnValueChanged(CCVars.TTSVolume, OnTtsVolumeChanged, true);
+        _cfg.OnValueChanged(CCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(CCVars.TTSClientEnabled, OnTtsClientOptionChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
     }
@@ -60,6 +62,7 @@ public sealed class TTSSystem : EntitySystem
     {
         base.Shutdown();
         _cfg.UnsubValueChanged(CCVars.TTSVolume, OnTtsVolumeChanged);
+        _cfg.UnsubValueChanged(CCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(CCVars.TTSClientEnabled, OnTtsClientOptionChanged);
     }
 
@@ -96,7 +99,7 @@ public sealed class TTSSystem : EntitySystem
             if (!queue.TryDequeue(out var elem)) continue;
             if (!TryGetEntity(elem.Source, out var localSource))
                 continue;
-            _playing[author] = PlayTTSFromUid(localSource, elem.Audio, elem.IsWhisper);
+            _playing[author] = PlayTTSFromUid(localSource, elem.Audio, elem.IsWhisper, elem.IsRadio);
         }
         foreach (var author in _toDelete)
         {
@@ -104,10 +107,10 @@ public sealed class TTSSystem : EntitySystem
         }
     }
 
-    public AudioComponent? PlayTTSFromUid(EntityUid? uid, AudioStream audioStream, bool isWhisper)
+    public AudioComponent? PlayTTSFromUid(EntityUid? uid, AudioStream audioStream, bool isWhisper, bool isRadio = false)
     {
         var audioParams = AudioParams.Default
-            .WithVolume(AdjustVolume(isWhisper))
+            .WithVolume(isRadio ? AdjustRadioVolume() : AdjustVolume(isWhisper))
             .WithMaxDistance(AdjustDistance(isWhisper));
         (EntityUid Entity, AudioComponent Component)? stream;
 
@@ -137,6 +140,11 @@ public sealed class TTSSystem : EntitySystem
         _volume = volume;
     }
 
+    private void OnTtsRadioVolumeChanged(float volume)
+    {
+        _radioVolume = volume;
+    }
+
     private void OnPlayTTS(PlayTTSEvent ev)
     {
         if (!_enabled) return;
@@ -152,7 +160,7 @@ public sealed class TTSSystem : EntitySystem
 
         if (!author.Valid)
         {
-            PlayTTSFromUid(null, audioStream, ev.IsWhisper);
+            PlayTTSFromUid(null, audioStream, ev.IsWhisper, ev.IsRadio);
         }
         else
         {
@@ -160,6 +168,7 @@ public sealed class TTSSystem : EntitySystem
             {
                 Audio = audioStream,
                 IsWhisper = ev.IsWhisper,
+                IsRadio = ev.IsRadio,
                 Source = source,
             });
         }
@@ -173,6 +182,11 @@ public sealed class TTSSystem : EntitySystem
             volume -= SharedAudioSystem.GainToVolume(WhisperFade);
 
         return volume;
+    }
+
+    private float AdjustRadioVolume()
+    {
+        return MinimalVolume + SharedAudioSystem.GainToVolume(_radioVolume * 3.0f);
     }
 
     private float AdjustDistance(bool isWhisper)
