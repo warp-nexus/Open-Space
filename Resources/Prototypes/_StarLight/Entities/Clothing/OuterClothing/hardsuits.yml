@@ -1,0 +1,231 @@
+#BSO Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitBlueshield
+  name: blue shield hardsuit
+  description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
+  components:
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.7
+        Radiation: 0.25
+        Caustic: 0.6
+    staminaModifier: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+  - type: StealTarget
+    stealGroup: BSOHardsuit
+
+#NTRep Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitNtrep
+  name: NanoTrasen representative hardsuit
+  description: It used to be blue, but too many premium cigars turned it tobacco brown.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.525
+      lowPressureMultiplier: 10000
+    - type: ClothingSpeedModifier
+      walkModifier: 0.95
+      sprintModifier: 0.95
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+          Radiation: 0.25
+          Caustic: 0.9
+      staminaModifier: 0.8
+    - type: ExplosionResistance
+      damageCoefficient: 0.9
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitNtrep
+    - type: StealTarget
+      stealGroup: NTRepHardsuit
+    - type: Tag
+      tags:
+      - Hardsuit
+      - WhitelistChameleon
+      - CorgiWearable
+
+#Clown Battlesuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterBattlesuitClown
+  name: clown battlesuit
+  description: A funny suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/clown_battlesuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/clown_battlesuit.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.5
+      lowPressureMultiplier: 1000
+    - type: ExplosionResistance
+      damageCoefficient: 0.4
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.5
+          Caustic: 0.7
+          Heat: 0.5
+          Radiation: 0.1
+      staminaModifier: 0.7
+    - type: ClothingSpeedModifier
+      walkModifier: 0.85
+      sprintModifier: 0.8
+    - type: HeldSpeedModifier
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetBattlesuitClown
+
+#Syndicate Infiltration Suit
+- type: entity
+  parent:
+    [
+      ClothingOuterHardsuitBase,
+      AllowSuitStorageClothing,
+      BaseToggleClothing,
+    ]
+  id: ClothingOuterHardsuitInfiltration
+  name: syndicate infiltration hardsuit
+  description: The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+    - type: Clothing
+    - type: Item
+      size: Huge
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.525
+      lowPressureMultiplier: 10000
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.6
+          Radiation: 0.6
+          Caustic: 0.6
+      staminaModifier: 0.3
+    - type: ExplosionResistance
+      damageCoefficient: 0.5
+    - type: ToggleClothing
+      action: ActionTogglePhaseCloak
+      disableOnUnequip: true
+    - type: ComponentToggler
+      parent: true
+      components:
+        - type: Stealth
+          minVisibility: 0.15
+          maxVisibility: 0.15
+          lastVisibility: 0.15
+    - type: PowerCellDraw
+      drawRate: 14 # roughly 200 seconds on the default cell
+    - type: ToggleCellDraw
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      fitsInCharger: false
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+        toggleable-clothing: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellUltra
+          disableEject: true
+          whitelist:
+            tags:
+              - PowerCell
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
+    - type: Tag
+      tags:
+      - Hardsuit
+      - WhitelistChameleon
+      - CorgiWearable
+
+# Experimental Security Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitSecurityExperimental
+  name: experimental security hardsuit
+  description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. Rumors have it that the first prototype was stolen by the syndicate..
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/experimental_security.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/experimental_security.rsi
+      equipSound: /Audio/Mecha/mechmove03.ogg
+      unequipSound: /Audio/Mecha/mechmove03.ogg
+      equipDelay: 3
+      unequipDelay: 3
+    - type: PressureProtection
+      highPressureMultiplier: 0.3
+      lowPressureMultiplier: 1000
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
+    - type: ZombificationResistance
+      zombificationResistanceCoefficient: 0.50
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.6
+          Caustic: 0.7
+      staminaModifier: 0.6
+    - type: ClothingSpeedModifier
+      walkModifier: 0.60
+      sprintModifier: 0.60
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -6
+          pitch: 0.7
+          variation: 0.025
+    - type: HeldSpeedModifier
+    - type: Tag
+      tags:
+        - RequiredForLmgTag
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental

@@ -22,7 +22,6 @@
   - Clown
   - HeadOfPersonnel
   - Janitor
-  - Lawyer
   - Librarian
   - Mime
   - Musician
@@ -71,6 +70,8 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
+  - Magistrate
+  - NanoTrasenRepresentative
   primary: false
   weight: 100
 

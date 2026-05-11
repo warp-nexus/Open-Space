@@ -1,0 +1,16 @@
+job-description-blueshield = Защищайте командование! Вы рубеж между жизнью и смертью для глав станции. Вы их колчуга и щит. Помните, вы не сотрудник службы безопасности.
+job-description-boxer = Пробейтесь на вершину! Бросьте вызов Главе Персонала, и вас посадят в тюрьму за победу.
+job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
+job-description-dutyofficer = Guard Genpop, process prisoners, fight with the non-compliant. Your job is to make sure that people who were caught, stay caught, and to act as an extension of the warden.
+job-description-iaa = Защищайте и осуждайте рабов системы! Обеспечте бюрократическую связь с NanoTrasen!
+job-description-magistrate = Судите некомпетентных глав станции. Вы подчиняетесь Космическому Закону и рабочии станции в том числе!
+job-description-mailtech = Deliver letters and packages to the crew of the station to make cargo money.
+job-description-miningspec = Stay station side and enrich the station with materials using your salvage magnet and ore processors
+job-description-nanotrasen-special-forces = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
+job-description-ntncblueshield = Your primary job is to protect your charged Nanotrasen-Central Command Consortium officials, this overrules anything else.
+job-description-ntrep = Вы аудитор, направленный Центральным командованием для обеспечения эффективной работы всего персонала в интересах корпорации.
+job-description-roboticist = A scientist whose purpose is to repair and create mechanoids, cyborgs, and other mechanical creations.
+job-description-salvagelead = Lead your salvage team and keep them safe. Remember, you are the Quartermaster's eyes and ears off station.
+job-description-surgeon = Heal people, cripple enemies, and replace limbs and organs!
+job-description-zookeeper = Put on a joyful display of cute animals and space carps for all the crew to see.
+job-description-nct = Your job is to try to assist as many crew members as possible regardless of department. You are NOT permitted to give command staff advice on any command SOP questions or aid in legal advice.

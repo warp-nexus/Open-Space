@@ -1,0 +1,55 @@
+- type: entity
+  id: SpawnPointMagistrate
+  parent: SpawnPointJobBase
+  name: Magistrate
+  components:
+  - type: SpawnPoint
+    job_id: Magistrate
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: magistrate
+      - state: jobicon
+
+- type: entity
+  id: SpawnPointNtrep
+  parent: SpawnPointJobBase
+  name: NanoTrasen representative
+  components:
+  - type: SpawnPoint
+    job_id: NanoTrasenRepresentative
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: ntrep
+      - state: jobicon
+
+- type: entity
+  id: SpawnPointIAA
+  parent: SpawnPointJobBase
+  name: IAA
+  components:
+  - type: SpawnPoint
+    job_id: IAA
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: iaa
+      - state: jobicon
+
+- type: entity
+  id: SpawnPointBSO
+  parent: SpawnPointJobBase
+  name: BlueShield
+  components:
+  - type: SpawnPoint
+    job_id: BlueShield
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: obs
+      - state: jobicon

@@ -1,0 +1,64 @@
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtNtrep
+  name: nt representive skirt
+  description: That skirt that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtNtrepTurtleneck
+  name: nt representive's turtleneck jumpskirt
+  description: For a more casual look while on the job.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtBlueShield
+  name: blueshield officer's skirt
+  description: Skirt of a glorified bodyguard
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtEliteBlueShield
+  name: elite blueshield officer's skirt
+  description: Skirt of an elite blueshield. To reach such a level, you must have protected command from a [REDACTED] threat.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtBlueShieldSkirt
+  name: blueshield officer's pencil skirt
+  description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: MagistrateUniformSkirt
+  name: Magistrate's Jumpskirt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi

@@ -1,0 +1,51 @@
+- type: entity
+  parent: IDCardStandard
+  id: MagistrateIDCard
+  name: magistrate ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - state: idmagistrate
+    - type: PresetIdCard
+      job: Magistrate
+
+- type: entity
+  parent: IDCardStandard
+  id: NanoTrasenRepresentativeIDCard
+  name: NanoTrasen representative ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_commander
+  - type: PresetIdCard
+    job: NanoTrasenRepresentative
+
+- type: entity
+  parent: IDCardStandard
+  id: IAAIDCard
+  name: internal affairs agent ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+      - state: silver
+      - state: idiaa
+    - type: PresetIdCard
+      job: IAA
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldIDCard
+  name: blueshield officer's ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idblueshield
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: BlueShield

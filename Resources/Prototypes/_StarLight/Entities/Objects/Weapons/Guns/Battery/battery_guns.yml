@@ -1,0 +1,60 @@
+# - type: entity
+#   name: X-01 multiphase energy gun
+#   parent: [ BaseWeaponBatterySmall ]
+#   id: WeaponMultiphaseGun
+#   description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
+#   components:
+#   - type: Appearance
+#   - type: Sprite
+#     sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
+#     layers:
+#     - state: base
+#       map: ["enum.GunVisualLayers.Base"]
+#     - state: disable-unshaded
+#       map: ["enum.FireModesLayers.FireMode"]
+#       shader: unshaded
+#     - state: disable-unshaded-0
+#       map: ["enum.GunVisualLayers.MagUnshaded"]
+#       shader: unshaded
+#   - type: Lock
+#     mindShieldLock: true
+#     autoUnlock: true
+#     autoLock: true
+#   - type: AccessReader
+#     access: [["BlueShield"]]
+#   - type: Item
+#     size: Small
+#     shape:
+#     - 0, 0, 1, 1
+#   - type: MagazineVisuals
+#     magState: disable
+#     steps: 5
+#     zeroVisible: true
+#   - type: BatteryAmmoProvider
+#     proto: DisablerBolt
+#     fireCost: 40
+#   - type: BatteryWeaponFireModes
+#     fireModes:
+#     - proto: DisablerBolt
+#       fireCost: 40
+#       magState: disable
+#       visualState: disable-unshaded
+#     - proto: TaserBolt
+#       fireCost: 100
+#       magState: stun
+#       visualState: stun-unshaded
+#     - proto: RedLaserBeam
+#       fireCost: 75
+#       magState: kill
+#       visualState: kill-unshaded
+#     - proto: DestructionBeam
+#       fireCost: 100
+#       magState: destroy
+#       visualState: destroy-unshaded
+#   - type: Battery
+#     maxCharge: 1500
+#     startingCharge: 1500
+#   - type: BatterySelfRecharger
+#     autoRechargeRate: 20
+#   - type: StealTarget
+#     stealGroup: BSOWeapon

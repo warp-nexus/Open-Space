@@ -116,6 +116,15 @@
             "name": "Mime"
         },
         {
+            "name": "Magistrate"
+        },
+        {
+            "name": "IAA"
+        },
+        {
+            "name": "BlueShield"
+        },
+        {
             "name": "MindShield",
             "delays": [
                 [

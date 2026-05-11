@@ -1,0 +1,51 @@
+- type: roleLoadout
+  id: JobMagistrate
+  groups:
+  - CommonBackpack
+  - MagistrateShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - LuxuryPens
+
+- type: roleLoadout
+  id: JobNanoTrasenRepresentative
+  groups:
+  - NanoTrasenRepresentativeHead
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeEyewear
+  - CommonBackpack
+  - NanotrasenRepresentativeShoes
+  - Trinkets
+  - Scarves
+  - NTRPens
+  - Survival
+
+- type: roleLoadout
+  id: JobIAA
+  groups:
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - LawyerShoes
+  - Trinkets
+  - Scarves
+  - LuxuryPens
+  - Survival
+
+- type: roleLoadout
+  id: JobBlueShield
+  groups:
+  - BlueShieldHead
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - BlueShieldOuterclothing
+  - BlueShieldBelt
+  - BlueShieldShoes
+  - BlueShieldNeck
+  - BlueShieldEyewear
+  - BlueShieldPDA
+  - Trinkets
+  - Scarves
+  - Pens
+  - SurvivalSecurity
