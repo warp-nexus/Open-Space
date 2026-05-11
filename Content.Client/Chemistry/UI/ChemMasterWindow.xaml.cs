@@ -1393,7 +1393,7 @@ namespace Content.Client.Chemistry.UI
             {
                 foreach (var (id, quantity) in info.Entities.Select(x => (x.Id, x.Quantity)))
                 {
-                    control.Children.Add(BuildReagentRow(default, rowCount++, id, default, quantity, false, addReagentButtons));
+                    control.Children.Add(BuildReagentRow(default, rowCount++, id, default, quantity, false, addReagentButtons: false));
                 }
             }
 

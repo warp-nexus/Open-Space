@@ -312,8 +312,8 @@ namespace Content.Client.ContextMenu.UI
 
             // remove the element
             var parent = element.ParentMenu?.ParentElement;
+            Elements.Remove(entity);   // OpenSpace tweak
             element.Dispose();
-            Elements.Remove(entity);
 
             // update any parent elements
             if (parent is EntityMenuElement e)
