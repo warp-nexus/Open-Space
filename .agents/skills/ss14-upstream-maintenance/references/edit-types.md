@@ -14,13 +14,13 @@ Choose the earliest option that fully solves the task without hiding fork behavi
 
 When option 3 requires OpenSpace-specific code in a file outside `_OpenSpace`, keep the patch narrow and mark it:
 
-- Single added or changed line: append `// OpenSpace` as an inline comment.
+- Single added or changed line: append `// OpenSpace-Edit` as an inline comment.
 - Multiple lines: wrap with block markers:
 
 ```csharp
-// OpenSpace edit start
+// OpenSpace Edit Start
 ...code here...
-// OpenSpace edit end
+// OpenSpace Edit End
 ```
 
 Use the file's native comment syntax for non-C# files while preserving the marker text.
