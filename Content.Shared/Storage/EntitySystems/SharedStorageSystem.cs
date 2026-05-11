@@ -84,6 +84,7 @@ public abstract class SharedStorageSystem : EntitySystem
     public bool NestedStorage = true;
 
     public static readonly ProtoId<ItemSizePrototype> DefaultStorageMaxItemSize = "Normal";
+    private static readonly ProtoId<TagPrototype> OpenSpaceStorageBlacklistTag = "OpenSpaceStorageBlacklist";
 
     public const float AreaInsertDelayPerItem = 0.075f;
     private static AudioParams _audioParams = AudioParams.Default
@@ -1064,7 +1065,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
         if (_whitelistSystem.IsWhitelistFail(storageComp.Whitelist, insertEnt) ||
             _whitelistSystem.IsWhitelistPass(storageComp.Blacklist, insertEnt) ||
-            _tag.HasTag(insertEnt, "OpenSpaceStorageBlacklist"))  // OpenSpace tweak
+            _tag.HasTag(insertEnt, OpenSpaceStorageBlacklistTag))  // OpenSpace tweak
         {
             reason = "comp-storage-invalid-container";
             return false;
