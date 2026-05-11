@@ -81,6 +81,11 @@ namespace Content.Shared.Chat
         AdminChat = 1 << 13,
 
         /// <summary>
+        ///     Collective mind channel for entities who have comp.
+        /// </summary>
+        //CollectiveMind = 1 << 14,
+
+        /// <summary>
         ///     Unspecified.
         /// </summary>
         Unspecified = 1 << 14,

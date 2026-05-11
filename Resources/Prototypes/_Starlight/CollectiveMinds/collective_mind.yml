@@ -1,0 +1,15 @@
+- type: collectiveMind
+  id: Dionas
+  name: collective-mind-dioneas
+  keycode: 'd'
+  color: "#15912a"
+  requiredTags:
+  - Diona
+
+- type: collectiveMind
+  id: Xeno
+  name: collective-mind-xeno
+  keycode: 'x'
+  color: "#0fca2e"
+  requiredTags:
+  - HumanoidXeno

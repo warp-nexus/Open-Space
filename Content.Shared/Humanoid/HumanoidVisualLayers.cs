@@ -33,6 +33,7 @@ namespace Content.Shared.Humanoid
         StencilMask,
         Ensnare,
         Fire,
+        Tracheas // Open space edit
 
     }
 }

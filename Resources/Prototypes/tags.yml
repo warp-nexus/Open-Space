@@ -1584,6 +1584,16 @@
 - type: Tag
   id: XenoborgModuleStealth # Cyborg module category for evil stealth xenoborg
 
+# Open Space edit
+- type: Tag
+  id: HumanoidXeno # Гуманоидные ксеноморфы
+
+- type: Tag
+  id: Helmet # Обозначает предмет, как шлем
+
+- type: Tag
+  id: NoXeno # Для ограничений ксеноморфов (в будущем)
+
 ## Y ##
 ## Z ##
 # ALPHABETICAL

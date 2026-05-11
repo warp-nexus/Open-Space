@@ -1,0 +1,22 @@
+- type: entity
+  id: EffectNightVision
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#D6E4FF"
+    energy: 0.8
+    radius: 20
+    softness: 20
+
+- type: entity
+  id: EffectNightVisionXeno
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#a8de5c"
+    energy: 0.8
+    radius: 20
+    softness: 20
+  - type: BlackAndWhiteOverlay
