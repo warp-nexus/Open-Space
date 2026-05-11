@@ -37,18 +37,14 @@ namespace Content.Client.Chemistry.UI
         public event Action<int>? OnTransferAmountChanged;
         public event Action<List<int>>? OnUpdateAmounts;
         public event Action<ReagentId, bool, bool>? OnTransferAllPressed;
-        public event Action<ReagentId>? OnChooseReagentPressed;
         public event Action<ReagentId, int>? OnSelectReagentAmount;
         public event Action<ReagentId, int>? OnRemoveReagentAmount;
-        public event Action<ReagentId>? OnClearReagentAmount;
         public event Action<int>? OnToggleBottleFillPressed;
         public event Action<int>? OnBottleSlotEjectPressed;
         public event Action<int>? OnRowEjectPressed;
         public event Action<int>? OnPillContainerSlotSelected;
-        public event Action<int>? OnTogglePillContainerFillPressed;
         public event Action<int>? OnPillCanisterSelected;
         public event Action<int>? OnPillCanisterEjected;
-        public event Action? OnTransferFromBottlePressed;
         public event Action<ReagentId, int>? OnTransferReagentFromBottle;
 
         // UI State

@@ -48,17 +48,14 @@ namespace Content.Client.Chemistry.UI
             _window.OnTransferAmountChanged += amount => SendPredictedMessage(new ChemMasterTransferringAmountUpdated(amount));
             _window.OnUpdateAmounts += amounts => SendPredictedMessage(new ChemMasterAmountsUpdated(amounts));
             _window.OnTransferAllPressed += (reagent, isBuffer, isOutput) => SendPredictedMessage(new ChemMasterReagentAmountButtonMessage(reagent, int.MaxValue, isBuffer, isOutput));
-            _window.OnChooseReagentPressed += reagent => SendPredictedMessage(!string.IsNullOrEmpty(reagent.Prototype) ? new ChemMasterChooseReagentMessage(reagent) : new ChemMasterClearReagentSelectionMessage());
             _window.OnToggleBottleFillPressed += slot => SendPredictedMessage(new ChemMasterToggleBottleFillMessage(slot));
             _window.OnBottleSlotEjectPressed += slot => SendPredictedMessage(new ItemSlotButtonPressedEvent($"bottleSlot{slot}"));
             _window.OnRowEjectPressed += row => SendPredictedMessage(new ChemMasterRowEjectMessage(row));
             _window.OnPillContainerSlotSelected += slot => SendPredictedMessage(new ChemMasterSelectPillContainerSlotMessage(slot));
-            _window.OnTogglePillContainerFillPressed += slot => SendPredictedMessage(new ChemMasterTogglePillContainerFillMessage(slot));
             _window.OnPillCanisterSelected += canisterIndex => SendPredictedMessage(new ChemMasterSelectPillCanisterForCreationMessage(canisterIndex));
             _window.OnPillCanisterEjected += canisterIndex => SendPredictedMessage(new ItemSlotButtonPressedEvent($"pillContainerSlot{canisterIndex}"));
             _window.OnSelectReagentAmount += (reagent, amount) => SendPredictedMessage(new ChemMasterSelectReagentAmountMessage(reagent, amount));
             _window.OnRemoveReagentAmount += (reagent, amount) => SendPredictedMessage(new ChemMasterRemoveReagentAmountMessage(reagent, amount));
-            _window.OnClearReagentAmount += reagent => SendPredictedMessage(new ChemMasterClearReagentAmountMessage(reagent));
             _window.OnTransferReagentFromBottle += (reagent, amount) => SendPredictedMessage(new ChemMasterReagentAmountButtonMessage(reagent, amount, false, false));
         }
 
