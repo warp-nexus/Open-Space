@@ -491,6 +491,7 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
+            if (Voice != other.Voice) return false; // OpenSpace
             return Appearance.Equals(other.Appearance);
         }
 
@@ -746,6 +747,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Appearance);
             hashCode.Add((int)SpawnPriority);
             hashCode.Add((int)PreferenceUnavailable);
+            hashCode.Add(Voice); // OpenSpace
             return hashCode.ToHashCode();
         }
 
