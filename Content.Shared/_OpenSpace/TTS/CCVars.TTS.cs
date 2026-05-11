@@ -68,7 +68,7 @@ public sealed partial class CCVars
     /// VoiceId for Announcement TTS.
     /// </summary>
     public static readonly CVarDef<string> TTSAnnounceVoiceId =
-        CVarDef.Create("tts.announce_voice", "Skippy", CVar.SERVERONLY | CVar.ARCHIVE);
+        CVarDef.Create("tts.announce_voice", "mita", CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Default volume setting of TTS Announce sound.

@@ -1,5 +1,6 @@
-using Content.Shared.Chat;
+using Content.Server.Communications;
 using Content.Server.Players.RateLimiting;
+using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.CCVar;
@@ -22,6 +23,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _rng = default!;
 
     private List<ICommonSession> _ignoredRecipients = new();
+    private EntityUid? _pendingAnnouncementActor; // OpenSpace
 
     private readonly List<string> _sampleText =
         new()
@@ -52,6 +54,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeLocalEvent<ActorComponent, TTSRadioPlayEvent>(OnTTSRadioPlayEvent);
         SubscribeLocalEvent<TTSAnnouncementEvent>(OnAnnouncement);
+        SubscribeLocalEvent<CommunicationConsoleAnnouncementEvent>(OnConsoleAnnouncement); // OpenSpace
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
         SubscribeNetworkEvent<ClientOptionTTSEvent>(OnClientOptionTTS);
@@ -113,15 +116,39 @@ public sealed partial class TTSSystem : EntitySystem
         HandleSay(uid, args.Message, protoVoice.Speaker);
     }
 
+    // OpenSpace edit start
+    private void OnConsoleAnnouncement(ref CommunicationConsoleAnnouncementEvent ev)
+    {
+        _pendingAnnouncementActor = ev.Sender;
+    }
+    // OpenSpace edit end
+
     private async void OnAnnouncement(TTSAnnouncementEvent ev)
     {
         if (!_isEnabled) return;
 
-        var voiceId = _cfg.GetCVar(CCVars.TTSAnnounceVoiceId);
-        if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var protoVoice))
-            return;
+        // OpenSpace edit start
+        string speaker;
+        var actor = _pendingAnnouncementActor;
+        _pendingAnnouncementActor = null;
 
-        var soundData = await GenerateTTS(ev.Message, protoVoice.Speaker);
+        if (actor != null
+            && TryComp<TTSComponent>(actor, out var ttsComp)
+            && ttsComp.VoicePrototypeId != null
+            && _prototypeManager.TryIndex<TTSVoicePrototype>(ttsComp.VoicePrototypeId, out var actorVoice))
+        {
+            speaker = actorVoice.Speaker;
+        }
+        else
+        {
+            var voiceId = _cfg.GetCVar(CCVars.TTSAnnounceVoiceId);
+            if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var defaultVoice))
+                return;
+            speaker = defaultVoice.Speaker;
+        }
+        // OpenSpace edit end
+
+        var soundData = await GenerateTTS(ev.Message, speaker);
         if (soundData is null) return;
 
         RaiseNetworkEvent(new PlayTTSEvent(soundData, null, isRadio: true), ev.Recipients.RemovePlayers(_ignoredRecipients));
