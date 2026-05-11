@@ -1063,7 +1063,7 @@ public abstract class SharedStorageSystem : EntitySystem
         }
 
         if (_whitelistSystem.IsWhitelistFail(storageComp.Whitelist, insertEnt) ||
-            _whitelistSystem.IsBlacklistPass(storageComp.Blacklist, insertEnt) ||
+            _whitelistSystem.IsWhitelistPass(storageComp.Blacklist, insertEnt) ||
             _tag.HasTag(insertEnt, "OpenSpaceStorageBlacklist"))  // OpenSpace tweak
         {
             reason = "comp-storage-invalid-container";

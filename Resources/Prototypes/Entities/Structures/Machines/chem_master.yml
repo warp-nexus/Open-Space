@@ -16,9 +16,19 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: Icon
     sprite: Structures/Machines/mixer.rsi
-    state: mixer_loaded
+    state: mixer_empty
+  - type: ItemMapper
+    containerWhitelist: [beakerSlot]
+    mapLayers:
+      mixer_loaded:
+        whitelist:
+          components:
+          - FitsInDispenser
   - type: ChemMaster
     pillDosageLimit: 20
+    bottleDosageLimit: 30
+    maxPills: 30
+    maxBottles: 20
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -82,11 +92,9 @@
         whitelist:
           tags:
           - Bottle
-          - PillCanister
   - type: SolutionContainerManager
     solutions:
       buffer: {}
-      pillBuffer: {}
   - type: DumpableSolution
     solution: buffer
     unlimited: true

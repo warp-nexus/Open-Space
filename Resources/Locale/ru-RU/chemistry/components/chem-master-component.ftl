@@ -40,9 +40,9 @@ chem-master-window-buffer-text-label = Буфер для реагентов
 chem-master-window-amount-placeholder = Кол-во переносимого вещества:
 chem-master-window-delete-as-frequent-label = Удалить шаблон
 chem-master-window-save-as-frequent-label = Добавить шаблон
-chem-master-window-sort-method-Amount-text = Сортировка по количеству
-chem-master-window-sort-method-Alphabetical-text = Сортировка по алфавиту
-chem-master-window-sort-method-Time-text = Последний добавленный реагент
+chem-master-window-sort-method-amount-text = Сортировка по количеству
+chem-master-window-sort-method-alphabetical-text = Сортировка по алфавиту
+chem-master-window-sort-method-time-text = Последний добавленный реагент
 chem-master-window-transferring-label =    Перенести: [color={$color}]{$quantity}[/color] ед.
 chem-master-window-transferring-default-label =    Перенести: [color=#ffffff]50[/color] ед.
 chem-master-window-number-label = Кол-во:
@@ -64,8 +64,8 @@ chem-master-bottles-created = Создано { $created } из { $requested } б
 chem-master-window-no-bottle-selected-text = Бутылочка не выбрана!
 chem-master-window-no-pill-selected-text = Таблетка не выбрана!
 chem-master-window-current-text-label = Этикетка:
-chem-master-window-bottle-label = бутылочка: {$current}/{$max}u
-chem-master-window-pill-label = таблетка: {$current}/{$max}u
-chem-master-window-reagent-selected = Выбрано {$amount}u
+chem-master-window-bottle-label = бутылочка: {$current}/{$max} ед.
+chem-master-window-pill-label = таблетка: {$current}/{$max} ед.
+chem-master-window-reagent-selected = Выбрано {$amount} ед.
 chem-master-window-pill-canister-choose-button = Выбрать
 chem-master-window-pills-label = Таблетки:

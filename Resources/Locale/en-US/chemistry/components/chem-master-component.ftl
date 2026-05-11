@@ -40,9 +40,9 @@ chem-master-window-buffer-text-label = Reagent Buffer
 chem-master-window-amount-placeholder = Transfer amount:
 chem-master-window-delete-as-frequent-label = Delete Template
 chem-master-window-save-as-frequent-label = Add Template
-chem-master-window-sort-method-Amount-text = Sort by Quantity
-chem-master-window-sort-method-Alphabetical-text = Sort Alphabetically
-chem-master-window-sort-method-Time-text = Last Added Reagent
+chem-master-window-sort-method-amount-text = Sort by Quantity
+chem-master-window-sort-method-alphabetical-text = Sort Alphabetically
+chem-master-window-sort-method-time-text = Last Added Reagent
 chem-master-window-transferring-label =    Transfer: [color={$color}]{$quantity}[/color] u
 chem-master-window-transferring-default-label =    Transfer: [color=#ffffff]50[/color] u
 chem-master-window-number-label = Amount:
