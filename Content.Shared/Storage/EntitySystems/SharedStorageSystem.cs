@@ -44,8 +44,6 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
-using Content.Shared.Construction.Steps;
-using Content.Shared.Tag;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -1066,7 +1064,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
         if (_whitelistSystem.IsWhitelistFail(storageComp.Whitelist, insertEnt) ||
             _whitelistSystem.IsBlacklistPass(storageComp.Blacklist, insertEnt) ||
-            _tag.HasTag(insertEnt, "ADTStorageBlacklist"))  // OpenSpace tweak
+            _tag.HasTag(insertEnt, "OpenSpaceStorageBlacklist"))  // OpenSpace tweak
         {
             reason = "comp-storage-invalid-container";
             return false;
