@@ -1,4 +1,5 @@
 ﻿using Content.Client.Markers;
+using Content.Client._OpenSpace.Administration; // OpenSpace-Edit
 using Content.Client.SubFloor;
 using Content.Client.Stylesheets;
 using Content.Shared.Silicons.StationAi;
@@ -14,10 +15,10 @@ namespace Content.Client.UserInterface.Systems.Sandbox.Windows;
 [GenerateTypedNameReferences]
 public sealed partial class SandboxWindow : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = null!;
-    [Dependency] private readonly IEyeManager _eyeManager = null!;
-    [Dependency] private readonly ILightManager _lightManager = null!;
-    [Dependency] private readonly IPlayerManager _playerManager = null!;
+    [Dependency] private IEntityManager _entManager = null!;
+    [Dependency] private IEyeManager _eyeManager = null!;
+    [Dependency] private ILightManager _lightManager = null!;
+    [Dependency] private IPlayerManager _playerManager = null!;
     private readonly DebugPhysicsSystem _debugPhysicsSystem;
     private readonly MarkerSystem _markerSystem;
     private readonly SubFloorHideSystem _subFloorSystem;
@@ -36,6 +37,8 @@ public sealed partial class SandboxWindow : DefaultWindow
     {
         base.Opened();
 
+        var doorMaster = _entManager.System<DoorMasterSystem>(); // OpenSpace-Edit
+
         ToggleSubfloorButton.Pressed = _subFloorSystem.ShowAll;
         ToggleLightButton.Pressed = !_lightManager.Enabled;
         ToggleFovButton.Pressed = !_eyeManager.CurrentEye.DrawFov;
@@ -43,5 +46,6 @@ public sealed partial class SandboxWindow : DefaultWindow
         ShowMarkersButton.Pressed = _markerSystem.MarkersVisible;
         ShowBbButton.Pressed = (_debugPhysicsSystem.Flags & PhysicsDebugFlags.Shapes) != 0x0;
         AiOverlayButton.Pressed = _playerManager.LocalEntity is { } player && _entManager.HasComponent<StationAiOverlayComponent>(player);
+        ToggleDoorsButton.Pressed = doorMaster.Enabled; // OpenSpace-Edit
     }
 }

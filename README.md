@@ -189,11 +189,11 @@ chmod +x runclient.sh
 
 ![MPL-2.0 License](https://img.shields.io/badge/License-MPL_2.0-yellow?style=for-the-badge)
 
-> **🇷🇺** Некоторые файлы могут распространяться под лицензией MPL 2.0, если это указано в их начале через SPDX-заголовок.  
-> В таком случае применяется лицензия MPL 2.0 вместо Project License.
+> **🇷🇺** Некоторые файлы могут распространяться под лицензией [MPL 2.0](MPL-2.0.txt), если это указано в их начале через SPDX-заголовок.  
+> В таком случае применяется лицензия [MPL 2.0] (MPL-2.0.txt) вместо Project License.
 >
-> **🇬🇧** Some files may be licensed under MPL 2.0 if specified via an SPDX header at the top of the file.  
-> In such cases, MPL 2.0 applies instead of the Project License.
+> **🇬🇧** Some files may be licensed under [MPL 2.0](MPL-2.0.txt) if specified via an SPDX header at the top of the file.  
+> In such cases, [MPL 2.0](MPL-2.0.txt) applies instead of the Project License.
 
 </details>
 

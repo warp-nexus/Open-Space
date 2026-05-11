@@ -11,6 +11,7 @@
 
         <Label Text="{Loc sandbox-window-visibility-label}"/>
         <Button Name="ToggleLightButton" Access="Public" Text="{Loc sandbox-window-toggle-lights-button}" ToggleMode="True"/>
+        <Button Name="ToggleDoorsButton" Access="Public" Text="{Loc sandbox-window-toggle-doors-button}" ToggleMode="True"/>
         <Button Name="ToggleFovButton" Access="Public" Text="{Loc sandbox-window-toggle-fov-button}" ToggleMode="True"/>
         <Button Name="ToggleThermalVisionButton" Access="Public" Text="{Loc sandbox-window-toggle-thermal-vision}" ToggleMode="True"/>
         <Button Name="ToggleShadowsButton" Access="Public" Text="{Loc sandbox-window-toggle-shadows-button}" ToggleMode="True"/>

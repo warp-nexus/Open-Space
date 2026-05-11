@@ -5,6 +5,7 @@ using Content.Client.Sandbox;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.DecalPlacer;
 using Content.Client.UserInterface.Systems.Sandbox.Windows;
+using Content.Client._OpenSpace.Administration; // OpenSpace-Edit
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Input;
@@ -23,12 +24,12 @@ namespace Content.Client.UserInterface.Systems.Sandbox;
 
 // TODO hud refactor should part of this be in engine?
 [UsedImplicitly]
-public sealed class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
+public sealed partial class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
 {
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IInputManager _input = default!;
-    [Dependency] private readonly IClientAdminManager _admin = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private IInputManager _input = default!;
+    [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     [UISystemDependency] private readonly SandboxSystem _sandbox = default!;
 
@@ -102,9 +103,23 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         if (_window is { Disposed: false })
             return;
         _window = UIManager.CreateWindow<SandboxWindow>();
+
+        // OpenSpace-Edit Start
+        var doorMaster = EntityManager.System<DoorMasterSystem>();
+        _window.ToggleDoorsButton.Pressed = doorMaster.Enabled;
+        // OpenSpace-Edit Stop
+
         // Pre-center the window without forcing it to the center every time.
         _window.OpenCentered();
         _window.Close();
+
+        // OpenSpace-Edit Start
+        _window.ToggleDoorsButton.OnToggled += _ =>
+        {
+            _sandbox.ToggleDoors();
+            _window.ToggleDoorsButton.Pressed = EntityManager.System<DoorMasterSystem>().Enabled;
+        };
+        // OpenSpace-Edit Stop
 
         _window.OnOpen += () => { SandboxButton!.Pressed = true; };
         _window.OnClose += () => { SandboxButton!.Pressed = false; };
