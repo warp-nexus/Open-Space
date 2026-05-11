@@ -61,3 +61,19 @@ public sealed class VoiceMaskToggleMessage : BoundUserInterfaceMessage;
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class VoiceMaskAccentToggleMessage : BoundUserInterfaceMessage;
+
+// OpenSpace edit start
+/// <summary>
+///     Change the TTS voice prototype to override, or null to use the entity's own voice.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class VoiceMaskChangeVoiceMessage : BoundUserInterfaceMessage
+{
+    public readonly string? Voice;
+
+    public VoiceMaskChangeVoiceMessage(string? voice)
+    {
+        Voice = voice;
+    }
+}
+// OpenSpace edit end

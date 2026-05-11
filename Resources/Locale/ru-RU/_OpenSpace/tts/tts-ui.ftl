@@ -1,0 +1,7 @@
+ui-options-tts-volume = Громкость TTS:
+ui-options-tts-announce-volume = Громкость TTS объявлений:
+ui-options-tts-client-enabled = Включить TTS
+humanoid-profile-editor-voice-label = Голос:
+humanoid-profile-editor-voice-play-button = ▶
+tts-rate-limited = Вы генерируете TTS слишком быстро!
+voice-mask-tts-voice-label = Голос TTS:

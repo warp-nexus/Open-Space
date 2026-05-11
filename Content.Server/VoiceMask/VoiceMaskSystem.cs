@@ -19,7 +19,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.VoiceMask;
 
-public sealed partial class VoiceMaskSystem : EntitySystem
+public sealed partial class VoiceMaskSystem : EntitySystem  // OpenSpace
 {
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -37,6 +37,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        InitializeTTS(); // OpenSpace
         SubscribeLocalEvent<VoiceMaskComponent, InventoryRelayedEvent<TransformSpeakerNameEvent>>(OnTransformSpeakerNameInventory);
         SubscribeLocalEvent<VoiceMaskComponent, ImplantRelayEvent<TransformSpeakerNameEvent>>(OnTransformSpeakerNameImplant);
         SubscribeLocalEvent<VoiceMaskComponent, ImplantRelayEvent<SeeIdentityAttemptEvent>>(OnSeeIdentityAttemptEvent);

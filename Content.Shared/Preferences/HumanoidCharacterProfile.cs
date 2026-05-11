@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._OpenSpace.TTS; // OpenSpace
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -73,6 +74,14 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public string FlavorText { get; set; } = string.Empty;
+
+        // OpenSpace edit start
+        /// <summary>
+        /// TTS voice identifier for this character.
+        /// </summary>
+        [DataField]
+        public string Voice { get; set; } = TTSConfig.DefaultVoice;
+        // OpenSpace edit end
 
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
@@ -183,7 +192,15 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
+            Voice = other.Voice; // OpenSpace
         }
+
+        // OpenSpace edit start
+        public HumanoidCharacterProfile WithVoice(string voice)
+        {
+            return new HumanoidCharacterProfile(this) { Voice = voice };
+        }
+        // OpenSpace edit end
 
         /// <summary>
         ///     Get the default humanoid character profile, using internal constant values.

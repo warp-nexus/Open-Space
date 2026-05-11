@@ -61,5 +61,13 @@ public sealed partial class VoiceMaskComponent : Component
     /// </summary>
     [DataField]
     public bool ChangeIDName = false;
+
+    // OpenSpace edit start
+    /// <summary>
+    ///     TTS voice ID to use when wearing this mask. Null means no override.
+    /// </summary>
+    [DataField]
+    public string? VoiceId = null;
+    // OpenSpace edit end
 }
 
