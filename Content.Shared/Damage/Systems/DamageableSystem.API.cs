@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._OpenSpace.Medical.Damage.Events; // open-space edit
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -151,6 +152,22 @@ public sealed partial class DamageableSystem
             if (damage.Empty)
                 return damageDone;
         }
+
+        // open-space edit start
+        var finalEv = new DamageBeforeApplyEvent
+        {
+            Damage = damage,
+            Origin = origin,
+        };
+        RaiseLocalEvent(ent, finalEv);
+
+        if (finalEv.Cancelled)
+            return damageDone;
+
+        damage = finalEv.Damage;
+        if (damage.Empty)
+            return damageDone;
+        // open-space edit end
 
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);

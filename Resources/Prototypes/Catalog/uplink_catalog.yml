@@ -111,6 +111,36 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkCqcManual
+  name: uplink-cqc-manual-name
+  description: uplink-cqc-manual-desc
+  productEntity: CqcManualScroll
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSleepingCarpScroll
+  name: uplink-sleeping-carp-scroll-name
+  description: uplink-sleeping-carp-scroll-desc
+  productEntity: SleepingCarpScroll
+  cost:
+    Telecrystal: 65
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
   id: UplinkGlovesKnuckleDusters
   name: uplink-gloves-knuckleduster-name
   description: uplink-gloves-knuckleduster-desc
@@ -2215,6 +2245,24 @@
     Telecrystal: 1
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkMimeJutsuScroll
+  name: uplink-mime-jutsu-scroll-name
+  description: uplink-mime-jutsu-scroll-desc
+  productEntity: MimeJutsuScroll
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Mime
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkAcolyteArmor

@@ -31,6 +31,12 @@ uplink-fire-axe-flaming-desc = Классическое оружие, оснащ
 
 uplink-gloves-north-star-name = Перчатки Полярной звезды
 uplink-gloves-north-star-desc = Пара перчаток, которые значительно сокращают время между ударами, позволяя избивать людей до смерти шквалом ударов.
+uplink-cqc-manual-name = Руководство по CQC
+uplink-cqc-manual-desc = Самоуничтожающееся руководство, обучающее тактическому ближнему бою.
+uplink-sleeping-carp-scroll-name = Свиток боевых искусств
+uplink-sleeping-carp-scroll-desc = Древний свиток, обучающий Пути Спящего Карпа.
+uplink-mime-jutsu-scroll-name = Свиток мимдзюцу
+uplink-mime-jutsu-scroll-desc = Свиток мима, обучающий продвинутым бесшумным боевым техникам.
 
 uplink-gloves-knuckleduster-name = Кастеты Синдиката
 uplink-gloves-knuckleduster-desc = Пара пластитановых кастетов, позволяющий вам сломать челюсть капитана вдребезги всего одним ударом.

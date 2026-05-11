@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server._OpenSpace.Throwing; // OpenSpace-Edit
 using Content.Server.Stack;
 using Content.Server.Stunnable;
+using Content.Shared._OpenSpace.Combat.Disarming.Components; // open-space edit
 using Content.Shared.ActionBlocker;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
@@ -100,13 +101,18 @@ namespace Content.Server.Hands.Systems
             if (TryComp(uid, out PullerComponent? puller) && TryComp(puller.Pulling, out PullableComponent? pullable))
                 _pullingSystem.TryStopPull(puller.Pulling.Value, pullable);
 
+            // open-space edit start
+            if (!_random.Prob(0.4f) ||
+                !TryGetActiveItem(args.Target, out var activeItem) ||
+                HasComp<NoDisarmComponent>(activeItem.Value))
+            {
+                return;
+            }
+            // open-space edit end
+
             var offsetRandomCoordinates = _transformSystem.GetMoverCoordinates(args.Target).Offset(_random.NextVector2(1f, 1.5f));
             if (!ThrowHeldItem(args.Target, offsetRandomCoordinates))
                 return;
-
-            args.PopupPrefix = "disarm-action-";
-
-            args.Handled = true; // no shove/stun.
         }
 
         #region interactions
