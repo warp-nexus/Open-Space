@@ -112,8 +112,12 @@ public sealed partial class RadioSystem : EntitySystem
         // most radios are relayed to chat, so lets parse the chat message beforehand
         // OpenSpace edit start
         string? voice = null;
-        if (TryComp<TTSComponent>(messageSource, out var tts))
-            voice = tts.VoicePrototypeId;
+        if (TryComp<TTSComponent>(messageSource, out var tts) && tts.VoicePrototypeId != null)
+        {
+            var voiceEv = new TransformSpeakerVoiceEvent(messageSource, tts.VoicePrototypeId);
+            RaiseLocalEvent(messageSource, voiceEv);
+            voice = voiceEv.VoiceId;
+        }
         // OpenSpace edit end
 
         var chat = new ChatMessage(

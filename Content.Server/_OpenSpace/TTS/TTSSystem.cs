@@ -51,6 +51,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeLocalEvent<ActorComponent, TTSRadioPlayEvent>(OnTTSRadioPlayEvent);
+        SubscribeLocalEvent<TTSAnnouncementEvent>(OnAnnouncement);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
         SubscribeNetworkEvent<ClientOptionTTSEvent>(OnClientOptionTTS);
@@ -112,11 +113,25 @@ public sealed partial class TTSSystem : EntitySystem
         HandleSay(uid, args.Message, protoVoice.Speaker);
     }
 
+    private async void OnAnnouncement(TTSAnnouncementEvent ev)
+    {
+        if (!_isEnabled) return;
+
+        var voiceId = _cfg.GetCVar(CCVars.TTSAnnounceVoiceId);
+        if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var protoVoice))
+            return;
+
+        var soundData = await GenerateTTS(ev.Message, protoVoice.Speaker);
+        if (soundData is null) return;
+
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, isRadio: true), ev.Recipients.RemovePlayers(_ignoredRecipients));
+    }
+
     private async void OnTTSRadioPlayEvent(EntityUid uid, ActorComponent comp, TTSRadioPlayEvent args)
     {
         var soundData = await GenerateTTS(args.Message, args.Voice, "radio");
         if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, args.Source, false, args.Author), uid);
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, args.Source, false, args.Author, isRadio: true), uid);
     }
 
     private async void HandleSay(EntityUid uid, string message, string speaker)
