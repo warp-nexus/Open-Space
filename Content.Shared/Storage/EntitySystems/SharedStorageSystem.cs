@@ -44,6 +44,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
+using Content.Shared.Construction.Steps;
+using Content.Shared.Tag;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -55,22 +57,22 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] private   readonly ISharedAdminLogManager _adminLog = default!;
 
     [Dependency] protected readonly ActionBlockerSystem ActionBlocker = default!;
-    [Dependency] private   readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-    [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] protected readonly SharedEntityStorageSystem EntityStorage = default!;
-    [Dependency] private   readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] protected readonly SharedItemSystem ItemSystem = default!;
-    [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private   readonly SharedHandsSystem _sharedHandsSystem = default!;
-    [Dependency] private   readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private   readonly TagSystem _tag = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
@@ -207,6 +209,10 @@ public abstract class SharedStorageSystem : EntitySystem
 
     private void OnRemove(Entity<StorageComponent> entity, ref ComponentRemove args)
     {
+        // OpenSpace tweak start
+        var coordinates = TransformSystem.GetMoverCoordinates(entity);
+        ContainerSystem.EmptyContainer(entity.Comp.Container, destination: coordinates);
+        // OpenSpace tweak end
         UI.CloseUi(entity.Owner, StorageComponent.StorageUiKey.Key);
     }
 
@@ -463,7 +469,8 @@ public abstract class SharedStorageSystem : EntitySystem
 
     public virtual void UpdateUI(Entity<StorageComponent?> entity) {}
 
-    private void AddTransferVerbs(EntityUid uid, StorageComponent component, GetVerbsEvent<UtilityVerb> args)
+    // OpenSpace-Tweak: private -> protected for inheritance, for ChemMaster bottle filling.
+    protected virtual void AddTransferVerbs(EntityUid uid, StorageComponent component, GetVerbsEvent<UtilityVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -1058,7 +1065,8 @@ public abstract class SharedStorageSystem : EntitySystem
         }
 
         if (_whitelistSystem.IsWhitelistFail(storageComp.Whitelist, insertEnt) ||
-            _whitelistSystem.IsWhitelistPass(storageComp.Blacklist, insertEnt))
+            _whitelistSystem.IsBlacklistPass(storageComp.Blacklist, insertEnt) ||
+            _tag.HasTag(insertEnt, "ADTStorageBlacklist"))  // OpenSpace tweak
         {
             reason = "comp-storage-invalid-container";
             return false;
