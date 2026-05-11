@@ -293,15 +293,15 @@ namespace Content.Client.Chemistry.UI
             Tabs.OnTabChanged += _ => UpdateLabelFromState();
 
             SortMethod.AddItem(
-                Loc.GetString("chem-master-window-sort-method-Amount-text"),
+                Loc.GetString("chem-master-window-sort-method-amount-text"),
                 (int)ReagentSortMethod.Amount);
 
             SortMethod.AddItem(
-                Loc.GetString("chem-master-window-sort-method-Alphabetical-text"),
+                Loc.GetString("chem-master-window-sort-method-alphabetical-text"),
                 (int)ReagentSortMethod.Alphabetical);
 
             SortMethod.AddItem(
-                Loc.GetString("chem-master-window-sort-method-Time-text"),
+                Loc.GetString("chem-master-window-sort-method-time-text"),
                 (int)ReagentSortMethod.Time);
 
             // Set minimum size for sort method button
