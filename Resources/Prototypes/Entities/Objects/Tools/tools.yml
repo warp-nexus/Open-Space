@@ -108,6 +108,11 @@
     storedSprite:
       sprite: Objects/Tools/wrench.rsi
       state: storage
+  # OpenSpace-Edit Start
+  - type: ItemPickupSound
+    sound:
+      path: /Audio/Items/wrench_drop.ogg
+  # OpenSpace-Edit End
   - type: MeleeWeapon
     wideAnimationRotation: 135
     attackRate: 1.5
