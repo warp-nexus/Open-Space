@@ -1178,7 +1178,7 @@ public sealed partial class PullingSystem : EntitySystem
         var pullerMap = Transform(component.Puller.Value).MapUid;
 
         if (pulledMap != pullerMap)
-            TryStopPull(uid, component);
+            TryStopPull(uid, component, user: component.Puller.Value);
     }
     // OpenSpace-Edit End
 }
