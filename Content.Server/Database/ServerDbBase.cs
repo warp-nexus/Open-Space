@@ -599,7 +599,7 @@ namespace Content.Server.Database
             return record?.DiscordId;
         }
 
-        public async Task SetPlayerDiscordIdAsync(NetUserId userId, string? discordId)
+        public async Task SetPlayerDiscordIdAsync(NetUserId userId, string discordId)
         {
             await using var db = await GetDb();
             var record = await db.DbContext.OpenSpacePlayer

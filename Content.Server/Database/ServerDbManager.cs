@@ -162,7 +162,7 @@ namespace Content.Server.Database
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
         // OpenSpace edit start
         Task<string?> GetPlayerDiscordIdAsync(NetUserId userId, CancellationToken cancel = default);
-        Task SetPlayerDiscordIdAsync(NetUserId userId, string? discordId);
+        Task SetPlayerDiscordIdAsync(NetUserId userId, string discordId);
         // OpenSpace edit end
         #endregion
 
@@ -597,7 +597,7 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetPlayerDiscordIdAsync(userId, cancel));
         }
 
-        public Task SetPlayerDiscordIdAsync(NetUserId userId, string? discordId)
+        public Task SetPlayerDiscordIdAsync(NetUserId userId, string discordId)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SetPlayerDiscordIdAsync(userId, discordId));

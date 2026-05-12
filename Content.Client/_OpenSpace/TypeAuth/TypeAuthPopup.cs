@@ -14,7 +14,7 @@ public sealed class TypeAuthPopup : Control
     private readonly Label _errorLabel;
     private string _link = "";
 
-    public TypeAuthPopup()
+    public TypeAuthPopup(IUriOpener uriOpener)
     {
         MouseFilter = MouseFilterMode.Stop;
 
@@ -28,7 +28,7 @@ public sealed class TypeAuthPopup : Control
         _openLinkButton.OnPressed += _ =>
         {
             if (!string.IsNullOrEmpty(_link))
-                IoCManager.Resolve<IUriOpener>().OpenUri(_link);
+                uriOpener.OpenUri(_link);
         };
 
         _checkButton = new Button

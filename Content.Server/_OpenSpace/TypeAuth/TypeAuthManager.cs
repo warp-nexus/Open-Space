@@ -31,7 +31,7 @@ public sealed class TypeAuthManager
     {
         _sawmill = _log.GetSawmill("typeauth");
         _cfg.OnValueChanged(CCVars.TypeAuthEnabled, v => _enabled = v, true);
-        _cfg.OnValueChanged(CCVars.TypeAuthBaseUrl, v => _baseUrl = v, true);
+        _cfg.OnValueChanged(CCVars.TypeAuthBaseUrl, v => _baseUrl = v.TrimEnd('/'), true);
         _cfg.OnValueChanged(CCVars.TypeAuthApiSecret, v => _secret = v, true);
 
         _netManager.RegisterNetMessage<TypeAuthShowMessage>();
@@ -113,11 +113,11 @@ public sealed class TypeAuthManager
         return !_confirmedLinked.Contains(userId);
     }
 
-    public async Task<(bool Ok, string? DiscordId, string? Error)> CheckAsync(NetUserId userId)
+    private async Task<(bool Ok, string? DiscordId, string? Error)> CheckAsync(NetUserId userId)
     {
         try
         {
-            var url = $"{_baseUrl.TrimEnd('/')}/api/identify?method=uid&id={Uri.EscapeDataString(userId.ToString())}";
+            var url = $"{_baseUrl}/api/identify?method=uid&id={Uri.EscapeDataString(userId.ToString())}";
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _secret);
 
@@ -147,7 +147,7 @@ public sealed class TypeAuthManager
     {
         try
         {
-            var url = $"{_baseUrl.TrimEnd('/')}/api/link?uid={Uri.EscapeDataString(uid)}";
+            var url = $"{_baseUrl}/api/link?uid={Uri.EscapeDataString(uid)}";
             using var response = await Http.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {

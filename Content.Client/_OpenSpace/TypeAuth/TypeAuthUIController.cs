@@ -11,6 +11,7 @@ public sealed class TypeAuthUIController : UIController
 {
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IUriOpener _uriOpener = default!;
 
     private TypeAuthPopup? _popup;
 
@@ -30,7 +31,7 @@ public sealed class TypeAuthUIController : UIController
 
         _clyde.RequestWindowAttention();
 
-        _popup = new TypeAuthPopup();
+        _popup = new TypeAuthPopup(_uriOpener);
         _popup.SetLink(message.AuthLink);
         _popup.OnCheckPressed += OnCheckPressed;
 

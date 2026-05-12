@@ -390,13 +390,7 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
-            // OpenSpace edit start
-            if (_typeAuth.IsTypeAuthBlocking(player.UserId))
-            {
-                _chatManager.DispatchServerMessage(player, Loc.GetString("typeauth-must-link-discord"));
-                return;
-            }
-            // OpenSpace edit end
+            if (TryBlockTypeAuth(player)) return; // OpenSpace
 
             SpawnPlayer(player, station, jobId, silent: silent);
         }
@@ -410,13 +404,7 @@ namespace Content.Server.GameTicking
             if (DummyTicker)
                 return;
 
-            // OpenSpace edit start
-            if (_typeAuth.IsTypeAuthBlocking(player.UserId))
-            {
-                _chatManager.DispatchServerMessage(player, Loc.GetString("typeauth-must-link-discord"));
-                return;
-            }
-            // OpenSpace edit end
+            if (TryBlockTypeAuth(player)) return; // OpenSpace
 
             PlayerJoinGame(player);
             SpawnObserver(player);
