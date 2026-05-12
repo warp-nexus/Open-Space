@@ -590,6 +590,30 @@ namespace Content.Server.Database
                 player.LastSeenHWId);
         }
 
+        // OpenSpace edit start
+        public async Task<string?> GetPlayerDiscordIdAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var record = await db.DbContext.OpenSpacePlayer
+                .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+            return record?.DiscordId;
+        }
+
+        public async Task SetPlayerDiscordIdAsync(NetUserId userId, string? discordId)
+        {
+            await using var db = await GetDb();
+            var record = await db.DbContext.OpenSpacePlayer
+                .SingleOrDefaultAsync(p => p.UserId == userId.UserId);
+            if (record == null)
+            {
+                record = new OpenSpacePlayer { UserId = userId.UserId };
+                db.DbContext.OpenSpacePlayer.Add(record);
+            }
+            record.DiscordId = discordId;
+            await db.DbContext.SaveChangesAsync();
+        }
+        // OpenSpace edit end
+
         #endregion
 
         #region Connection Logs
