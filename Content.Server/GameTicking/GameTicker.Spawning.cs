@@ -390,6 +390,14 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
+            // OpenSpace edit start
+            if (_typeAuth.IsTypeAuthBlocking(player.UserId))
+            {
+                _chatManager.DispatchServerMessage(player, Loc.GetString("typeauth-must-link-discord"));
+                return;
+            }
+            // OpenSpace edit end
+
             SpawnPlayer(player, station, jobId, silent: silent);
         }
 
@@ -401,6 +409,14 @@ namespace Content.Server.GameTicking
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
                 return;
+
+            // OpenSpace edit start
+            if (_typeAuth.IsTypeAuthBlocking(player.UserId))
+            {
+                _chatManager.DispatchServerMessage(player, Loc.GetString("typeauth-must-link-discord"));
+                return;
+            }
+            // OpenSpace edit end
 
             PlayerJoinGame(player);
             SpawnObserver(player);

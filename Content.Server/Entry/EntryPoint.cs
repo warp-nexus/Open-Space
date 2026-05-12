@@ -82,6 +82,7 @@ namespace Content.Server.Entry
         [Dependency] private ServerUpdateManager _updateManager = default!;
         [Dependency] private ServerFeedbackManager _feedbackManager = null!;
         [Dependency] private Content.Server._OpenSpace.TTS.TTSManager _ttsManager = default!; // OpenSpace
+        [Dependency] private Content.Server._OpenSpace.TypeAuth.TypeAuthManager _typeAuth = default!; // OpenSpace
 
         public override void PreInit()
         {
@@ -139,6 +140,7 @@ namespace Content.Server.Entry
             _job.Initialize();
             _rateLimit.Initialize();
             _ttsManager.Initialize(); // OpenSpace
+            _typeAuth.Initialize(); // OpenSpace
         }
 
         public override void PostInit()
