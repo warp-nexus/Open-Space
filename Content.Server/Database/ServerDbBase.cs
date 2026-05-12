@@ -602,15 +602,26 @@ namespace Content.Server.Database
         public async Task SetPlayerDiscordIdAsync(NetUserId userId, string discordId)
         {
             await using var db = await GetDb();
-            var record = await db.DbContext.OpenSpacePlayer
-                .SingleOrDefaultAsync(p => p.UserId == userId.UserId);
-            if (record == null)
+
+            var updated = await db.DbContext.OpenSpacePlayer
+                .Where(p => p.UserId == userId.UserId)
+                .ExecuteUpdateAsync(s => s.SetProperty(p => p.DiscordId, discordId));
+
+            if (updated != 0)
+                return;
+
+            try
             {
-                record = new OpenSpacePlayer { UserId = userId.UserId };
-                db.DbContext.OpenSpacePlayer.Add(record);
+                db.DbContext.OpenSpacePlayer.Add(new OpenSpacePlayer { UserId = userId.UserId, DiscordId = discordId });
+                await db.DbContext.SaveChangesAsync();
             }
-            record.DiscordId = discordId;
-            await db.DbContext.SaveChangesAsync();
+            catch (DbUpdateException)
+            {
+                // Concurrent insert won the race — row exists, update it.
+                await db.DbContext.OpenSpacePlayer
+                    .Where(p => p.UserId == userId.UserId)
+                    .ExecuteUpdateAsync(s => s.SetProperty(p => p.DiscordId, discordId));
+            }
         }
         // OpenSpace edit end
 
