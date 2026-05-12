@@ -590,7 +590,7 @@ namespace Content.Server.Database
                 player.LastSeenHWId);
         }
 
-        // OpenSpace edit start
+        // OpenSpace Edit Start
         public async Task<string?> GetPlayerDiscordIdAsync(NetUserId userId, CancellationToken cancel = default)
         {
             await using var db = await GetDb(cancel);
@@ -623,7 +623,7 @@ namespace Content.Server.Database
                     .ExecuteUpdateAsync(s => s.SetProperty(p => p.DiscordId, discordId));
             }
         }
-        // OpenSpace edit end
+        // OpenSpace Edit End
 
         #endregion
 

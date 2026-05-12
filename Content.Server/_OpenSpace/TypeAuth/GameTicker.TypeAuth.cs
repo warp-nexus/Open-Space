@@ -5,9 +5,8 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    [Dependency] private TypeAuthManager _typeAuth = default!; // OpenSpace
+    [Dependency] private TypeAuthManager _typeAuth = default!;
 
-    // OpenSpace edit start
     private bool TryBlockTypeAuth(ICommonSession player)
     {
         if (!_typeAuth.IsTypeAuthBlocking(player.UserId))
@@ -15,5 +14,4 @@ public sealed partial class GameTicker
         _chatManager.DispatchServerMessage(player, Loc.GetString("typeauth-must-link-discord"));
         return true;
     }
-    // OpenSpace edit end
 }
