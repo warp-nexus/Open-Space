@@ -873,13 +873,12 @@ namespace Content.Server.Chemistry.EntitySystems
                     {
                         var item = Spawn(PillPrototypeId, Transform(container).Coordinates);
 
-                        var hasItemSolution = _solutionContainerSystem.EnsureSolutionEntity(
+                        var hasItemSolution = _solutionContainerSystem.EnsureSolution(
                             (item, null),
                             SharedChemMaster.PillSolutionName,
-                            out var itemSolution,
-                            message.Dosage);
+                            out var itemSolution);
 
-                        if (!hasItemSolution || itemSolution is null)
+                        if (!hasItemSolution)
                             continue;
 
                         // For the last pill, add any remaining amount due to rounding
@@ -904,7 +903,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         }
                         pillSolution.Temperature = withdrawalSolution.Temperature;
 
-                        _solutionContainerSystem.TryAddSolution(itemSolution.Value, pillSolution);
+                        itemSolution.Comp.Solution.MaxVolume = message.Dosage;
 
                         var pill = EnsureComp<PillComponent>(item);
                         pill.PillType = chemMaster.Comp.PillType;
@@ -918,7 +917,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         _adminLogger.Add(
                             LogType.Action,
                             LogImpact.Low,
-                            $"{ToPrettyString(user):user} printed {ToPrettyString(item):pill} {SharedSolutionContainerSystem.ToPrettyString(itemSolution.Value.Comp.Solution)}");
+                            $"{SharedSolutionContainerSystem.ToPrettyString(itemSolution.Comp.Solution)}");
 
                         pillIndex++;
                     }
@@ -983,13 +982,12 @@ namespace Content.Server.Chemistry.EntitySystems
                     {
                         var item = Spawn(PillPrototypeId, Transform(container).Coordinates);
 
-                        var hasItemSolution = _solutionContainerSystem.EnsureSolutionEntity(
+                        var hasItemSolution = _solutionContainerSystem.EnsureSolution(
                             (item, null),
                             SharedChemMaster.PillSolutionName,
-                            out var itemSolution,
-                            message.Dosage);
+                            out var itemSolution);
 
-                        if (!hasItemSolution || itemSolution is null)
+                        if (!hasItemSolution)
                             continue;
 
                         // For the last pill, add any remaining amount due to rounding
@@ -1015,7 +1013,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         }
                         pillSolution.Temperature = withdrawal.Temperature;
 
-                        _solutionContainerSystem.TryAddSolution(itemSolution.Value, pillSolution);
+                        itemSolution.Comp.Solution.MaxVolume = message.Dosage;
 
                         var pill = EnsureComp<PillComponent>(item);
                         pill.PillType = chemMaster.Comp.PillType;
@@ -1029,7 +1027,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         _adminLogger.Add(
                             LogType.Action,
                             LogImpact.Low,
-                            $"{ToPrettyString(user):user} printed {ToPrettyString(item):pill} {SharedSolutionContainerSystem.ToPrettyString(itemSolution.Value.Comp.Solution)}");
+                            $"{SharedSolutionContainerSystem.ToPrettyString(itemSolution.Comp.Solution)}");
 
                         pillIndex++;
                     }
