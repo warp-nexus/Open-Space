@@ -354,10 +354,8 @@ namespace Content.Client.ContextMenu.UI
                 // that entity.
                 element.Entity = entity;
                 if (element.SubMenu is { Disposed: false })
-                {
                     element.SubMenu.Dispose();
-                    element.SubMenu = null;
-                }
+                element.SubMenu = null;
                 Elements[entity.Value] = element;
             }
 
