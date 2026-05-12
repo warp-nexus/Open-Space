@@ -158,6 +158,7 @@ public sealed partial class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullerComponent, UserInteractHandEvent>(OnPullerInteractHand);
         SubscribeLocalEvent<PullerComponent, MoveEvent>(OnPullerMove);
         SubscribeLocalEvent<PullableComponent, EntParentChangedMessage>(OnPullableParentChanged);
+        SubscribeLocalEvent<PullerComponent, EntParentChangedMessage>(OnPullerParentChanged);
         // OpenSpace-Edit End
 
         CommandBinds.Builder
@@ -1178,7 +1179,35 @@ public sealed partial class PullingSystem : EntitySystem
         var pullerMap = Transform(component.Puller.Value).MapUid;
 
         if (pulledMap != pullerMap)
+        {
+            // Удаляем джоинт напрямую ДО TryStopPull — обходим !_timing.ApplyingState guard в StopPulling
+            if (component.PullJointId != null)
+            {
+                _joints.RemoveJoint(uid, component.PullJointId);
+                component.PullJointId = null;
+            }
             TryStopPull(uid, component, user: component.Puller.Value);
+        }
+    }
+
+    private void OnPullerParentChanged(EntityUid uid, PullerComponent component, ref EntParentChangedMessage args)
+    {
+        if (component.Pulling == null)
+            return;
+
+        var pullerMap = Transform(uid).MapUid;
+        var pulledMap = Transform(component.Pulling.Value).MapUid;
+
+        if (pullerMap != pulledMap)
+        {
+            if (TryComp<PullableComponent>(component.Pulling.Value, out var pullableComp) &&
+                pullableComp.PullJointId != null)
+            {
+                _joints.RemoveJoint(component.Pulling.Value, pullableComp.PullJointId);
+                pullableComp.PullJointId = null;
+            }
+            TryStopPull(component.Pulling.Value, pullableComp!, user: uid);
+        }
     }
     // OpenSpace-Edit End
 }
