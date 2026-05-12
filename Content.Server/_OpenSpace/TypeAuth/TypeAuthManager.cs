@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared._OpenSpace.TypeAuth;
@@ -18,6 +19,7 @@ public sealed class TypeAuthManager
     [Dependency] private ILogManager _log = default!;
 
     private static readonly HttpClient Http = new();
+    private static readonly TimeSpan RequestTimeout = TimeSpan.FromSeconds(10);
     private ISawmill _sawmill = default!;
 
     private bool _enabled;
@@ -125,7 +127,8 @@ public sealed class TypeAuthManager
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _secret);
 
-            using var response = await Http.SendAsync(request);
+            using var cts = new CancellationTokenSource(RequestTimeout);
+            using var response = await Http.SendAsync(request, cts.Token);
             if (!response.IsSuccessStatusCode)
                 return (false, null, $"Not linked (HTTP {(int)response.StatusCode})");
 
@@ -152,7 +155,8 @@ public sealed class TypeAuthManager
         try
         {
             var url = $"{_baseUrl}/api/link?uid={Uri.EscapeDataString(uid)}";
-            using var response = await Http.GetAsync(url);
+            using var cts = new CancellationTokenSource(RequestTimeout);
+            using var response = await Http.GetAsync(url, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
                 _sawmill.Error($"typeauthd link endpoint returned {(int)response.StatusCode}");
