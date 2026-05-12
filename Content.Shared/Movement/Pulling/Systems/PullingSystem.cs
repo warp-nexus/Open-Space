@@ -157,6 +157,7 @@ public sealed partial class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullerComponent, UserInteractUsingEvent>(OnPullerInteractUsing);
         SubscribeLocalEvent<PullerComponent, UserInteractHandEvent>(OnPullerInteractHand);
         SubscribeLocalEvent<PullerComponent, MoveEvent>(OnPullerMove);
+        SubscribeLocalEvent<PullableComponent, EntParentChangedMessage>(OnPullableParentChanged);
         // OpenSpace-Edit End
 
         CommandBinds.Builder
@@ -1167,6 +1168,17 @@ public sealed partial class PullingSystem : EntitySystem
             EnsureComp<UnremoveableComponent>(virt1.Value);
         if (_virtual.TrySpawnVirtualItemInHand(targetUid, pullerUid, out var virt2, dropOthers: true, silent: true))
             EnsureComp<UnremoveableComponent>(virt2.Value);
+    }
+    private void OnPullableParentChanged(EntityUid uid, PullableComponent component, ref EntParentChangedMessage args)
+    {
+        if (component.Puller == null)
+            return;
+
+        var pulledMap = Transform(uid).MapUid;
+        var pullerMap = Transform(component.Puller.Value).MapUid;
+
+        if (pulledMap != pullerMap)
+            TryStopPull(uid, component);
     }
     // OpenSpace-Edit End
 }
