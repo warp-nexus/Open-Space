@@ -904,6 +904,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         pillSolution.Temperature = withdrawalSolution.Temperature;
 
                         itemSolution.Comp.Solution.MaxVolume = message.Dosage;
+                        _solutionContainerSystem.TryAddSolution(itemSolution, pillSolution);
 
                         var pill = EnsureComp<PillComponent>(item);
                         pill.PillType = chemMaster.Comp.PillType;
@@ -1014,6 +1015,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         pillSolution.Temperature = withdrawal.Temperature;
 
                         itemSolution.Comp.Solution.MaxVolume = message.Dosage;
+                        _solutionContainerSystem.TryAddSolution(itemSolution, pillSolution);
 
                         var pill = EnsureComp<PillComponent>(item);
                         pill.PillType = chemMaster.Comp.PillType;
@@ -1476,7 +1478,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 // Try to get reagent prototype for the name
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId.Prototype, out var reagentProto))
                 {
-                    var reagentName = Loc.GetString(reagentProto.LocalizedName);
+                    var reagentName = reagentProto.LocalizedName;
                     parts.Add($"{reagentName}:{amount:F0}u");
                 }
             }
