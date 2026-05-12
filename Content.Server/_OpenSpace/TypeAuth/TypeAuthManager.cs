@@ -100,6 +100,10 @@ public sealed class TypeAuthManager
                 new TypeAuthResultMessage { Success = ok, ErrorMessage = error },
                 message.MsgChannel);
         }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"TypeAuth check error for user {userId}: {ex}");
+        }
         finally
         {
             _pendingCheck.Remove(userId);
