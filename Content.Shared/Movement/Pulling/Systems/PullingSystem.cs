@@ -1200,13 +1200,15 @@ public sealed partial class PullingSystem : EntitySystem
 
         if (pullerMap != pulledMap)
         {
-            if (TryComp<PullableComponent>(component.Pulling.Value, out var pullableComp) &&
-                pullableComp.PullJointId != null)
+            if (!TryComp<PullableComponent>(component.Pulling.Value, out var pullableComp))
+                return;
+
+            if (pullableComp.PullJointId != null)
             {
                 _joints.RemoveJoint(component.Pulling.Value, pullableComp.PullJointId);
                 pullableComp.PullJointId = null;
             }
-            TryStopPull(component.Pulling.Value, pullableComp!, user: uid);
+            TryStopPull(component.Pulling.Value, pullableComp, user: uid);
         }
     }
     // OpenSpace-Edit End

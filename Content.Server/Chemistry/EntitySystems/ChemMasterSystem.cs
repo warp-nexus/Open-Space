@@ -488,6 +488,22 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             var targets = new List<EntityUid>(capacity: requestedBottles);
 
+            // ReSharper disable once ComplexConditionExpression
+            if (chemMaster.Comp.SelectedBottleForFill is var selected &&
+                selected >= 0 &&
+                selected < chemMaster.Comp.StoredBottles.Count &&
+                chemMaster.Comp.StoredBottles[selected] is { } selectedBottle &&
+                _solutionContainerSystem.TryGetSolution(selectedBottle,
+                    SharedChemMaster.BottleSolutionName,
+                    out _,
+                    out var selectedSolution) &&
+                selectedSolution.Volume == 0 &&
+                selectedSolution.AvailableVolume >= dosage)
+            {
+                targets.Add(selectedBottle);
+                return targets;
+            }
+
             // Find empty bottles across all slots, regardless of selection
             for (int i = 0; i < chemMaster.Comp.StoredBottles.Count && targets.Count < requestedBottles; i++)
             {
@@ -1726,6 +1742,8 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private void OnSelectReagentAmountMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterSelectReagentAmountMessage message)
         {
+            if (message.Amount <= 0)
+                return;
             // Validate: check if the user is trying to select more than available in buffer
             if (!_solutionContainerSystem.TryGetSolution((EntityUid)chemMaster, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
                 return;
@@ -1808,6 +1826,8 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private void OnRemoveReagentAmountMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterRemoveReagentAmountMessage message)
         {
+            if (message.Amount <= 0)
+                return;
             // First try direct lookup
             if (chemMaster.Comp.SelectedReagentAmounts.TryGetValue(message.Reagent, out var currentAmount))
             {
