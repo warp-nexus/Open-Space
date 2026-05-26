@@ -1,10 +1,10 @@
  CLA License
-            Copyright (c) 2025-2026 ss14-art Organization 
+            Copyright (c) 2025-2026 warp-nexus Organization 
 
                             Preamble
 
-This Contributor License Agreement (“CLA”) is entered into between ss14-art Organization 
-(“ss14-art” or “Organization”) and the contributor (“Contributor”). By making a submission 
+This Contributor License Agreement (“CLA”) is entered into between warp-nexus Organization 
+(“warp-nexus” or “Organization”) and the contributor (“Contributor”). By making a submission 
 to the ss14-art project, Contributor agrees to be bound by the terms of this CLA.
 
                             Definitions
@@ -16,34 +16,34 @@ or on behalf of the Organization (unless explicitly marked as “Not a contribut
 Contributions that include third-party materials under licenses incompatible with the Project
 license (e.g., GPL, AGPL) are not accepted, unless Contributor is the original rights holder
 and explicitly grants rights under this CLA.
-– “Project” refers to any repository or software project managed by ss14-art.
+– “Project” refers to any repository or software project managed by warp-nexus.
 – “Contributor” is any individual or entity submitting a Contribution to the Project.
-– “Licensor” means ss14-art Organization. For licensing inquiries, contact: support@stopco.ru .
+– “Licensor” means warp-nexus Organization. For licensing inquiries, contact: support@stopco.ru .
 
 By providing a Contribution, Contributor grants the Organization a free, non-exclusive,
 irrevocable license for the full term of Contributor’s rights in such Contribution.
 
                             Grant of Rights
 
-By submitting a Contribution, Contributor hereby grants to ss14-art:
-– Contributor retains copyright ownership of the Contribution but agrees that ss14-art 
-  may distribute it under any license selected by ss14-art.
-– Contributor grants ss14-art a perpetual, worldwide, non‑exclusive, royalty‑free, 
+By submitting a Contribution, Contributor hereby grants to warp-nexus:
+– Contributor retains copyright ownership of the Contribution but agrees that warp-nexus
+  may distribute it under any license selected by warp-nexus.
+– Contributor grants warp-nexus a perpetual, worldwide, non‑exclusive, royalty‑free, 
   irrevocable license under any necessary patent claims owned or controlled by Contributor 
   to make, have made, use, offer to sell, sell, import, and otherwise transfer the Contribution.
 
                             License Types
 
-Source code and software components may be distributed by ss14-art under any license 
+Source code and software components may be distributed by warp-nexus under any license 
 selected by ss14-art, including but not limited to AGPL‑3.0.
-Documentation, graphics, and non‑code assets may be distributed by ss14-art under any 
-license selected by ss14-art, including but not limited to CC‑BY‑SA 3.0.
+Documentation, graphics, and non‑code assets may be distributed by warp-nexus under any 
+license selected by warp-nexus, including but not limited to CC‑BY‑SA 3.0.
 ss14-art may change the licensing terms of any asset at any time.
 
                             Acceptance
 
 This CLA is accepted if one of these conditions is met:
-– Submitting a Pull Request to an ss14-art repository.
+– Submitting a Pull Request to an warp-nexus repository.
 – Making a commit with a signed‑off line: Signed-off-by: Name <email@example.com>.
 – Acceptance through the GitHub Pull Request license checkbox.
 
@@ -52,22 +52,22 @@ This CLA is accepted if one of these conditions is met:
 ## Copyright
 
 Each Contributor retains copyright ownership of their respective Contributions. 
-ss14-art Organization does not claim ownership of Contributions but obtains the rights 
+warp-nexus Organization does not claim ownership of Contributions but obtains the rights 
 to use, modify, and distribute them under the terms of this Contributor License Agreement.
 
 Authors retain all rights to their contributions and may use them for any purpose, 
 including commercial use. The organization is granted a non-exclusive right to use, 
-modify, and distribute the contributions within the framework of the SS14-ART project.
+modify, and distribute the contributions within the framework of the WARP-NEXUS project.
 
 An organization cannot revoke the rights to contributions, but it may prohibit their use 
 in the project if they violate the rules.
 
 ## Code license
 
-By contributing to this repository, Contributors grant ss14-art a perpetual, worldwide, 
+By contributing to this repository, Contributors grant warp-nexus a perpetual, worldwide, 
 non‑exclusive, royalty‑free, irrevocable license to:
 – use, reproduce, modify, and create derivative works of the Contributions;
-– distribute the Contributions (and derivatives) under any license selected by ss14-art, 
+– distribute the Contributions (and derivatives) under any license selected by warp-nexus, 
   including but not limited to: the original (MIT) license, GNU Affero General Public 
   License v3.0 (AGPL-3.0), or other open‑source or proprietary licenses.
 
