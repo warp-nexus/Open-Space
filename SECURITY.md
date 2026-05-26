@@ -15,10 +15,10 @@ Currently, the `master` branch is the only branch actively receiving security up
 
 ### Reporting a Vulnerability
 
-We take the security of our project very seriously. If you discover a vulnerability, exploit, or any security-related issue within the ss14-art project, we kindly ask you **not to report it in public issues or pull requests**.
+We take the security of our project very seriously. If you discover a vulnerability, exploit, or any security-related issue within the warp-nexus project, we kindly ask you **not to report it in public issues or pull requests**.
 
 Please report all vulnerabilities directly via email to:
-**support@stopco.ru**
+**project.nexus.support@gmail.com**
 
 #### What to include in your report:
 * A description of the vulnerability.
@@ -42,10 +42,10 @@ We will review the report and respond to you as soon as possible to coordinate a
 
 ### Сообщение об уязвимости
 
-Мы очень серьезно относимся к безопасности нашего проекта. Если вы обнаружите уязвимость, эксплойт или любую другую проблему, связанную с безопасностью в проекте ss14-art, мы убедительно просим вас **не сообщать об этом в публичных обсуждениях (issues) или pull request'ах**.
+Мы очень серьезно относимся к безопасности нашего проекта. Если вы обнаружите уязвимость, эксплойт или любую другую проблему, связанную с безопасностью в проекте warp-nexus, мы убедительно просим вас **не сообщать об этом в публичных обсуждениях (issues) или pull request'ах**.
 
 Пожалуйста, сообщайте обо всех уязвимостях напрямую по электронной почте:
-**support@stopco.ru**
+**sproject.nexus.support@gmail.com**
 
 #### Что следует включить в ваш отчет:
 * Описание уязвимости.
