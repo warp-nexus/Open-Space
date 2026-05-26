@@ -2,12 +2,12 @@
 # НЕ ИЗМЕНЯТЬ ФАЙЛ ПРИ АПСТРИМЕ/ОБНОВЛЕНИИ.
 #
 # Код
-/Content.*/** @ReWAFFlution
+/Content.*/** @SunChan07
 
 # Ресурсы
-/Resources/** @ReWAFFlution # Временная мера пока не будет ещё больше ревьюверов
+/Resources/** @SunChan07 # Временная мера пока не будет ещё больше ревьюверов
 
 /Resources/Textures/**
 # /Resources/Maps/**
-/Resources/Prototypes/** @ReWAFFlution
+/Resources/Prototypes/** @SunChan07
 /Resources/Locale/**
