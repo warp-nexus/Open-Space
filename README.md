@@ -70,8 +70,8 @@ runclient.bat
 ### 🐧 Linux / macOS
 ```sh
 # 1. Клонируйте репозиторий
-git clone https://github.com/ss14-art/open-space.git
-cd open-space
+git clone https://github.com/warp-nexus/Open-Space.git
+cd Open-Space
 
 # 2. Загрузите движок
 git submodule update --init --recursive
