@@ -50,7 +50,7 @@ It is a game about survival on a space station featuring constant confrontations
 ### 🍃 Windows
 ```bat
 # 1. Клонируйте репозиторий
-git clone https://github.com/ss14-art/open-space.git
+git clone https://github.com/warp-nexus/Open-Space.git
 cd open-space
 
 # 2. Загрузите движок
